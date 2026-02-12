@@ -1,0 +1,33 @@
+src/
+├── assets/                # Static assets (Images, Logos, SVGs, Lottie files)
+│   ├── icons/             # Custom SVG icons
+│   └── images/            # High-res images, Hero assets, etc.
+│
+├── components/            # Reusable UI pieces
+│   ├── common/            # Atomic components (Button, Input, Badge, Card)
+│   ├── layout/            # Site-wide pieces (Navbar.jsx, Footer.jsx)
+│   └── sections/          # Page sections (Hero.jsx, Features.jsx, SectorVault.jsx)
+│
+│
+├── layouts/               # Page Templates/Wrappers
+│   └── MainLayout.jsx     # Shared layout with <Navbar />, <Outlet />, and <Footer />
+│
+├── pages/                 # Full Page views (Lazy Loaded)
+│   ├── Home.jsx           # Aggregates components/sections/
+│   ├── About.jsx
+│   ├── Projects.jsx
+│   ├── Sectors.jsx
+│   └── Contact.jsx
+│
+├── routes/                # Navigation Logic
+│   └── AppRouter.jsx      # React Router configuration & Suspense fallback logic
+│
+├── services/              # API & External Logic (Axios config, Firebase, etc.)
+│
+├── styles/                # Global Styling
+│   └── index.css          # Tailwind v4 directives and @theme variables
+│
+├── utils/                 # Helper Functions (Form validation, Date formatting)
+│
+├── App.jsx                # Main Application Shell (Wraps AppRouter)
+└── main.jsx               # Entry point (ReactDOM.createRoot)

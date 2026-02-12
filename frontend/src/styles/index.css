@@ -1,0 +1,12 @@
+/* src/styles/index.css */
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #0f172a; /* Deep Navy for text */
+  --color-accent: #2563eb; /* Clean Blue for actions */
+  --color-surface: #f8fafc; /* Soft White for backgrounds */
+}
+
+body {
+  @apply bg-[#ffffff] text-slate-900 antialiased;
+}

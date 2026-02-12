@@ -1,0 +1,221 @@
+import React, { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import ScrollToTopButton from '../common/ScrollToTopButton';
+import {
+  Rocket,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Github,
+  Mail,
+  ArrowUp,
+  ArrowUpRight,
+  Send,
+  CheckCircle2,
+} from 'lucide-react';
+
+/* -------------------- Constants -------------------- */
+
+const STATUS = {
+  IDLE: 'idle',
+  LOADING: 'loading',
+  SUCCESS: 'success',
+  ERROR: 'error',
+};
+
+const FOOTER_LINKS = {
+  company: [
+    { name: 'About Us', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Portfolio', path: '/portfolio' },
+    { name: 'Careers', path: '/careers' },
+  ],
+  resources: [
+    { name: 'Blog', path: '/blogs' },
+    { name: 'Case Studies', path: '/portfolio' },
+    { name: 'Clients', path: '/clients' },
+    { name: 'Support', path: '/support' },
+  ],
+  legal: [
+    { name: 'Privacy Policy', path: '/privacy' },
+    { name: 'Terms of Service', path: '/terms' },
+    { name: 'Cookie Policy', path: '/cookies' },
+  ],
+};
+
+const CATEGORY_LABELS = {
+  company: 'Company',
+  resources: 'Resources',
+  legal: 'Legal',
+};
+
+const SOCIAL_LINKS = [
+  { icon: Twitter, url: 'https://twitter.com' },
+  { icon: Linkedin, url: 'https://linkedin.com' },
+  { icon: Instagram, url: 'https://instagram.com' },
+  { icon: Github, url: 'https://github.com' },
+];
+
+/* -------------------- Component -------------------- */
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState(STATUS.IDLE);
+
+  /* -------------------- Handlers -------------------- */
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    try {
+      setStatus(STATUS.LOADING);
+
+      // 🔌 Future API call
+      console.log('Newsletter email:', email);
+      // await api.post('/newsletter', { email });
+
+      setStatus(STATUS.SUCCESS);
+      setEmail('');
+
+      setTimeout(() => setStatus(STATUS.IDLE), 3000);
+    } catch (error) {
+      console.error(error);
+      setStatus(STATUS.ERROR);
+    }
+  };
+
+
+  /* -------------------- UI -------------------- */
+
+  return (
+    <footer className="bg-[#121c2e] pt-16 pb-10 border-t border-white/5 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* Top Section */}
+        <div className="flex flex-col lg:flex-row justify-between gap-10 mb-14">
+          <div className="max-w-md">
+            <Link to="/" className="flex items-center gap-3 mb-5 group w-fit">
+              <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all shadow-lg shadow-blue-600/20">
+                <Rocket className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-2xl font-black text-white uppercase ">
+                Nexus<span className="text-blue-500">Boost.</span>
+              </span>
+            </Link>
+
+            <p className="text-slate-400 text-base leading-relaxed">
+              Accelerating digital growth with precision-engineered strategies and world-class design.
+            </p>
+          </div>
+
+          {/* Newsletter */}
+          <div className="w-full lg:max-w-md">
+            <form onSubmit={handleSubscribe} className="relative">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Subscribe to insights"
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white outline-none focus:border-blue-500"
+              />
+
+              <button
+                type="submit"
+                disabled={status !== STATUS.IDLE}
+                className="absolute right-2 top-2 bottom-2 bg-blue-600 px-6 rounded-lg text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:bg-blue-500 transition-all disabled:bg-slate-800"
+              >
+                {status === STATUS.IDLE && <Send size={14} />}
+                {status === STATUS.LOADING && (
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                )}
+                {status === STATUS.SUCCESS && <CheckCircle2 size={14} />}
+                <span>{status === STATUS.SUCCESS ? 'Added' : 'Join'}</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Links */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 py-12 border-y border-white/5">
+          {Object.entries(FOOTER_LINKS).map(([key, links]) => (
+            <div key={key}>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-blue-500 mb-6">
+                {CATEGORY_LABELS[key]}
+              </p>
+              <ul className="space-y-4">
+                {links.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.path}
+                      className="text-slate-400 hover:text-white text-sm font-medium flex items-center gap-2 group w-fit"
+                    >
+                      {link.name}
+                      <ArrowUpRight
+                        size={14}
+                        className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-blue-500"
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Social + Email */}
+          <div className="col-span-2 flex flex-col justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-blue-500 mb-6">
+                Socials
+              </p>
+              <div className="flex gap-4 mb-8">
+                {SOCIAL_LINKS.map(({ icon: Icon, url }) => (
+                  <a
+                    key={url}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
+                  >
+                    <Icon size={18} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href="mailto:hello@nexusboost.com"
+              className="text-lg font-bold text-white hover:text-blue-400 transition-colors flex items-center gap-3"
+            >
+              hello@nexusboost.com <Mail size={18} className="text-slate-500" />
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-10 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">
+            © {currentYear} Nexus Digital Group.
+          </p>
+
+          <div className="flex items-center gap-8">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-slate-500 text-[11px] font-bold uppercase tracking-widest">
+                Systems Active
+              </span>
+            </div>
+
+            <ScrollToTopButton />
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
