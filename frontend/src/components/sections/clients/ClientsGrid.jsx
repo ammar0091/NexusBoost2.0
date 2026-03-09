@@ -6,13 +6,14 @@ const ClientsGrid = ({ clients }) => {
           {clients.map((client, i) => (
             <div
               key={client.id || i}
-              className="group relative flex items-center justify-center p-8 bg-slate-50 rounded-2xl border border-slate-200 hover:border-gradient-to-r hover:from-blue-500 hover:to-indigo-500 hover:shadow-lg hover:scale-105 transition-all duration-500"
+              className="group relative flex items-center justify-center p-8  rounded-2xl hover hover:shadow-xl hover:scale-105 transition-all duration-500"
             >
               <img
                 src={client.logo}
                 alt={client.name}
                 className="max-h-16 object-contain transition-transform duration-500 group-hover:scale-110"
               />
+              <p className="text-slate-700 font-medium px-2">{client.name}</p>
             </div>
           ))}
           {!clients.length ? (

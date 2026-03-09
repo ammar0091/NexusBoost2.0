@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Rocket, ArrowRight, LayoutGrid, Zap, Users, BookOpen, Briefcase, Mail } from 'lucide-react';
+import { Menu, X, Rocket, ArrowRight, LayoutGrid, Zap, Users, BookOpen, Briefcase } from 'lucide-react';
+import ThemeToggle from '@/components/common/ThemeToggle';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,20 +54,24 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Contact Button */}
-          <div className="hidden lg:block">
-            <Link to="/contact" className="bg-slate-900 text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl">
-              Get Started
-            </Link>
-          </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle className="z-110 shadow-sm" />
 
-          {/* Mobile Toggle Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden z-110 w-12 h-12 flex items-center justify-center bg-slate-900 rounded-full text-white shadow-lg"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* Contact Button */}
+            <div className="hidden lg:block">
+              <Link to="/contact" className="bg-slate-900 text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl">
+                Get Started
+              </Link>
+            </div>
+
+            {/* Mobile Toggle Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden z-110 w-12 h-12 flex items-center justify-center bg-slate-900 rounded-full text-white shadow-lg"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </nav>
 

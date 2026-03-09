@@ -36,8 +36,8 @@ function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center px-6">
-      <div className="w-full max-w-md rounded-3xl bg-slate-800/80 border border-slate-700 p-8">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center px-6">
+      <div className="w-full max-w-md rounded-3xl bg-[#0A0A0A] border border-neutral-800 p-8">
         <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-bold mb-4">
           NexusBoost Admin
         </p>
@@ -45,7 +45,7 @@ function AdminLogin() {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
-            <label className="text-xs text-slate-300 uppercase tracking-widest font-semibold">
+            <label className="text-xs text-neutral-300 uppercase tracking-widest font-semibold">
               Email
             </label>
             <input
@@ -53,12 +53,12 @@ function AdminLogin() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full rounded-xl bg-slate-900 border border-slate-600 px-4 py-3 outline-none focus:border-blue-400"
+              className="w-full rounded-xl bg-black border border-neutral-700 px-4 py-3 outline-none focus:border-blue-400"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs text-slate-300 uppercase tracking-widest font-semibold">
+            <label className="text-xs text-neutral-300 uppercase tracking-widest font-semibold">
               Password
             </label>
             <input
@@ -66,7 +66,7 @@ function AdminLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full rounded-xl bg-slate-900 border border-slate-600 px-4 py-3 outline-none focus:border-blue-400"
+              className="w-full rounded-xl bg-black border border-neutral-700 px-4 py-3 outline-none focus:border-blue-400"
             />
           </div>
 

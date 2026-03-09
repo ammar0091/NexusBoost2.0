@@ -1,9 +1,12 @@
 import React from 'react';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 const SupportPage = () => {
+  const { isDark } = useTheme();
+
   return (
-    <section className="py-20 bg-[#f9fafb] min-h-screen">
+    <section className={`py-20 min-h-screen ${isDark ? "bg-black" : "bg-[#f9fafb]"}`}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16 pt-24">
@@ -17,7 +20,11 @@ const SupportPage = () => {
 
         {/* Contact Info */}
         <div className="grid sm:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-8 rounded-2xl shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow">
+          <div
+            className={`p-8 rounded-2xl shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow ${
+              isDark ? "bg-[#0A0A0A] border border-neutral-800" : "bg-white"
+            }`}
+          >
             <Mail size={32} className="text-blue-600 mb-4" />
             <h3 className="text-xl font-bold mb-2">Email Support</h3>
             <p className="text-slate-600 mb-2">support@nexusboost.com</p>
@@ -25,7 +32,11 @@ const SupportPage = () => {
               Send Email
             </a>
           </div>
-          <div className="bg-white p-8 rounded-2xl shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow">
+          <div
+            className={`p-8 rounded-2xl shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow ${
+              isDark ? "bg-[#0A0A0A] border border-neutral-800" : "bg-white"
+            }`}
+          >
             <Phone size={32} className="text-blue-600 mb-4" />
             <h3 className="text-xl font-bold mb-2">Call Us</h3>
             <p className="text-slate-600 mb-2">+1 (555) 123-4567</p>
@@ -33,7 +44,11 @@ const SupportPage = () => {
               Call Now
             </a>
           </div>
-          <div className="bg-white p-8 rounded-2xl shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow">
+          <div
+            className={`p-8 rounded-2xl shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow ${
+              isDark ? "bg-[#0A0A0A] border border-neutral-800" : "bg-white"
+            }`}
+          >
             <MessageCircle size={32} className="text-blue-600 mb-4" />
             <h3 className="text-xl font-bold mb-2">Live Chat</h3>
             <p className="text-slate-600 mb-2">Chat with our support team instantly</p>

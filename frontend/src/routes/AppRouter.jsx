@@ -21,7 +21,7 @@ const AdminPanel = lazy(() => import('@/pages/admin/AdminPanel'));
 
 // Ek simple loading spinner ya component
 const PageLoader = () => (
-  <div className="flex h-screen items-center justify-center bg-white dark:bg-slate-900">
+  <div className="flex h-screen items-center justify-center bg-[var(--nb-bg-page)]">
     <div className="h-10 w-10 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
   </div>
 );
