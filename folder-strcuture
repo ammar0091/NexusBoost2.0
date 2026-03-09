@@ -31,3 +31,4 @@ src/
 │
 ├── App.jsx                # Main Application Shell (Wraps AppRouter)
 └── main.jsx               # Entry point (ReactDOM.createRoot)
+

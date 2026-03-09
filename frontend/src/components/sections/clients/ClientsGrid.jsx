@@ -5,7 +5,7 @@ const ClientsGrid = ({ clients }) => {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
           {clients.map((client, i) => (
             <div
-              key={i}
+              key={client.id || i}
               className="group relative flex items-center justify-center p-8 bg-slate-50 rounded-2xl border border-slate-200 hover:border-gradient-to-r hover:from-blue-500 hover:to-indigo-500 hover:shadow-lg hover:scale-105 transition-all duration-500"
             >
               <img
@@ -15,6 +15,9 @@ const ClientsGrid = ({ clients }) => {
               />
             </div>
           ))}
+          {!clients.length ? (
+            <p className="text-slate-500 font-semibold col-span-full">No clients available.</p>
+          ) : null}
         </div>
       </div>
     </section>

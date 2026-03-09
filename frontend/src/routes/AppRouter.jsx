@@ -11,9 +11,11 @@ const Portfolio = lazy(() => import('@/pages/Portfolio'));
 const Clients = lazy(() => import('@/pages/Clients'));
 const Blogs = lazy(() => import('@/pages/Blogs'));
 const Support = lazy(() => import('@/pages/Support'));
-// const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'));
+const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'));
 const TermsConditions = lazy(() => import('@/pages/TermsConditions'));
 const CookiePolicy = lazy(() => import('@/pages/CookiePolicy'));
+const AdminLogin = lazy(() => import('@/pages/admin/AdminLogin'));
+const AdminPanel = lazy(() => import('@/pages/admin/AdminPanel'));
 
 
 
@@ -28,6 +30,8 @@ const AppRouter = () => {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
@@ -37,7 +41,7 @@ const AppRouter = () => {
           <Route path="clients" element={<Clients />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="support" element={<Support />} />
-          {/* <Route path="privacy" element={<PrivacyPolicy />} /> */}
+          <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<TermsConditions />} />
           <Route path="cookies" element={<CookiePolicy />} /> 
           {/* 404 Page yahan add kar sakte hain */}

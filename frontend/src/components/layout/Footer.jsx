@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import ScrollToTopButton from '../common/ScrollToTopButton';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Rocket,
   Twitter,
@@ -8,110 +7,96 @@ import {
   Instagram,
   Github,
   Mail,
-  ArrowUp,
   ArrowUpRight,
   Send,
   CheckCircle2,
-} from 'lucide-react';
-
-/* -------------------- Constants -------------------- */
+} from "lucide-react";
+import ScrollToTopButton from "../common/ScrollToTopButton";
+import { subscribeNewsletter } from "@/services/contentApi";
 
 const STATUS = {
-  IDLE: 'idle',
-  LOADING: 'loading',
-  SUCCESS: 'success',
-  ERROR: 'error',
+  IDLE: "idle",
+  LOADING: "loading",
+  SUCCESS: "success",
+  ERROR: "error",
 };
 
 const FOOTER_LINKS = {
   company: [
-    { name: 'About Us', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Careers', path: '/careers' },
+    { name: "About Us", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Careers", path: "/careers" },
   ],
   resources: [
-    { name: 'Blog', path: '/blogs' },
-    { name: 'Case Studies', path: '/portfolio' },
-    { name: 'Clients', path: '/clients' },
-    { name: 'Support', path: '/support' },
+    { name: "Blog", path: "/blogs" },
+    { name: "Case Studies", path: "/portfolio" },
+    { name: "Clients", path: "/clients" },
+    { name: "Support", path: "/support" },
   ],
   legal: [
-    { name: 'Privacy Policy', path: '/privacy' },
-    { name: 'Terms of Service', path: '/terms' },
-    { name: 'Cookie Policy', path: '/cookies' },
+    { name: "Privacy Policy", path: "/privacy" },
+    { name: "Terms of Service", path: "/terms" },
+    { name: "Cookie Policy", path: "/cookies" },
   ],
 };
 
 const CATEGORY_LABELS = {
-  company: 'Company',
-  resources: 'Resources',
-  legal: 'Legal',
+  company: "Company",
+  resources: "Resources",
+  legal: "Legal",
 };
 
 const SOCIAL_LINKS = [
-  { icon: Twitter, url: 'https://twitter.com' },
-  { icon: Linkedin, url: 'https://linkedin.com' },
-  { icon: Instagram, url: 'https://instagram.com' },
-  { icon: Github, url: 'https://github.com' },
+  { icon: Twitter, url: "https://twitter.com" },
+  { icon: Linkedin, url: "https://linkedin.com" },
+  { icon: Instagram, url: "https://instagram.com" },
+  { icon: Github, url: "https://github.com" },
 ];
-
-/* -------------------- Component -------------------- */
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [status, setStatus] = useState(STATUS.IDLE);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  /* -------------------- Handlers -------------------- */
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
+  const handleSubscribe = async (event) => {
+    event.preventDefault();
     if (!email) return;
 
     try {
       setStatus(STATUS.LOADING);
-
-      // 🔌 Future API call
-      console.log('Newsletter email:', email);
-      // await api.post('/newsletter', { email });
-
+      setErrorMessage("");
+      await subscribeNewsletter(email);
       setStatus(STATUS.SUCCESS);
-      setEmail('');
-
+      setEmail("");
       setTimeout(() => setStatus(STATUS.IDLE), 3000);
     } catch (error) {
-      console.error(error);
       setStatus(STATUS.ERROR);
+      setErrorMessage(error.message || "Subscription failed");
     }
   };
-
-
-  /* -------------------- UI -------------------- */
 
   return (
     <footer className="bg-[#121c2e] pt-16 pb-10 border-t border-white/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-
-        {/* Top Section */}
         <div className="flex flex-col lg:flex-row justify-between gap-10 mb-14">
           <div className="max-w-md">
             <Link to="/" className="flex items-center gap-3 mb-5 group w-fit">
               <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all shadow-lg shadow-blue-600/20">
                 <Rocket className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-black text-white uppercase ">
+              <span className="text-2xl font-black text-white uppercase">
                 Nexus<span className="text-blue-500">Boost.</span>
               </span>
             </Link>
 
             <p className="text-slate-400 text-base leading-relaxed">
-              Accelerating digital growth with precision-engineered strategies and world-class design.
+              Accelerating digital growth with precision-engineered strategies and world-class
+              design.
             </p>
           </div>
 
-          {/* Newsletter */}
           <div className="w-full lg:max-w-md">
             <form onSubmit={handleSubscribe} className="relative">
               <input
@@ -133,13 +118,15 @@ const Footer = () => {
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 )}
                 {status === STATUS.SUCCESS && <CheckCircle2 size={14} />}
-                <span>{status === STATUS.SUCCESS ? 'Added' : 'Join'}</span>
+                <span>{status === STATUS.SUCCESS ? "Added" : "Join"}</span>
               </button>
             </form>
+            {status === STATUS.ERROR ? (
+              <p className="mt-3 text-sm text-red-400 font-medium">{errorMessage}</p>
+            ) : null}
           </div>
         </div>
 
-        {/* Links */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 py-12 border-y border-white/5">
           {Object.entries(FOOTER_LINKS).map(([key, links]) => (
             <div key={key}>
@@ -165,7 +152,6 @@ const Footer = () => {
             </div>
           ))}
 
-          {/* Social + Email */}
           <div className="col-span-2 flex flex-col justify-between">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.3em] text-blue-500 mb-6">
@@ -195,10 +181,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-10 flex flex-col sm:flex-row justify-between items-center gap-6">
           <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">
-            © {currentYear} Nexus Digital Group.
+            &copy; {currentYear} Nexus Digital Group.
           </p>
 
           <div className="flex items-center gap-8">
@@ -208,10 +193,8 @@ const Footer = () => {
                 Systems Active
               </span>
             </div>
-
             <ScrollToTopButton />
           </div>
-
         </div>
       </div>
     </footer>

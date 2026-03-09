@@ -1,5 +1,22 @@
 import { ArrowUpRight } from 'lucide-react';
 
+const getCategoryName = (category) => {
+  if (!category) return 'General';
+  if (typeof category === 'string') return category;
+  return category.name || 'General';
+};
+
+const formatDate = (value) => {
+  if (!value) return '-';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString('en-IN', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
 const BlogGrid = ({ posts }) => (
   <section className="py-16 bg-gray-50">
     <div className="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -21,7 +38,7 @@ const BlogGrid = ({ posts }) => (
           {/* Content */}
           <div className="p-8">
             <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-2">
-              {post.category.name}
+              {getCategoryName(post.category)}
             </p>
 
             <h3 className="text-xl font-extrabold text-slate-900 mb-3 flex items-center justify-between">
@@ -36,7 +53,7 @@ const BlogGrid = ({ posts }) => (
 
             <div className="flex justify-between items-center text-sm text-slate-500">
               <span>{post.readTime} min read</span>
-              <span>{post.publishedAt}</span>
+              <span>{formatDate(post.publishedAt)}</span>
             </div>
           </div>
 
@@ -44,6 +61,9 @@ const BlogGrid = ({ posts }) => (
           <div className="absolute bottom-0 left-0 h-1 w-0 bg-linear-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-500" />
         </article>
       ))}
+      {!posts.length ? (
+        <p className="text-slate-500 font-semibold col-span-full">No blogs published yet.</p>
+      ) : null}
     </div>
   </section>
 );

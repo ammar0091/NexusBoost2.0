@@ -20,7 +20,7 @@ const PortfolioGrid = ({ projects }) => {
         <div className="grid sm:grid-cols-2 gap-10">
           {projects.map((project, i) => (
             <div
-              key={i}
+              key={project.id || i}
               className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 hover:border-blue-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10"
             >
               {/* Image */}
@@ -64,6 +64,9 @@ const PortfolioGrid = ({ projects }) => {
               <div className="absolute bottom-0 left-0 h-0.75 w-0 bg-linear-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-500" />
             </div>
           ))}
+          {!projects.length ? (
+            <p className="text-slate-500 font-semibold col-span-full">No portfolio projects found.</p>
+          ) : null}
         </div>
       </div>
     </section>
