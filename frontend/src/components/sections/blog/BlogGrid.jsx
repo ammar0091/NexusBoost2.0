@@ -17,55 +17,49 @@ const formatDate = (value) => {
   });
 };
 
-const BlogGrid = ({ posts }) => (
-  <section className="py-16 bg-gray-50">
-    <div className="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {posts.map((post) => (
-        <article
-          key={post.id}
-          className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-500"
-        >
-          {/* Image with overlay */}
-          <div className="relative h-64 overflow-hidden">
-            <img
-              src={post.coverImage}
-              alt={post.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </div>
-
-          {/* Content */}
-          <div className="p-8">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-2">
-              {getCategoryName(post.category)}
-            </p>
-
-            <h3 className="text-xl font-extrabold text-slate-900 mb-3 flex items-center justify-between">
-              {post.title}
-              <ArrowUpRight
-                size={20}
-                className="text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+const BlogGrid = ({ posts }) => {
+  return (
+    <section className="nb-section pt-6">
+      <div className="nb-container">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <article key={post.id} className="nb-panel overflow-hidden">
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                className="h-52 w-full object-cover"
+                loading="lazy"
               />
-            </h3>
 
-            <p className="text-slate-600 mb-4">{post.excerpt}</p>
+              <div className="p-5">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--nb-accent)]">
+                  {getCategoryName(post.category)}
+                </p>
 
-            <div className="flex justify-between items-center text-sm text-slate-500">
-              <span>{post.readTime} min read</span>
-              <span>{formatDate(post.publishedAt)}</span>
-            </div>
-          </div>
+                <h3 className="mt-2 flex items-start justify-between gap-2 text-xl font-black text-[var(--nb-text)]">
+                  {post.title}
+                  <ArrowUpRight size={16} className="text-[var(--nb-text-muted)]" />
+                </h3>
 
-          {/* Bottom accent */}
-          <div className="absolute bottom-0 left-0 h-1 w-0 bg-linear-to-r from-blue-500 to-indigo-500 group-hover:w-full transition-all duration-500" />
-        </article>
-      ))}
-      {!posts.length ? (
-        <p className="text-slate-500 font-semibold col-span-full">No blogs published yet.</p>
-      ) : null}
-    </div>
-  </section>
-);
+                <p className="mt-3 text-sm leading-relaxed text-[var(--nb-text-muted)]">{post.excerpt}</p>
+
+                <div className="mt-4 flex items-center justify-between text-xs text-[var(--nb-text-muted)]">
+                  <span>{post.readTime} min read</span>
+                  <span>{formatDate(post.publishedAt)}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+
+          {!posts.length ? (
+            <p className="col-span-full rounded-xl border border-[var(--nb-border)] bg-[var(--nb-surface)] px-4 py-5 text-sm text-[var(--nb-text-muted)]">
+              No blogs published yet.
+            </p>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default BlogGrid;

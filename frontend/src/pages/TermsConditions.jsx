@@ -1,37 +1,52 @@
-import React from 'react';
 import PageHero from '@components/common/PageHero';
+
+const sections = [
+  {
+    title: 'Acceptance of Terms',
+    text: 'By accessing our website and services, you agree to comply with these terms and conditions.',
+  },
+  {
+    title: 'Use of Services',
+    text: 'Services must be used lawfully and responsibly. Any misuse, abuse, or disruption is prohibited.',
+  },
+  {
+    title: 'Intellectual Property',
+    text: 'All site content, branding, and software are protected by intellectual property laws.',
+  },
+  {
+    title: 'Limitation of Liability',
+    text: 'We are not liable for indirect or incidental damages arising from use of the website or services.',
+  },
+  {
+    title: 'Changes to Terms',
+    text: 'Terms may be updated periodically. Continued use of the website implies acceptance of revised terms.',
+  },
+];
 
 const TermsConditions = () => {
   return (
-    <>
+    <div className="overflow-hidden">
       <PageHero
         eyebrow="Legal"
-        title="Terms &"
+        title="Terms and"
         highlight="Conditions"
-        description="Rules and guidelines for using our services and website."
+        description="Rules and guidelines governing use of our website and services."
       />
 
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 space-y-8 text-slate-700">
-          <h2 className="text-2xl font-bold text-slate-900">Acceptance of Terms</h2>
-          <p>By using our services, you agree to these terms and conditions. Please read them carefully.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Use of Services</h2>
-          <p>You must use our services lawfully and responsibly, and you may not attempt to harm or disrupt them.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Intellectual Property</h2>
-          <p>All content, branding, and software on this site are owned by us or licensed to us and protected by copyright.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Limitation of Liability</h2>
-          <p>We are not liable for any damages arising from the use of our services, to the maximum extent allowed by law.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Changes to Terms</h2>
-          <p>We may update these terms from time to time. Users are responsible for reviewing them periodically.</p>
-
-          <p className="text-sm text-slate-500">Last updated: February 10, 2026</p>
+      <section className="nb-section pt-6">
+        <div className="nb-container max-w-4xl">
+          <div className="nb-panel p-6 md:p-8 space-y-6">
+            {sections.map((section) => (
+              <div key={section.title}>
+                <h2 className="text-2xl font-black text-[var(--nb-text)]">{section.title}</h2>
+                <p className="mt-2 text-sm md:text-base leading-relaxed text-[var(--nb-text-muted)]">{section.text}</p>
+              </div>
+            ))}
+            <p className="text-xs text-[var(--nb-text-muted)]">Last updated: February 10, 2026</p>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

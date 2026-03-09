@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const PageCTA = ({
-  eyebrow = 'Let’s Talk',
+  eyebrow = 'Lets Talk',
   title,
   highlight,
   description,
@@ -9,43 +9,48 @@ const PageCTA = ({
   secondary,
 }) => {
   return (
-    <section className="relative py-28 overflow-hidden bg-slate-50">
-      <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
+    <section className="nb-section">
+      <div className="nb-container">
+        <div className="nb-panel px-7 py-10 md:px-12 md:py-12 text-center relative overflow-hidden">
+          <div className="absolute -top-16 -left-12 w-44 h-44 rounded-full bg-[var(--nb-glow-a)] blur-3xl" />
+          <div className="absolute -bottom-16 -right-12 w-44 h-44 rounded-full bg-[var(--nb-glow-b)] blur-3xl" />
 
-        {/* Eyebrow */}
-        <p className="font-black uppercase tracking-[0.35em] text-[11px] mb-6 text-blue-600">
-          {eyebrow}
-        </p>
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <p className="nb-pill bg-[var(--nb-surface-soft)] border border-[var(--nb-border)] text-[var(--nb-accent)] mb-5">
+              {eyebrow}
+            </p>
 
-        {/* Heading */}
-        <h2 className="text-3xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6">
-          {title}{' '}
-          <span className="text-slate-400">{highlight}</span>
-        </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--nb-text)] leading-[0.95]">
+              {title}
+              {highlight ? <span className="block mt-2 text-[var(--nb-accent)]">{highlight}</span> : null}
+            </h2>
 
-        {/* Description */}
-        {description && (
-          <p className="text-lg max-w-2xl mx-auto mb-12 leading-relaxed text-slate-600">
-            {description}
-          </p>
-        )}
+            {description ? (
+              <p className="mt-5 text-base md:text-lg text-[var(--nb-text-muted)] leading-relaxed max-w-2xl mx-auto">
+                {description}
+              </p>
+            ) : null}
 
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link to="/contact"className="px-8 py-4 rounded-xl font-black uppercase tracking-widest text-sm bg-slate-900 text-white hover:bg-blue-600 transition-colors">
-            {primary}
-          </Link>
+            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+              <Link
+                to="/contact"
+                className="nb-shine rounded-xl px-7 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-slate-950 bg-[var(--nb-accent)] hover:brightness-110"
+              >
+                {primary}
+              </Link>
 
-          {secondary && (
-            <Link to="/portfolio" className="px-8 py-4 rounded-xl font-black uppercase tracking-widest text-sm border border-slate-300 text-slate-700 hover:border-blue-600 hover:text-blue-600 transition-colors">
-              {secondary}
-            </Link>
-          )}
+              {secondary ? (
+                <Link
+                  to="/portfolio"
+                  className="rounded-xl border border-[var(--nb-border)] bg-[var(--nb-surface-soft)] px-7 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-[var(--nb-text)] hover:border-[var(--nb-accent)]"
+                >
+                  {secondary}
+                </Link>
+              ) : null}
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Subtle texture (light-only) */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.035)_1px,transparent_0)] bg-size-[28px_28px]" />
     </section>
   );
 };

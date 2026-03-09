@@ -1,23 +1,28 @@
 const ClientsGrid = ({ clients }) => {
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-          {clients.map((client, i) => (
-            <div
-              key={client.id || i}
-              className="group relative flex items-center justify-center p-8  rounded-2xl hover hover:shadow-xl hover:scale-105 transition-all duration-500"
+    <section className="nb-section pt-6">
+      <div className="nb-container">
+        <div className="mb-8 max-w-2xl">
+          <h2 className="text-3xl md:text-5xl font-black text-[var(--nb-text)] leading-[0.95]">Brands that trust our team</h2>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {clients.map((client, index) => (
+            <article
+              key={client.id || index}
+              className="nb-panel p-5 flex flex-col items-center justify-center text-center min-h-[150px]"
             >
-              <img
-                src={client.logo}
-                alt={client.name}
-                className="max-h-16 object-contain transition-transform duration-500 group-hover:scale-110"
-              />
-              <p className="text-slate-700 font-medium px-2">{client.name}</p>
-            </div>
+              {client.logo ? (
+                <img src={client.logo} alt={client.name} className="max-h-12 object-contain" loading="lazy" />
+              ) : null}
+              <p className="mt-3 text-sm font-semibold text-[var(--nb-text)]">{client.name}</p>
+            </article>
           ))}
+
           {!clients.length ? (
-            <p className="text-slate-500 font-semibold col-span-full">No clients available.</p>
+            <p className="col-span-full rounded-xl border border-[var(--nb-border)] bg-[var(--nb-surface)] px-4 py-5 text-sm text-[var(--nb-text-muted)]">
+              No clients available.
+            </p>
           ) : null}
         </div>
       </div>

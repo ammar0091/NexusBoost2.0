@@ -1,89 +1,56 @@
-import React from 'react';
-import { Lightbulb, Target, Code2, Rocket, ArrowRight } from 'lucide-react';
+import { ArrowRight, Lightbulb, Rocket, Target, Wrench } from 'lucide-react';
+
+const steps = [
+  {
+    title: 'Discover',
+    desc: 'Research your market, users, and funnel opportunities.',
+    icon: Lightbulb,
+  },
+  {
+    title: 'Plan',
+    desc: 'Translate insights into a clear roadmap and priorities.',
+    icon: Target,
+  },
+  {
+    title: 'Build',
+    desc: 'Ship design, content, and development in focused cycles.',
+    icon: Wrench,
+  },
+  {
+    title: 'Scale',
+    desc: 'Optimize continuously with tracking and growth loops.',
+    icon: Rocket,
+  },
+];
 
 const Process = () => {
-  const steps = [
-    {
-      num: '01',
-      title: 'Discovery',
-      desc: 'Analyzing your vision and identifying key market opportunities.',
-      icon: <Lightbulb size={20} className="text-amber-500" />,
-      color: 'group-hover:bg-amber-50'
-    },
-    {
-      num: '02',
-      title: 'Strategy',
-      desc: 'Crafting a scalable roadmap built for aggressive growth.',
-      icon: <Target size={20} className="text-blue-500" />,
-      color: 'group-hover:bg-blue-50'
-    },
-    {
-      num: '03',
-      title: 'Execution',
-      desc: 'Precision development with a focus on clean architecture.',
-      icon: <Code2 size={20} className="text-emerald-500" />,
-      color: 'group-hover:bg-emerald-50'
-    },
-    {
-      num: '04',
-      title: 'Launch',
-      desc: 'Deployment followed by optimization for 100% success.',
-      icon: <Rocket size={20} className="text-purple-500" />,
-      color: 'group-hover:bg-purple-50'
-    }
-  ];
-
   return (
-    <section className="py-16 bg-white border-y border-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Compact Section Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
-          <div className="max-w-xl">
-            <p className="text-blue-600 font-black uppercase tracking-[0.3em] text-[10px] mb-2">Process</p>
-            <h2 className="text-4xl lg:text-5xl font-black tracking-tighter text-slate-900 leading-tight">
-              THE <span className="text-slate-400">BLUEPRINT</span>
-            </h2>
-          </div>
-          <p className="text-slate-500 text-sm font-medium max-w-xs md:text-right">
-            A structured, zero-fluff path to turning your brand into a market leader.
+    <section className="nb-section">
+      <div className="nb-container">
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-5">
+          <h2 className="text-3xl md:text-5xl font-black text-[var(--nb-text)] leading-[0.95]">How we deliver results</h2>
+          <p className="text-sm md:text-base text-[var(--nb-text-muted)] max-w-lg">
+            Structured workflow, quick iterations, and measurable outcomes at each stage.
           </p>
         </div>
 
-        {/* Process Steps Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {steps.map((step, i) => (
-            <div 
-              key={i} 
-              className="group relative p-8 bg-slate-50/50 rounded-4xl border border-slate-100 transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-slate-200/40"
-            >
-              <div className="flex justify-between items-start mb-6">
-                {/* Icon Container - Smaller & Cleaner */}
-                <div className={`w-15 h-15 rounded-xl bg-white flex items-center justify-center border border-slate-100 transition-colors duration-300 ${step.color}`}>
-                  {step.icon}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <article key={step.title} className="nb-panel p-5 relative">
+                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--nb-accent)]">Step {index + 1}</span>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="inline-flex rounded-lg border border-[var(--nb-border)] bg-[var(--nb-surface-soft)] p-2 text-[var(--nb-accent)]">
+                    <Icon size={18} />
+                  </span>
+                  {index < steps.length - 1 ? <ArrowRight size={15} className="text-[var(--nb-text-muted)]" /> : null}
                 </div>
-                {/* Step Number Badge */}
-                <span className="text-[12px] font-black text-slate-300 group-hover:text-blue-600 transition-colors border border-slate-100 px-2 py-1 rounded-md bg-white">
-                  STEP {step.num}
-                </span>
-              </div>
-
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
-                <p className="text-slate-500 leading-relaxed text-sm font-medium">
-                  {step.desc}
-                </p>
-              </div>
-
-              {/* Minimal Animated Bottom Line */}
-              <div className="mt-6 w-6 h-1 bg-slate-200 group-hover:w-full group-hover:bg-blue-600 transition-all duration-500 rounded-full"></div>
-              
-              {/* Connector Arrow (Desktop Only) */}
-              {i < 3 && (
-                <ArrowRight className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 text-slate-100 z-20 group-hover:text-blue-200 transition-colors" size={20} />
-              )}
-            </div>
-          ))}
+                <h3 className="mt-4 text-xl font-bold text-[var(--nb-text)]">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--nb-text-muted)]">{step.desc}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

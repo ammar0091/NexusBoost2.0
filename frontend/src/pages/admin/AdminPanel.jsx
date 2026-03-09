@@ -130,10 +130,10 @@ export default function AdminPanel() {
 
   return (
     <div className="flex h-screen w-full bg-[#0A0A0A] text-white font-sans overflow-hidden selection:bg-[#0A0A0A]">
-      <Toaster theme="dark" position="bottom-right" className="!bg-[#0A0A0A] !border-neutral-800" />
+      <Toaster theme="dark" position="bottom-right" className="bg-[#0A0A0A]! border-neutral-800!" />
 
       {/* FIXED SIDEBAR */}
-      <aside className="w-64 flex-shrink-0 border-r border-neutral-800/60 bg-black flex flex-col h-full">
+      <aside className="w-64 shrink-0 border-r border-neutral-800/60 bg-black flex flex-col h-full">
         <div className="h-16 flex items-center px-6 border-b border-neutral-800/60">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 bg-white rounded flex items-center justify-center">
@@ -173,7 +173,7 @@ export default function AdminPanel() {
       {/* MAIN CONTENT AREA */}
       <main className="flex-1 flex flex-col h-full relative overflow-hidden bg-[#0A0A0A]">
         {/* Top Header */}
-        <header className="h-16 flex-shrink-0 flex items-center justify-between px-8 border-b border-neutral-800/60 bg-[#0A0A0A]/80 backdrop-blur-md z-10">
+        <header className="h-16 shrink-0 flex items-center justify-between px-8 border-b border-neutral-800/60 bg-[#0A0A0A]/80 backdrop-blur-md z-10">
           <h1 className="text-lg font-semibold tracking-tight capitalize text-neutral-100">
             {activeTab.replace('-', ' ')}
           </h1>
@@ -260,7 +260,7 @@ function StatCard({ label, value, icon: Icon, highlight }) {
         <span className="text-3xl font-semibold tracking-tight text-white">{value || 0}</span>
       </div>
       {/* Subtle bottom gradient glow */}
-      <div className="absolute -bottom-px inset-x-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute -bottom-px inset-x-0 h-px bg-linear-to-r from-transparent via-neutral-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
 }
@@ -323,8 +323,8 @@ function BlogTab({ data, refetch }) {
               </div>
             </div>
             <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Button variant="ghost" className="!p-2" onClick={() => handleEdit(item)}><Edit2 className="w-4 h-4 text-neutral-400"/></Button>
-              <Button variant="ghost" className="!p-2 hover:!text-red-500" onClick={async () => { if(window.confirm("Delete?")) { await deleteBlog(item.id); refetch(); } }}><Trash2 className="w-4 h-4"/></Button>
+              <Button variant="ghost" className="p-2!" onClick={() => handleEdit(item)}><Edit2 className="w-4 h-4 text-neutral-400"/></Button>
+              <Button variant="ghost" className="p-2! hover:text-red-500!" onClick={async () => { if(window.confirm("Delete?")) { await deleteBlog(item.id); refetch(); } }}><Trash2 className="w-4 h-4"/></Button>
             </div>
           </div>
         ))}
@@ -397,10 +397,10 @@ function ClientTab({ data, refetch }) {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4 p-4 border border-neutral-800 bg-black rounded-xl max-w-3xl">
-        <Input placeholder="Client Name" value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="!border-none !bg-transparent !px-0 flex-1" required />
+        <Input placeholder="Client Name" value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="border-none! bg-transparent! px-0! flex-1" required />
         <div className="w-px h-6 bg-neutral-800"></div>
-        <Input placeholder="Logo URL (Optional)" value={form.logo} onChange={e => setForm({...form, logo: e.target.value})} className="!border-none !bg-transparent !px-0 flex-1" />
-        <Button onClick={handleSubmit} isLoading={saving} className="flex-shrink-0"><Plus className="w-4 h-4"/> Add</Button>
+        <Input placeholder="Logo URL (Optional)" value={form.logo} onChange={e => setForm({...form, logo: e.target.value})} className="border-none! bg-transparent! px-0! flex-1" />
+        <Button onClick={handleSubmit} isLoading={saving} className="shrink-0"><Plus className="w-4 h-4"/> Add</Button>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">

@@ -1,118 +1,114 @@
-import { ArrowUpRight, Search, Megaphone, BarChart3, Palette, Code2, SlidersHorizontal } from 'lucide-react';
+import {
+  ArrowUpRight,
+  BarChart3,
+  Code2,
+  Film,
+  Mail,
+  Megaphone,
+  Palette,
+  Search,
+  SlidersHorizontal,
+  TrendingUp,
+  UserRound,
+  Waypoints,
+} from 'lucide-react';
 
 const services = [
   {
-    title: 'SEO & Organic Growth',
-    desc: 'Sustainable traffic through technical SEO, content, and authority.',
-    icon: <Search size={20} />,
-    color: 'text-blue-500',
-    bg: 'bg-blue-50',
+    title: 'SEO and organic growth',
+    desc: 'Technical SEO, keyword strategy, and content frameworks for compounding visibility.',
+    icon: Search,
   },
   {
-    title: 'Performance Marketing',
-    desc: 'Paid acquisition focused on ROI, not impressions.',
-    icon: <BarChart3 size={20} />,
-    color: 'text-emerald-500',
-    bg: 'bg-emerald-50',
+    title: 'Performance marketing',
+    desc: 'ROI-focused paid campaigns on Meta, Google, and high-intent channels.',
+    icon: TrendingUp,
   },
   {
-    title: 'Social Media Strategy',
-    desc: 'Content systems that build trust and engagement.',
-    icon: <Megaphone size={20} />,
-    color: 'text-purple-500',
-    bg: 'bg-purple-50',
+    title: 'Social media strategy',
+    desc: 'Content planning and creative production to build authority and demand.',
+    icon: Megaphone,
   },
   {
-    title: 'Branding & Visual Design',
-    desc: 'Identity systems designed for credibility and conversion.',
-    icon: <Palette size={20} />,
-    color: 'text-amber-500',
-    bg: 'bg-amber-50',
+    title: 'Branding and visual design',
+    desc: 'Identity systems that make your brand memorable and trusted.',
+    icon: Palette,
   },
   {
-    title: 'Web Development',
-    desc: 'Fast, scalable websites built for growth.',
-    icon: <Code2 size={20} />,
-    color: 'text-sky-500',
-    bg: 'bg-sky-50',
+    title: 'Web development',
+    desc: 'Fast, modern websites with clean architecture and conversion-first UX.',
+    icon: Code2,
   },
   {
-    title: 'Conversion Optimization',
-    desc: 'Improving funnels, UX, and on-page performance.',
-    icon: <SlidersHorizontal size={20} />,
-    color: 'text-rose-500',
-    bg: 'bg-rose-50',
+    title: 'Conversion optimization',
+    desc: 'Test and improve key flows to maximize lead quality and revenue.',
+    icon: SlidersHorizontal,
   },
   {
-    title: 'Pay Per Click (PPC) Advertising',
-    desc: 'Targeted ad campaigns that drive qualified leads.',
-    icon: <BarChart3 size={20} />,
-    color: 'text-emerald-500',
-    bg: 'bg-emerald-50',
+    title: 'PPC advertising',
+    desc: 'High-intent ad structures focused on lower CAC and better lead quality.',
+    icon: BarChart3,
   },
-  {title: 'Content Marketing', desc: 'Strategic content creation that attracts and retains customers.', icon: <Megaphone size={20} />, color: 'text-purple-500', bg: 'bg-purple-50'},
-  {title: 'Email Marketing', desc: 'Automated email campaigns that nurture leads and drive conversions.', icon: <SlidersHorizontal size={20} />, color: 'text-rose-500', bg: 'bg-rose-50'},     
-  {title: 'Analytics & Reporting', desc: 'Data-driven insights to optimize marketing performance.', icon: <BarChart3 size={20} />, color: 'text-emerald-500', bg: 'bg-emerald-50'},
-  {title: 'video marketing', desc: 'Engaging video content that tells your brand story.', icon: <Megaphone size={20} />, color: 'text-purple-500', bg: 'bg-purple-50'},
-  {title: 'UX/UI Design', desc: 'User-centered design that enhances customer experience.', icon: <Palette size={20} />, color: 'text-amber-500', bg: 'bg-amber-50'},
+  {
+    title: 'Content marketing',
+    desc: 'Strategic content production built around search intent and trust signals.',
+    icon: Waypoints,
+  },
+  {
+    title: 'Email marketing',
+    desc: 'Lifecycle sequences and campaigns that nurture users and improve retention.',
+    icon: Mail,
+  },
+  {
+    title: 'Analytics and reporting',
+    desc: 'Unified dashboards and weekly insights for smarter growth decisions.',
+    icon: ArrowUpRight,
+  },
+  {
+    title: 'Video marketing',
+    desc: 'High-performing short and long-form videos tailored for each channel.',
+    icon: Film,
+  },
+  {
+    title: 'UX and UI design',
+    desc: 'Interfaces designed to feel premium and move users to action.',
+    icon: UserRound,
+  },
 ];
 
 const ServicesList = () => {
   return (
-    <section className="py-10 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header (UNCHANGED) */}
-        <div className="flex flex-col md:flex-row justify-between gap-8 mb-16">
-          <h2 className="text-3xl lg:text-5xl font-black tracking-tight">
-            Services
-            <span className="block text-slate-400">
-              designed to scale.
-            </span>
+    <section className="nb-section pt-6">
+      <div className="nb-container">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
+          <h2 className="text-3xl md:text-5xl font-black text-(--nb-text) leading-[0.95] max-w-2xl">
+            Services designed to scale with your business.
           </h2>
-
-          <p className="text-slate-600 max-w-sm leading-relaxed">
-            Each service is a building block of a larger growth system.
+          <p className="max-w-md text-sm md:text-base leading-relaxed text-(--nb-text-muted)">
+            Full-stack growth services from strategy and design to execution and optimization.
           </p>
         </div>
 
-        {/* Cards (UPDATED UI ONLY) */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className="group p-10 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-100 transition-all duration-300 relative overflow-hidden"
-            >
-              {/* Icon box */}
-              <div
-                className={`w-12 h-12 rounded-xl ${service.bg} ${service.color} flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => {
+            const Icon = service.icon;
+            return (
+              <article
+                key={service.title}
+                className="nb-panel h-full min-h-52.5 p-5 transition-all duration-300 hover:border-(--nb-accent)"
               >
-                {service.icon}
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold text-slate-900 mb-2 flex items-center justify-between">
+                <span className="inline-flex rounded-lg border border-(--nb-border) bg-(--nb-surface-soft) p-2 text-(--nb-accent)]">
+                  <Icon size={18} />
+                </span>
+                <h3 className="mt-4 flex items-start justify-between gap-3 text-lg font-bold text-(--nb-text)">
                   {service.title}
-                  <ArrowUpRight
-                    size={16}
-                    className="text-slate-200 group-hover:text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
-                  />
+                  <ArrowUpRight size={16} className="text-(--nb-text-muted)" />
                 </h3>
-
-                <p className="text-slate-500 text-sm font-medium leading-snug pr-4">
-                  {service.desc}
-                </p>
-              </div>
-
-              {/* Accent line */}
-              <div className="mt-6 w-full h-[1.5px] bg-slate-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-blue-500 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-              </div>
-            </div>
-          ))}
+                <p className="mt-2 text-sm leading-relaxed text-(--nb-text-muted)">{service.desc}</p>
+              </article>
+            );
+          })}
         </div>
-
       </div>
     </section>
   );

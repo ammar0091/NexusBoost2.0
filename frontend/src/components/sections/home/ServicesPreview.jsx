@@ -1,102 +1,119 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Search, Megaphone, BarChart3, Palette, Code2, ArrowUpRight } from 'lucide-react';
+import { Link } from "react-router-dom";
+import {
+  ArrowUpRight,
+  Code2,
+  Megaphone,
+  Palette,
+  Search,
+  BarChart3,
+} from "lucide-react";
 
 const services = [
   {
-    title: 'SEO Optimization',
-    desc: 'Dominate organic search with data-backed content strategies.',
-    icon: <Search size={20} />,
-    color: 'text-blue-500',
-    bg: 'bg-blue-50'
+    title: "SEO Optimization",
+    desc: "Dominate organic search with data-backed content strategies.",
+    icon: Search,
   },
   {
-    title: 'Social Marketing',
-    desc: 'Build brand authority and viral engagement at scale.',
-    icon: <Megaphone size={20} />,
-    color: 'text-purple-500',
-    bg: 'bg-purple-50'
+    title: "Social Marketing",
+    desc: "Build brand authority and viral engagement at scale.",
+    icon: Megaphone,
   },
   {
-    title: 'Performance Ads',
-    desc: 'ROI-driven advertising across Google and Meta ecosystem.',
-    icon: <BarChart3 size={20} />,
-    color: 'text-emerald-500',
-    bg: 'bg-emerald-50'
+    title: "Performance Ads",
+    desc: "ROI-driven advertising across Google and Meta ecosystem.",
+    icon: BarChart3,
   },
   {
-    title: 'Branding & Design',
-    desc: 'Crafting visual identities that convert attention into trust.',
-    icon: <Palette size={20} />,
-    color: 'text-amber-500',
-    bg: 'bg-amber-50'
+    title: "Branding & Design",
+    desc: "Crafting visual identities that convert attention into trust.",
+    icon: Palette,
   },
   {
-    title: 'Web Development',
-    desc: 'High-conversion digital experiences built for speed.',
-    icon: <Code2 size={20} />,
-    color: 'text-sky-500',
-    bg: 'bg-sky-50'
+    title: "Web Development",
+    desc: "High-conversion digital experiences built for speed.",
+    icon: Code2,
   },
 ];
 
 const ServicesPreview = () => {
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Compact Header */}
-        <div className="flex flex-col md:flex-row items-baseline justify-between mb-10 gap-4">
-          <div className="max-w-xl">
-            <p className="text-blue-600 font-black uppercase tracking-[0.3em] text-[10px] mb-2">
+    <section className="nb-section">
+      <div className="nb-container">
+
+        {/* Header */}
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="nb-pill border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent) mb-4">
               Services
             </p>
-            <h2 className="text-3xl md:text-5xl justity-center  font-black tracking-tighter text-slate-900 leading-none">
-              WHAT WE <span className="text-slate-400 font-light">DELIVER.</span>
+
+            <h2 className="text-3xl md:text-4xl font-black text-(--nb-text) leading-[0.95] max-w-2xl">
+              WHAT WE <span className="text-(--nb-text-muted)">DELIVER.</span>
             </h2>
           </div>
-          <Link to="/services" className="text-[11px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors border-b border-slate-100 pb-1">
+
+          <Link
+            to="/services"
+            className="rounded-xl border border-(--nb-border) bg-(--nb-surface) px-5 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-(--nb-text) hover:border-(--nb-accent)"
+          >
             View All Services
           </Link>
         </div>
 
-        {/* Optimized Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className="group p-7 rounded-4xl bg-slate-50/50 border border-slate-100 hover:bg-white hover:border-blue-100 transition-all duration-300 relative overflow-hidden"
-            >
-              {/* Subtle Icon Box */}
-              <div className={`w-12 h-12 rounded-xl ${service.bg} ${service.color} flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}>
-                {service.icon}
-              </div>
+        {/* Grid */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold text-slate-900 mb-2 flex items-center justify-between">
+          {services.map((service) => {
+            const Icon = service.icon;
+
+            return (
+              <article
+                key={service.title}
+                className="nb-panel h-full min-h-50 p-5 relative overflow-hidden transition-all duration-300  group"
+              >
+                {/* Glow */}
+                <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full  " />
+
+                {/* Icon */}
+                <span className="inline-flex rounded-lg border border-(--nb-border) bg-(--nb-surface-soft) p-2 text-(--nb-accent)]">
+                  <Icon size={18} />
+                </span>
+
+                {/* Content */}
+                <h3 className="mt-4 text-xl font-bold text-(--nb-text) flex items-center justify-between">
                   {service.title}
-                  <ArrowUpRight size={16} className="text-slate-200 group-hover:text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <ArrowUpRight
+                    size={16}
+                    className="opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition"
+                  />
                 </h3>
-                <p className="text-slate-500 text-sm font-medium leading-snug pr-4">
+
+                <p className="mt-2 text-sm leading-relaxed text-(--nb-text-muted)">
                   {service.desc}
                 </p>
-              </div>
+              </article>
+            );
+          })}
 
-              {/* Minimal Accent Line */}
-              <div className="mt-6 w-full h-[1.5px] bg-slate-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-blue-500 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-              </div>
-            </div>
-          ))}
+          {/* CTA Card */}
+          <div className="nb-panel flex flex-col items-center justify-center text-center p-6 border-dashed">
+            <p className="text-sm font-bold text-(--nb-text) mb-2">
+              Need something custom?
+            </p>
 
-          {/* Special CTA Card to keep the grid tight */}
-          <div className="p-7 rounded-4xl border-2 border-dashed border-slate-100 flex flex-col items-center justify-center text-center group hover:border-blue-200 transition-colors">
-            <p className="text-sm font-bold text-slate-900 mb-2 font-mono">Need something custom?</p>
-            <p className="text-xs text-slate-400 mb-4 tracking-tight">We build bespoke digital solutions.</p>
-            <Link to="/contact" className="text-[10px] font-black uppercase tracking-widest bg-slate-900 text-white px-5 py-2.5 rounded-lg group-hover:bg-blue-600 transition-colors">
+            <p className="text-xs text-(--nb-text-muted) mb-4">
+              We build bespoke digital solutions.
+            </p>
+
+            <Link
+              to="/contact"
+              className="rounded-lg bg-(--nb-accent) text-white px-5 py-2 text-[11px] font-black uppercase tracking-wider hover:opacity-90"
+            >
               Request Audit
             </Link>
           </div>
+
         </div>
       </div>
     </section>

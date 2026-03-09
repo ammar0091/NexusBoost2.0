@@ -1,37 +1,48 @@
-import React from 'react';
 import PageHero from '@components/common/PageHero';
+
+const sections = [
+  {
+    title: 'Information Collection',
+    text: 'We collect personal details such as name, email, and usage data when you interact with our services.',
+  },
+  {
+    title: 'Use of Information',
+    text: 'Data is used to deliver services, improve product experience, and communicate relevant updates.',
+  },
+  {
+    title: 'Data Sharing',
+    text: 'We do not sell personal information. Data may be shared with trusted providers only for service delivery.',
+  },
+  {
+    title: 'Your Rights',
+    text: 'You may request access, correction, or deletion of your personal data by contacting our support team.',
+  },
+];
 
 const PrivacyPolicy = () => {
   return (
-    <>
+    <div className="overflow-hidden">
       <PageHero
         eyebrow="Legal"
         title="Privacy"
         highlight="Policy"
-        description="Understand how we collect, use, and protect your personal information."
+        description="How we collect, use, and protect your personal information."
       />
 
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 space-y-8 text-slate-700">
-          <h2 className="text-2xl font-bold text-slate-900">Information Collection</h2>
-          <p>We collect personal information when you use our services, such as name, email, and browsing behavior.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Use of Information</h2>
-          <p>We use the information to improve our services, communicate with users, and personalize content.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Data Sharing</h2>
-          <p>We do not sell your personal data. We may share information with trusted service providers to deliver services.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Cookies</h2>
-          <p>We use cookies to enhance user experience, track usage, and deliver personalized content.</p>
-
-          <h2 className="text-2xl font-bold text-slate-900">Your Rights</h2>
-          <p>You can request access, correction, or deletion of your personal information at any time.</p>
-
-          <p className="text-sm text-slate-500">Last updated: February 10, 2026</p>
+      <section className="nb-section pt-6">
+        <div className="nb-container max-w-4xl">
+          <div className="nb-panel p-6 md:p-8 space-y-6">
+            {sections.map((section) => (
+              <div key={section.title}>
+                <h2 className="text-2xl font-black text-[var(--nb-text)]">{section.title}</h2>
+                <p className="mt-2 text-sm md:text-base leading-relaxed text-[var(--nb-text-muted)]">{section.text}</p>
+              </div>
+            ))}
+            <p className="text-xs text-[var(--nb-text-muted)]">Last updated: February 10, 2026</p>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

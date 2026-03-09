@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import PageHero from "@components/common/PageHero";
-import PageCTA from "@components/common/PageCTA";
-import PortfolioGrid from "@components/sections/portfolio/PortfolioGrid";
-import { fetchProjects } from "@/services/contentApi";
+import { useEffect, useState } from 'react';
+import PageHero from '@components/common/PageHero';
+import PageCTA from '@components/common/PageCTA';
+import PortfolioGrid from '@components/sections/portfolio/PortfolioGrid';
+import { fetchProjects } from '@/services/contentApi';
 
 const Portfolio = () => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const loadData = async () => {
@@ -14,41 +14,38 @@ const Portfolio = () => {
         const projects = await fetchProjects();
         setData(projects);
       } catch (err) {
-        setError(err.message || "Failed to load projects");
+        setError(err.message || 'Failed to load projects');
       }
     };
+
     loadData();
   }, []);
 
   return (
-    <>
+    <div className="overflow-hidden">
       <PageHero
         eyebrow="Portfolio"
-        title="Work That"
-        highlight="Drives Growth"
-        description="A selection of projects where strategy, design, and performance came together."
+        title="Work that drives"
+        highlight="real growth"
+        description="A selection of projects where strategy, design, and delivery moved key business metrics."
       />
 
       {error ? (
-        <div className="max-w-7xl mx-auto px-6 pt-10 text-red-500 text-sm font-semibold">
-          {error}
+        <div className="nb-container pt-4">
+          <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</p>
         </div>
       ) : null}
 
-      <section className="py-10 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <PortfolioGrid projects={data} />
-        </div>
-      </section>
+      <PortfolioGrid projects={data} />
 
       <PageCTA
-        eyebrow="Have a project?"
-        title="Let's Build"
-        highlight="Something Great"
-        description="Tell us about your idea and we'll help you turn it into a scalable digital product."
-        primary="Start a Project"
+        eyebrow="Have a project"
+        title="Lets build something"
+        highlight="that scales"
+        description="Share your idea and we will turn it into a polished, high-performing digital product."
+        primary="Start Project"
       />
-    </>
+    </div>
   );
 };
 

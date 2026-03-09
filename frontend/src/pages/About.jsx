@@ -1,4 +1,3 @@
-import React from 'react';
 import PageHero from '@components/common/PageHero';
 import OurStory from '@components/sections/about/OurStory';
 import WhatMakesUsDifferent from '@components/sections/about/WhatMakesUsDifferent';
@@ -9,22 +8,21 @@ const About = () => {
     <div className="overflow-hidden">
       <PageHero
         eyebrow="About"
-        title="We build systems"
-        highlight="that scale growth."
-        description="Nexus Boost is a digital marketing agency focused on long-term, measurable impact."
-        cta="Our story"
-        dark
+        title="We build growth systems"
+        highlight="for ambitious brands"
+        description="NexusBoost is a digital growth partner combining strategy, design, and engineering in one execution team."
+        cta="Meet the team"
       />
       <OurStory />
       <WhatMakesUsDifferent />
       <PageCTA
-        eyebrow="Let’s Work Together"
-        title="Build something"
-        highlight="that actually grows."
-        description="If you’re serious about long-term growth, we should talk."
-        dark
+        eyebrow="Lets Work Together"
+        title="Need a team that ships"
+        highlight="with speed and quality"
+        description="Tell us your business goals and we will map the fastest path to measurable growth."
+        primary="Book Strategy Call"
+        secondary="View Portfolio"
       />
-
     </div>
   );
 };

@@ -1,50 +1,46 @@
+import { Activity, Layers, Scaling } from 'lucide-react';
+
 const points = [
   {
-    title: 'Strategy Before Execution',
-    desc: 'We never run campaigns without understanding the business, market, and user intent.',
+    title: 'Strategy before execution',
+    desc: 'Clear direction, audience intent, and business goals define every sprint.',
+    icon: Layers,
   },
   {
-    title: 'Data Over Opinions',
-    desc: 'Every decision is backed by performance data, not assumptions.',
+    title: 'Data over assumptions',
+    desc: 'Decisions are tied to real performance signals and tracked improvements.',
+    icon: Activity,
   },
   {
-    title: 'Built for Scale',
-    desc: 'What we build today should still work when your business is 10x bigger.',
+    title: 'Built to scale',
+    desc: 'Design and systems are structured for your next stage, not just launch day.',
+    icon: Scaling,
   },
 ];
 
 const WhatMakesUsDifferent = () => {
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
-
-        <div>
-          <p className="text-blue-600 font-black uppercase tracking-[0.3em] text-[11px] mb-6">
-            Our Approach
-          </p>
-
-          <h2 className="text-3xl lg:text-5xl font-black tracking-tighter text-slate-900">
-            What makes us
-            <br />
-            <span className="text-slate-400">different.</span>
-          </h2>
+    <section className="nb-section pt-4">
+      <div className="nb-container">
+        <div className="mb-7 max-w-2xl">
+          <p className="nb-pill border border-[var(--nb-border)] bg-[var(--nb-surface)] text-[var(--nb-accent)] mb-4">Our Approach</p>
+          <h2 className="text-3xl md:text-5xl font-black text-[var(--nb-text)] leading-[0.95]">What makes us different</h2>
         </div>
 
-        <div className="space-y-10">
-          {points.map((item, i) => (
-            <div key={i}>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed">
-                {item.desc}
-              </p>
-
-              <div className="mt-4 w-12 h-1 bg-blue-600 rounded-full" />
-            </div>
-          ))}
+        <div className="grid gap-4 md:grid-cols-3">
+          {points.map((point) => {
+            const Icon = point.icon;
+            return (
+              <article key={point.title} className="nb-panel p-5">
+                <span className="inline-flex rounded-lg border border-[var(--nb-border)] bg-[var(--nb-surface-soft)] p-2 text-[var(--nb-accent)]">
+                  <Icon size={18} />
+                </span>
+                <h3 className="mt-4 text-xl font-bold text-[var(--nb-text)]">{point.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--nb-text-muted)]">{point.desc}</p>
+              </article>
+            );
+          })}
         </div>
-
       </div>
     </section>
   );

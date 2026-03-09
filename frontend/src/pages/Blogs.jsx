@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import PageHero from "@components/common/PageHero";
-import BlogGrid from "@components/sections/blog/BlogGrid";
-import { fetchBlogs } from "@/services/contentApi";
+import { useEffect, useState } from 'react';
+import PageHero from '@components/common/PageHero';
+import BlogGrid from '@components/sections/blog/BlogGrid';
+import { fetchBlogs } from '@/services/contentApi';
 
-const Blog = () => {
+const Blogs = () => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const loadData = async () => {
@@ -13,29 +13,31 @@ const Blog = () => {
         const blogs = await fetchBlogs();
         setData(blogs);
       } catch (err) {
-        setError(err.message || "Failed to load blogs");
+        setError(err.message || 'Failed to load blogs');
       }
     };
+
     loadData();
   }, []);
 
   return (
-    <>
+    <div className="overflow-hidden">
       <PageHero
         eyebrow="Blog"
-        title="Insights That"
-        highlight="Drive Results"
-        description="Practical lessons on growth, design, and marketing tested on real projects."
+        title="Insights for"
+        highlight="modern growth teams"
+        description="Practical lessons on design, growth, and performance based on real project execution."
       />
 
       {error ? (
-        <div className="max-w-7xl mx-auto px-6 pt-10 text-red-500 text-sm font-semibold">
-          {error}
+        <div className="nb-container pt-4">
+          <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</p>
         </div>
       ) : null}
+
       <BlogGrid posts={data} />
-    </>
+    </div>
   );
 };
 
-export default Blog;
+export default Blogs;

@@ -1,42 +1,46 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const PageHero = ({
-  eyebrow,
-  title,
-  highlight,
-  description,
-  cta,
-}) => {
+const PageHero = ({ eyebrow, title, highlight, description, cta }) => {
   return (
-    <section className="pt-28 pb-10 relative overflow-hidden bg-white text-slate-900 border-b border-slate-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <p className="font-black uppercase tracking-[0.35em] text-[11px] mb-8 text-blue-600">
-          {eyebrow}
-        </p>
+    <section className="nb-section pt-32 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none nb-grid-lines opacity-45" />
 
-        <h1 className="text-4xl lg:text-5xl font-black tracking-tight leading-[0.95] mb-10">
-          {title}
-          <br />
-          <span className="text-slate-400">{highlight}</span>
-        </h1>
+      <div className="nb-container relative z-10">
+        <div className="nb-panel p-7 md:p-10 lg:p-12 overflow-hidden">
+          <div className="absolute -top-20 -right-10 w-56 h-56 rounded-full bg-(--nb-glow-a) blur-3xl" />
+          <div className="absolute -bottom-20 -left-8 w-52 h-52 rounded-full bg-(--nb-glow-b) blur-3xl" />
 
-        <p className="text-lg lg:text-xl max-w-3xl leading-relaxed mb-12 text-slate-600">
-          {description}
-        </p>
+          <div className="relative max-w-4xl">
+            <p className="nb-pill bg-(--nb-surface-soft) border border-(--nb-border) text-(--nb-accent) mb-6">
+              {eyebrow}
+            </p>
 
-        {cta && (
-          <button className="group inline-flex items-center gap-4 text-sm font-black uppercase tracking-widest border-b-2 border-current pb-2 opacity-80 hover:opacity-100 transition">
-            {cta}
-            <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-          </button>
-        )}
-      </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[0.9] text-(--nb-text)">
+              {title}
+              {highlight ? (
+                <span className="block text-transparent bg-clip-text nb-accent-gradient mt-2">{highlight}</span>
+              ) : null}
+            </h1>
 
-      {/* Background Word */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span className="text-[6rem] lg:text-[12rem] font-black tracking-tighter select-none text-slate-900/8">
-          {eyebrow}
-        </span>
+            {description ? (
+              <p className="mt-6 text-base md:text-lg leading-relaxed text-(--nb-text-muted) max-w-3xl">
+                {description}
+              </p>
+            ) : null}
+
+            {cta ? (
+              <Link
+                to="/contact"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-5 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-(--nb-text) hove
+                r:border-(--nb-accent)"
+              >
+                {cta}
+                <ArrowRight size={14} />
+              </Link>
+            ) : null}
+          </div>
+        </div>
       </div>
     </section>
   );

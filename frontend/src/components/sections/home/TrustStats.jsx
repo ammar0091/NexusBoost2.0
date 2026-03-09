@@ -1,52 +1,51 @@
-import { Users, Briefcase, TrendingUp, ShieldCheck } from 'lucide-react';
+import { BarChart3, BriefcaseBusiness, HeartHandshake, Trophy } from 'lucide-react';
 
 const stats = [
   {
-    label: 'Happy Clients',
-    value: '50+',
-    icon: <Users size={20} className="text-blue-500" />,
+    value: '120+',
+    label: 'Projects shipped',
+    icon: BriefcaseBusiness,
+    tone: 'text-[var(--nb-accent)]',
   },
   {
-    label: 'Projects Delivered',
-    value: '100+',
-    icon: <Briefcase size={20} className="text-emerald-500" />,
-  },
-  {
-    label: 'Avg Growth',
-    value: '3x',
-    icon: <TrendingUp size={20} className="text-purple-500" />,
-  },
-  {
-    label: 'Client Retention',
     value: '95%',
-    icon: <ShieldCheck size={20} className="text-amber-500" />,
+    label: 'Retention rate',
+    icon: HeartHandshake,
+    tone: 'text-emerald-400',
+  },
+  {
+    value: '2.7x',
+    label: 'Avg growth lift',
+    icon: BarChart3,
+    tone: 'text-amber-400',
+  },
+  {
+    value: '40+',
+    label: 'Awards and mentions',
+    icon: Trophy,
+    tone: 'text-rose-400',
   },
 ];
 
 const TrustStats = () => {
   return (
-    <section className="py-16 bg-white border-b border-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map((item, i) => (
-            <div
-              key={i}
-              className="group p-8 rounded-4xl bg-slate-50/50 border border-slate-100 hover:bg-white hover:shadow-xl hover:shadow-slate-200/40 transition-all"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-14 h-14 rounded-xl bg-white border border-slate-100 flex items-center justify-center">
-                  {item.icon}
+    <section className="nb-section pt-4">
+      <div className="nb-container">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.label} className="nb-panel p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <span className={`rounded-xl border border-[var(--nb-border)] bg-[var(--nb-surface-soft)] p-2 ${item.tone}`}>
+                    <Icon size={18} />
+                  </span>
+                  <p className="text-3xl font-black text-[var(--nb-text)]">{item.value}</p>
                 </div>
-                <span className="text-xl lg:text-3xl font-black text-slate-900">
-                  {item.value}
-                </span>
-              </div>
-              <p className="text-slate-500 text-sm font-medium">
-                {item.label}
-              </p>
-              <div className="mt-6 w-6 h-1 bg-slate-200 group-hover:w-full group-hover:bg-blue-600 transition-all duration-500 rounded-full" />
-            </div>
-          ))}
+                <p className="mt-3 text-sm font-medium text-[var(--nb-text-muted)]">{item.label}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

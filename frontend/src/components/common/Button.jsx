@@ -1,27 +1,30 @@
-import { cn } from "@/utils/cn";
+const Button = ({
+  children,
+  className = '',
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  ...props
+}) => {
+  const base = 'inline-flex items-center justify-center gap-2 rounded-xl font-bold transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60';
 
-const Button = ({ children, className, variant = "primary", size = "md", ...props }) => {
   const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/30",
-    secondary: "bg-slate-800 text-white hover:bg-slate-900",
-    outline: "border-2 border-blue-600 text-blue-600 hover:bg-blue-50",
-    ghost: "text-slate-600 hover:bg-slate-100",
+    primary: 'nb-accent-gradient text-white border border-transparent hover:brightness-110',
+    secondary: 'bg-[var(--nb-text)] text-[var(--nb-surface)] border border-transparent hover:opacity-90',
+    outline: 'border border-[var(--nb-border)] bg-[var(--nb-surface)] text-[var(--nb-text)] hover:border-[var(--nb-accent)]',
+    ghost: 'bg-transparent border border-transparent text-[var(--nb-text-muted)] hover:bg-[var(--nb-surface-soft)] hover:text-[var(--nb-text)]',
   };
 
   const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-6 py-2.5 text-base",
-    lg: "px-8 py-4 text-lg font-bold",
+    sm: 'px-3 py-2 text-sm',
+    md: 'px-5 py-3 text-sm',
+    lg: 'px-7 py-4 text-base',
   };
 
   return (
     <button
-      className={cn(
-        "inline-flex items-center justify-center rounded-full transition-all duration-300 active:scale-95 disabled:opacity-50",
-        variants[variant],
-        sizes[size],
-        className
-      )}
+      type={type}
+      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`.trim()}
       {...props}
     >
       {children}

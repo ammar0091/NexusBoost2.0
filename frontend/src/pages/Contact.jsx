@@ -1,141 +1,128 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  CheckCircle2,
-  MessageSquare,
   ArrowRight,
-} from "lucide-react";
-import { submitContact } from "@/services/contentApi";
+  CheckCircle2,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Phone,
+  Send,
+} from 'lucide-react';
+import { submitContact } from '@/services/contentApi';
 
-const ContactItem = ({ icon: Icon, label, value, href }) => {
-  const Wrapper = href ? "a" : "div";
+const ContactItem = ({ icon, label, value, href }) => {
+  const Wrapper = href ? 'a' : 'div';
 
   return (
-    <Wrapper href={href} className="group flex items-center gap-4">
-      <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
-        <Icon size={20} />
-      </div>
+    <Wrapper href={href} className=" px-4 py-3 flex items-center gap-3">
+      <span className="rounded-lg border border-(--nb-border) bg-(--nb-surface) p-2 text-(--nb-accent)">
+        {icon}
+      </span>
       <div>
-        <p className="text-[10px] font-bold text-slate-400 uppercase">{label}</p>
-        <p className="text-base font-bold text-slate-900">{value}</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">{label}</p>
+        <p className="text-sm font-semibold text-(--nb-text)">{value}</p>
       </div>
     </Wrapper>
   );
 };
 
-const ContactPage = () => {
-  const [status, setStatus] = useState("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+const Contact = () => {
+  const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    interest: "Search Engine Optimization",
-    message: "",
+    name: '',
+    email: '',
+    interest: 'Search Engine Optimization',
+    message: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
 
     try {
       await submitContact(formData);
-      setStatus("success");
+      setStatus('success');
     } catch (error) {
-      setStatus("error");
-      setErrorMessage(error.message || "Failed to submit form.");
+      setStatus('error');
+      setErrorMessage(error.message || 'Failed to submit form.');
     }
   };
 
   const resetForm = () => {
-    setStatus("idle");
-    setErrorMessage("");
+    setStatus('idle');
+    setErrorMessage('');
     setFormData({
-      name: "",
-      email: "",
-      interest: "Search Engine Optimization",
-      message: "",
+      name: '',
+      email: '',
+      interest: 'Search Engine Optimization',
+      message: '',
     });
   };
 
   return (
-    <div className="bg-white pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest mb-6">
-            <MessageSquare size={12} fill="currentColor" /> Let's Connect
+    <section className="pt-33 md:pt-37 pb-20">
+      <div className="nb-container grid gap-8 lg:grid-cols-12">
+        <div className="lg:col-span-4 space-y-5">
+          <div>
+            <p className="nb-pill border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent) mb-4">
+              <MessageSquare size={12} />
+              Contact
+            </p>
+            <h1 className="text-3xl md:text-4xl font-black text-(--nb-text) leading-[0.95]">Have a project in mind?</h1>
+            <p className="mt-4 text-(--nb-text-muted) leading-relaxed">
+              Share your goals and timeline. We usually reply within two business hours.
+            </p>
           </div>
-          <h1 className="text-4xl lg:text-6xl font-black tracking-tighter text-slate-900 leading-[0.9]">
-            HAVE A PROJECT?
-          </h1>
+
+          <div className="space-y-3">
+            <ContactItem
+              icon={<Mail size={16} />}
+              label="Email"
+              value="hello@nexusboost.com"
+              href="mailto:hello@nexusboost.com"
+            />
+            <ContactItem icon={<Phone size={16} />} label="Call" value="+91 98765 43210" href="tel:+919876543210" />
+            <ContactItem icon={<MapPin size={16} />} label="Office" value="Cyber City, Delhi, IN" />
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
-          <div className="lg:col-span-4 space-y-10">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6">
-                Contact Info
-              </p>
-              <div className="space-y-6">
-                <ContactItem
-                  icon={Mail}
-                  label="Email Us"
-                  value="hello@nexusboost.com"
-                  href="mailto:hello@nexusboost.com"
-                />
-                <ContactItem icon={Phone} label="Call Us" value="+91 98765 43210" />
-                <ContactItem icon={MapPin} label="Office" value="Cyber City, Delhi, IN" />
-              </div>
-            </div>
-
-            <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-              <p className="text-sm font-medium text-slate-600 italic">
-                "Our team typically responds within{" "}
-                <span className="text-blue-600 font-bold">2 business hours.</span>"
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-8 bg-slate-50/50 p-8 lg:p-12 rounded-[3rem] border border-slate-100">
-            {status === "success" ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-10">
-                <div className="w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6">
-                  <CheckCircle2 size={40} />
-                </div>
-                <h3 className="text-3xl font-black text-slate-900 mb-2">Message Sent!</h3>
-                <p className="text-slate-500">We'll get back to you shortly.</p>
-
+        <div className="lg:col-span-8">
+          <div className="nb-panel p-6 md:p-8">
+            {status === 'success' ? (
+              <div className="py-10 text-center">
+                <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
+                  <CheckCircle2 size={26} />
+                </span>
+                <h2 className="mt-5 text-3xl font-black text-(--nb-text)">Message sent</h2>
+                <p className="mt-2 text-(--nb-text-muted)">Our team will get back to you shortly.</p>
                 <button
+                  type="button"
                   onClick={resetForm}
-                  className="mt-8 text-blue-600 font-bold text-sm uppercase tracking-widest flex items-center gap-2"
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-(--nb-text)"
                 >
-                  Send another <ArrowRight size={14} />
+                  Send another
+                  <ArrowRight size={14} />
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid gap-5 md:grid-cols-2">
                   <Input
-                    label="Your Name"
+                    label="Your name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="John Doe"
                   />
-
                   <Input
-                    label="Email Address"
+                    label="Email address"
                     name="email"
                     type="email"
                     value={formData.email}
@@ -145,14 +132,13 @@ const ContactPage = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">
-                    Interest
-                  </label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">Interest</label>
                   <select
                     name="interest"
                     value={formData.interest}
                     onChange={handleChange}
-                    className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:border-blue-500 text-sm font-medium"
+                    className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border
+                    -[var(--nb-accent)]"
                   >
                     <option>Search Engine Optimization</option>
                     <option>Paid Advertising (PPC)</option>
@@ -170,55 +156,53 @@ const ContactPage = () => {
                 />
 
                 <button
-                  disabled={status === "loading"}
-                  className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:bg-blue-600 transition-all flex items-center justify-center gap-3"
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-(--nb-accent) px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-slate-950 disabled:opacity-70"
                 >
-                  {status === "loading" ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  {status === 'loading' ? (
+                    <span className="h-4 w-4 rounded-full border-2 border-slate-900/30 border-t-slate-900 animate-spin" />
                   ) : (
                     <>
-                      Send Message <Send size={16} />
+                      Send message
+                      <Send size={15} />
                     </>
                   )}
                 </button>
 
-                {status === "error" ? (
-                  <p className="text-sm font-semibold text-red-500 text-center">{errorMessage}</p>
-                ) : null}
+                {status === 'error' ? <p className="text-sm text-red-300">{errorMessage}</p> : null}
               </form>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 const Input = ({ label, ...props }) => (
   <div className="space-y-2">
-    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">
-      {label}
-    </label>
+    <label className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">{label}</label>
     <input
       {...props}
       required
-      className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:border-blue-500 text-sm font-medium"
+      className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border
+      -[var(--nb-accent)]"
     />
   </div>
 );
 
 const Textarea = ({ label, ...props }) => (
   <div className="space-y-2">
-    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">
-      {label}
-    </label>
+    <label className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">{label}</label>
     <textarea
       {...props}
       rows="4"
       required
-      className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:border-blue-500 text-sm font-medium resize-none"
+      className="w-full resize-none rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border
+      -[var(--nb-accent)]"
     />
   </div>
 );
 
-export default ContactPage;
+export default Contact;

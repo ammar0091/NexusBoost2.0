@@ -1,53 +1,52 @@
-import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '@/context/ThemeContext';
+import { ArrowRight, ShieldCheck, Sparkles, Zap } from 'lucide-react';
 
 const About = () => {
-  const { isDark } = useTheme();
-
   return (
-    <section className={`py-20 relative overflow-hidden ${isDark ? "bg-black text-white" : "bg-white text-slate-900"}`}>
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Subtle Background Word */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={`text-[18rem] font-black tracking-tighter select-none ${isDark ? "text-white/5" : "text-slate-900/5"}`}>
-            NEXUS
-          </span>
+    <section className="nb-section">
+      <div className="nb-container grid gap-8 lg:grid-cols-12 items-center">
+        <div className="lg:col-span-5">
+          <div className="nb-panel p-3">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+              alt="NexusBoost team collaborating"
+              className="h-[390px] w-full rounded-2xl object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
 
-        <div className="relative z-10 max-w-4xl">
-          <p className="text-blue-400 font-black uppercase tracking-[0.4em] text-[11px] mb-8">
-            About Nexus Boost
+        <div className="lg:col-span-7">
+          <p className="nb-pill border border-[var(--nb-border)] bg-[var(--nb-surface)] text-[var(--nb-accent)] mb-5">
+            <Sparkles size={12} />
+            About NexusBoost
           </p>
 
-          <h2 className="text-3xl lg:text-4xl font-black tracking-tight leading-[0.95] mb-12">
-            We don’t build <br />
-            websites or campaigns.
-            <br />
-            <span className={isDark ? "text-slate-400" : "text-slate-500"}>
-              We engineer digital momentum.
-            </span>
+          <h2 className="text-3xl md:text-5xl font-black leading-[0.95] text-[var(--nb-text)] max-w-2xl">
+            We turn brand vision into conversion-ready digital systems.
           </h2>
 
-          <p className={`text-lg lg:text-xl leading-relaxed max-w-3xl mb-12 ${isDark ? "text-slate-300" : "text-slate-600"}`}>
-            Nexus Boost is a digital growth agency built for brands that refuse
-            to stay average. We blend strategy, technology, and creativity to
-            help businesses scale faster, smarter, and stronger in competitive
-            markets.
+          <p className="mt-5 text-base md:text-lg text-[var(--nb-text-muted)] leading-relaxed max-w-2xl">
+            Strategy, design, and engineering run in one integrated team, so execution stays sharp and measurable.
           </p>
+
+          <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <div className="nb-soft-panel px-4 py-3 flex items-center gap-3">
+              <ShieldCheck size={18} className="text-emerald-400" />
+              <span className="text-sm text-[var(--nb-text-muted)]">Brand-safe and performance-first</span>
+            </div>
+            <div className="nb-soft-panel px-4 py-3 flex items-center gap-3">
+              <Zap size={18} className="text-[var(--nb-accent)]" />
+              <span className="text-sm text-[var(--nb-text-muted)]">Fast launch cycles with clear KPIs</span>
+            </div>
+          </div>
 
           <Link
             to="/about"
-            className={`group inline-flex items-center gap-4 text-sm font-black uppercase tracking-widest border-b-2 pb-2 hover:border-blue-500 transition-all ${
-              isDark ? "text-white border-white/20" : "text-slate-900 border-slate-300"
-            }`}
+            className="mt-7 inline-flex items-center gap-2 rounded-xl border border-[var(--nb-border)] bg-[var(--nb-surface)] px-5 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-[var(--nb-text)] hover:border-[var(--nb-accent)]"
           >
-            Read our story
-            <ArrowRight
-              size={18}
-              className="group-hover:translate-x-2 transition-transform"
-            />
+            Read Our Story
+            <ArrowRight size={14} />
           </Link>
         </div>
       </div>
