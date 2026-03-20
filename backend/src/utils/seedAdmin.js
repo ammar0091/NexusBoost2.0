@@ -1,12 +1,20 @@
-const bcrypt = require("bcryptjs");
+﻿const bcrypt = require("bcryptjs");
 const AdminUser = require("../models/AdminUser");
 
-async function ensureDefaultAdmin() {
-  const adminEmail = (process.env.ADMIN_EMAIL || "admin@nexusboost.local").toLowerCase();
-  const adminPassword = process.env.ADMIN_PASSWORD || "Admin@12345";
+async function ensureDefaultAdmin({ isProduction = false } = {}) {
+  const configuredEmail = process.env.ADMIN_EMAIL ? process.env.ADMIN_EMAIL.toLowerCase() : null;
+  const configuredPassword = process.env.ADMIN_PASSWORD || null;
+
+  const adminEmail = configuredEmail || "admin@nexusboost.local";
+  const adminPassword = configuredPassword || "Admin@12345";
 
   const existingAdmin = await AdminUser.findOne({ email: adminEmail });
   if (existingAdmin) {
+    return;
+  }
+
+  if (isProduction && (!configuredEmail || !configuredPassword)) {
+    console.warn("Skipping default admin creation because ADMIN_EMAIL or ADMIN_PASSWORD is missing in production");
     return;
   }
 

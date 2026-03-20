@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import {
   ArrowRight,
   CheckCircle2,
@@ -67,7 +67,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="pt-33 md:pt-37 pb-20">
+    <section className=" pt-37 pb-20">
       <div className="nb-container grid gap-8 lg:grid-cols-12">
         <div className="lg:col-span-4 space-y-5">
           <div>

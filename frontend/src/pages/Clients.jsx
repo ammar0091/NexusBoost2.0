@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import PageHero from '@components/common/PageHero';
 import ClientsGrid from '@components/sections/clients/ClientsGrid';
 import { fetchClients } from '@/services/contentApi';
+import Seo from '@components/common/Seo';
+import { pageHeroVisuals } from '@/content/marketingContent';
 
 const Clients = () => {
   const [data, setData] = useState([]);
@@ -12,6 +14,7 @@ const Clients = () => {
       try {
         const clients = await fetchClients();
         setData(clients);
+        setError('');
       } catch (err) {
         setError(err.message || 'Failed to load clients');
       }
@@ -22,16 +25,24 @@ const Clients = () => {
 
   return (
     <div className="overflow-hidden">
+      <Seo
+        title="Clients and Brands We Help Grow"
+        description="Discover the startups, service brands, ecommerce teams, and SaaS companies that trust NexusBoost for SEO and digital marketing execution."
+        image={pageHeroVisuals.clients.src}
+        imageAlt={pageHeroVisuals.clients.alt}
+        keywords={['digital marketing clients', 'seo agency clients', 'brands we work with', 'growth partners']}
+      />
       <PageHero
-        eyebrow="Clients"
-        title="Brands we partner"
-        highlight="and grow with"
-        description="From startups to established teams, we help businesses build stronger digital presence and better conversion systems."
+        eyebrow="Client Partnerships"
+        title="Brands we partner with"
+        highlight="to grow search visibility and conversion"
+        description="From startups to established companies, we help teams improve organic traffic, campaign performance, website conversion, and reporting clarity."
+        visual={pageHeroVisuals.clients}
       />
 
       {error ? (
         <div className="nb-container pt-4">
-          <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</p>
+          <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">{error}</p>
         </div>
       ) : null}
 

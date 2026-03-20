@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const Client = require("../models/Client");
 const { requireAdminAuth } = require("../middleware/auth");
 const asyncHandler = require("../utils/asyncHandler");
@@ -6,11 +6,8 @@ const asyncHandler = require("../utils/asyncHandler");
 const router = express.Router();
 
 function validateClientBody(body) {
-  const required = ["name", "logo"];
-  for (const field of required) {
-    if (!body[field]) {
-      return `${field} is required`;
-    }
+  if (!body.name) {
+    return "name is required";
   }
   return null;
 }
@@ -20,6 +17,10 @@ function serializeClient(client) {
     id: client._id,
     name: client.name,
     logo: client.logo,
+    industry: client.industry,
+    summary: client.summary,
+    website: client.website,
+    image: client.image,
     createdAt: client.createdAt,
     updatedAt: client.updatedAt,
   };
@@ -47,7 +48,11 @@ router.post(
 
     const client = await Client.create({
       name: String(req.body.name).trim(),
-      logo: String(req.body.logo).trim(),
+      logo: String(req.body.logo || "").trim(),
+      industry: String(req.body.industry || "").trim(),
+      summary: String(req.body.summary || "").trim(),
+      website: String(req.body.website || "").trim(),
+      image: String(req.body.image || "").trim(),
     });
 
     res.status(201).json({ data: serializeClient(client) });
@@ -69,7 +74,11 @@ router.put(
     }
 
     client.name = String(req.body.name).trim();
-    client.logo = String(req.body.logo).trim();
+    client.logo = String(req.body.logo || "").trim();
+    client.industry = String(req.body.industry || "").trim();
+    client.summary = String(req.body.summary || "").trim();
+    client.website = String(req.body.website || "").trim();
+    client.image = String(req.body.image || "").trim();
     await client.save();
 
     res.json({ data: serializeClient(client) });

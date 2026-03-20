@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Rocket, Twitter, Linkedin, Instagram, Github, Mail, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
 import ScrollToTopButton from '../common/ScrollToTopButton';
@@ -152,7 +152,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs nb-text-muted">� {currentYear} NexusBoost. All rights reserved.</p>
+          <p className="text-xs nb-text-muted">{currentYear} NexusBoost. All rights reserved.</p>
           <ScrollToTopButton />
         </div>
       </div>

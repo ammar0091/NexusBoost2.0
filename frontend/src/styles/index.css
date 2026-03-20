@@ -8,14 +8,14 @@
   --nb-surface-soft: #f3f8ff;
   --nb-text: #0f172a;
   --nb-text-muted: #5b6883;
-  --nb-border: #d7e4ff;
-  --nb-accent: #00b4d8;
+  --nb-border: #dcdcf0;
+  --nb-accent: #2f83cc;
   --nb-accent-strong: #3b82f6;
-  --nb-accent-2: #ff6b6b;
+  --nb-accent-2: #f43f5e;
   --nb-accent-3: #f59e0b;
-  --nb-glow-a: rgba(0, 180, 216, 0.2);
-  --nb-glow-b: rgba(59, 130, 246, 0.16);
-  --nb-shadow: 0 24px 60px -34px rgba(15, 23, 42, 0.28);
+  --nb-accent-4: #8b5cf6;
+ 
+  --nb-shadow: 0 24px 60px -34px rgba(15, 23, 42, 0.3);
 }
 
 :root[data-theme='dark'] {
@@ -26,12 +26,11 @@
   --nb-text: #f5f7ff;
   --nb-text-muted: #9ba3b7;
   --nb-border: #1f1f1f;
-  --nb-accent: #22d3ee;
+  --nb-accent: #2f83cc;
   --nb-accent-strong: #38bdf8;
   --nb-accent-2: #fb7185;
   --nb-accent-3: #fbbf24;
-  --nb-glow-a: rgba(34, 211, 238, 0.16);
-  --nb-glow-b: rgba(56, 189, 248, 0.14);
+  --nb-accent-4: #a78bfa;
   --nb-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.72);
 }
 
@@ -58,8 +57,9 @@ body {
   font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   color: var(--nb-text);
   background:
-    radial-gradient(56rem 26rem at 10% -8%, var(--nb-glow-a), transparent 72%),
-    radial-gradient(44rem 30rem at 92% -6%, var(--nb-glow-b), transparent 70%),
+    radial-gradient(56rem 26rem at 8% -8%, var(--nb-glow-a), transparent 72%),
+    radial-gradient(42rem 30rem at 92% -6%, var(--nb-glow-b), transparent 70%),
+    radial-gradient(38rem 24rem at 65% 15%, var(--nb-glow-c), transparent 75%),
     linear-gradient(180deg, var(--nb-bg), var(--nb-bg-alt));
   transition: background-color 220ms ease, color 220ms ease;
 }
@@ -91,7 +91,7 @@ img {
 .nb-panel {
   background: var(--nb-surface);
   border: 1px solid var(--nb-border);
-  border-radius: 1.4rem;
+  border-radius: 1.2rem;
   box-shadow: var(--nb-shadow);
 }
 
@@ -130,6 +130,10 @@ img {
   background-image: linear-gradient(125deg, var(--nb-accent), var(--nb-accent-strong));
 }
 
+.nb-accent-gradient-alt {
+  background-image: linear-gradient(125deg, var(--nb-accent-2), var(--nb-accent-4));
+}
+
 .nb-glass {
   backdrop-filter: blur(10px);
   background: color-mix(in srgb, var(--nb-surface) 78%, transparent);
@@ -137,10 +141,8 @@ img {
 }
 
 .nb-grid-lines {
-  background-image:
-    linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
-  background-size: 26px 26px;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.4;
 }
 
 .nb-shine {

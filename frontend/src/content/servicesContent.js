@@ -1,0 +1,163 @@
+import {
+  ArrowUpRight,
+  BarChart3,
+  Code2,
+  Film,
+  Mail,
+  Megaphone,
+  Palette,
+  Search,
+  SlidersHorizontal,
+  TrendingUp,
+  UserRound,
+  Waypoints,
+} from 'lucide-react';
+
+export const services = [
+  {
+    slug: 'seo-organic-growth',
+    title: 'SEO and organic growth',
+    shortTitle: 'SEO Growth',
+    desc: 'Technical SEO, keyword strategy, site structure, and content frameworks for compounding visibility and qualified traffic.',
+    detail:
+      'We build SEO systems that connect technical health, search intent, and conversion goals. The work usually covers audits, information architecture, keyword mapping, on-page optimization, internal linking, and search-led content planning.\n\nInstead of chasing vanity rankings, we focus on queries that support real pipeline and commercial outcomes. That means aligning service pages, blog clusters, and conversion paths so traffic quality improves alongside visibility.',
+    bullets: ['Technical SEO audits', 'Keyword and topic mapping', 'On-page and internal linking improvements'],
+    icon: Search,
+    tone: 'text-cyan-400',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'performance-marketing',
+    title: 'Performance marketing',
+    shortTitle: 'Performance Ads',
+    desc: 'ROI-focused paid campaigns on Google, Meta, and high-intent channels built around stronger funnel economics.',
+    detail:
+      'Performance marketing works best when targeting, creative, landing pages, and reporting are tightly connected. We structure campaigns around intent segments, message match, and measurement clarity so ad spend can scale more efficiently.\n\nFrom account architecture to testing plans, the goal is to reduce wasted spend and improve the quality of the leads or purchases that campaigns generate.',
+    bullets: ['Google and Meta campaign strategy', 'Creative and landing page alignment', 'Budget efficiency and CAC improvement'],
+    icon: TrendingUp,
+    tone: 'text-emerald-400',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'social-media-strategy',
+    title: 'Social media strategy',
+    shortTitle: 'Social Strategy',
+    desc: 'Creative planning, campaign concepts, and content systems that grow authority and demand across social channels.',
+    detail:
+      'Social strategy should support brand positioning and revenue, not just posting frequency. We shape channel plans, content pillars, and campaign structures that create more consistent engagement and stronger brand recall.\n\nWhether the goal is community growth, lead generation, or campaign distribution, we build systems that connect creative execution to business outcomes.',
+    bullets: ['Channel planning and positioning', 'Content systems and campaign themes', 'Creative direction for growth-focused teams'],
+    icon: Megaphone,
+    tone: 'text-rose-400',
+    image: 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'branding-visual-design',
+    title: 'Branding and visual design',
+    shortTitle: 'Brand Design',
+    desc: 'Identity systems and brand storytelling that make your business memorable, premium, and easier to trust.',
+    detail:
+      'Branding gives every marketing asset more leverage. We help teams sharpen positioning, visual systems, messaging tone, and story structure so the brand feels more cohesive and credible.\n\nThat foundation improves how websites, campaigns, pitch decks, and content perform because the brand becomes easier to understand and easier to remember.',
+    bullets: ['Brand identity refinement', 'Visual direction and consistency', 'Messaging support across channels'],
+    icon: Palette,
+    tone: 'text-violet-400',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'web-development',
+    title: 'Web development',
+    shortTitle: 'Web Development',
+    desc: 'Fast, modern websites with clean architecture, search-friendly foundations, and conversion-focused UX.',
+    detail:
+      'We design and build websites that support both discovery and conversion. That includes performance, responsive behavior, SEO foundations, clean content structure, and user journeys that reduce friction.\n\nThe result is a site that not only looks sharper, but also does a better job turning traffic into action.',
+    bullets: ['Responsive frontend builds', 'Search-friendly technical foundations', 'Conversion-focused page structure'],
+    icon: Code2,
+    tone: 'text-blue-400',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'conversion-optimization',
+    title: 'Conversion optimization',
+    shortTitle: 'CRO',
+    desc: 'Landing page testing, message match, UX refinement, and offer positioning to maximize lead quality and revenue.',
+    detail:
+      'Conversion optimization is about removing hesitation at the right points in the journey. We review messaging hierarchy, CTA placement, proof, page flow, and friction points to improve the percentage of visitors who turn into qualified leads or customers.\n\nThis work becomes especially powerful when paired with SEO and paid traffic because it improves the efficiency of every visit you already earn.',
+    bullets: ['Landing page audits', 'CTA and messaging refinement', 'Trust-building UX improvements'],
+    icon: SlidersHorizontal,
+    tone: 'text-amber-400',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'ppc-advertising',
+    title: 'PPC advertising',
+    shortTitle: 'PPC',
+    desc: 'Campaign structures focused on lower CAC, higher intent traffic, and better lead qualification.',
+    detail:
+      'PPC management should give you clarity, not just clicks. We structure search and paid campaigns around intent, audience quality, and commercial relevance so budgets work harder.\n\nThat means better account hygiene, stronger query control, cleaner reporting, and pages that actually support conversion once someone clicks.',
+    bullets: ['Campaign structure and targeting', 'Query and audience refinement', 'Performance reporting and optimization'],
+    icon: BarChart3,
+    tone: 'text-lime-400',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'content-marketing',
+    title: 'Content marketing',
+    shortTitle: 'Content',
+    desc: 'Search-led content calendars, topic clusters, and authority content designed to support SEO and demand generation.',
+    detail:
+      'Content marketing works when it is connected to search demand, positioning, and funnel movement. We map content to audience questions and business priorities so each asset supports a larger growth system.\n\nThe output can include topic clusters, blog strategy, landing page copy, and content plans that strengthen both visibility and conversion.',
+    bullets: ['Topic cluster planning', 'Search-led editorial strategy', 'Authority content for organic growth'],
+    icon: Waypoints,
+    tone: 'text-pink-400',
+    image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'email-marketing',
+    title: 'Email marketing',
+    shortTitle: 'Email',
+    desc: 'Lifecycle sequences and campaign emails that nurture prospects, reactivate users, and improve retention.',
+    detail:
+      'Email remains one of the highest-leverage channels for nurturing and retention. We shape lifecycle sequences, promotional flows, and re-engagement campaigns that feel useful rather than generic.\n\nThe focus is on stronger segmentation, better timing, and clearer offers so more contacts move toward revenue-generating actions.',
+    bullets: ['Lifecycle and nurture flows', 'Campaign email strategy', 'Retention and reactivation sequences'],
+    icon: Mail,
+    tone: 'text-indigo-400',
+    image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'analytics-reporting',
+    title: 'Analytics and reporting',
+    shortTitle: 'Analytics',
+    desc: 'Unified dashboards and insight loops that connect rankings, traffic, conversions, and revenue-facing metrics.',
+    detail:
+      'Good reporting helps teams decide what to do next. We improve analytics setups, event tracking, attribution visibility, and dashboarding so performance conversations are grounded in the right numbers.\n\nThe aim is not more charts. It is a clearer picture of what channels, pages, and campaigns actually drive business value.',
+    bullets: ['GA4 and event tracking reviews', 'Dashboard and attribution clean-up', 'Decision-ready reporting frameworks'],
+    icon: ArrowUpRight,
+    tone: 'text-sky-400',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'video-marketing',
+    title: 'Video marketing',
+    shortTitle: 'Video',
+    desc: 'High-performing short and long-form video content tailored for social, ads, education, and brand storytelling.',
+    detail:
+      'Video can support awareness, education, social reach, and conversion when it is tied to a clear role in the funnel. We help plan video formats, messaging angles, and distribution use cases that fit growth objectives.\n\nThat can include short-form creative, educational explainers, campaign assets, or authority content that supports both paid and organic channels.',
+    bullets: ['Short-form and campaign concepts', 'Brand storytelling support', 'Distribution-aware planning'],
+    icon: Film,
+    tone: 'text-orange-400',
+    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    slug: 'ux-ui-design',
+    title: 'UX and UI design',
+    shortTitle: 'UX/UI',
+    desc: 'Interfaces that feel premium, reduce friction, and guide visitors toward the actions that matter most.',
+    detail:
+      'Design decisions should make conversion easier. We review structure, visual hierarchy, interaction clarity, and trust cues to create interfaces that feel sharper and perform better.\n\nWhether the surface is a homepage, landing page, or product flow, the work focuses on cleaner decision paths and a more premium user experience.',
+    bullets: ['Interface and funnel UX reviews', 'Visual hierarchy improvements', 'Design systems for consistency'],
+    icon: UserRound,
+    tone: 'text-fuchsia-400',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
+  },
+];
+
+export const getServiceBySlug = (slug) => services.find((service) => service.slug === slug);

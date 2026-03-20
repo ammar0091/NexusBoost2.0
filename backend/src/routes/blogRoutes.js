@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const Blog = require("../models/Blog");
 const { requireAdminAuth } = require("../middleware/auth");
 const asyncHandler = require("../utils/asyncHandler");
@@ -19,9 +19,12 @@ function serializeBlog(blog) {
     slug: blog.slug,
     title: blog.title,
     excerpt: blog.excerpt,
+    content: blog.content,
     category: { id: slugify(blog.category), name: blog.category },
     coverImage: blog.coverImage,
     readTime: blog.readTime,
+    seoTitle: blog.seoTitle,
+    seoDescription: blog.seoDescription,
     publishedAt: blog.publishedAt,
     featured: blog.featured,
     createdAt: blog.createdAt,
@@ -55,6 +58,18 @@ router.get(
   })
 );
 
+router.get(
+  "/slug/:slug",
+  asyncHandler(async (req, res) => {
+    const blog = await Blog.findOne({ slug: req.params.slug }).lean();
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    res.json({ data: serializeBlog(blog) });
+  })
+);
+
 router.post(
   "/",
   requireAdminAuth,
@@ -74,9 +89,12 @@ router.post(
       slug: computedSlug,
       title: String(req.body.title).trim(),
       excerpt: String(req.body.excerpt).trim(),
+      content: String(req.body.content || "").trim(),
       category: String(req.body.category).trim(),
       coverImage: String(req.body.coverImage).trim(),
       readTime: Number(req.body.readTime),
+      seoTitle: String(req.body.seoTitle || "").trim(),
+      seoDescription: String(req.body.seoDescription || "").trim(),
       publishedAt: req.body.publishedAt ? new Date(req.body.publishedAt) : new Date(),
       featured: Boolean(req.body.featured),
     });
@@ -110,9 +128,12 @@ router.put(
     blog.slug = computedSlug;
     blog.title = String(req.body.title).trim();
     blog.excerpt = String(req.body.excerpt).trim();
+    blog.content = String(req.body.content || "").trim();
     blog.category = String(req.body.category).trim();
     blog.coverImage = String(req.body.coverImage).trim();
     blog.readTime = Number(req.body.readTime);
+    blog.seoTitle = String(req.body.seoTitle || "").trim();
+    blog.seoDescription = String(req.body.seoDescription || "").trim();
     blog.publishedAt = req.body.publishedAt ? new Date(req.body.publishedAt) : blog.publishedAt;
     blog.featured = Boolean(req.body.featured);
 

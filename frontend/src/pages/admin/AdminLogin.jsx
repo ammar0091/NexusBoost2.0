@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+﻿import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { adminLogin } from "@/services/adminApi";
 import { isAdminLoggedIn, setAdminToken } from "@/utils/adminAuth";
-
-const DEFAULT_EMAIL = "admin@nexusboost.local";
-const DEFAULT_PASSWORD = "Admin@12345";
+import Seo from "@/components/common/Seo";
 
 function AdminLogin() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(DEFAULT_EMAIL);
-  const [password, setPassword] = useState(DEFAULT_PASSWORD);
+  const location = useLocation();
+  const redirectTo = location.state?.from || "/admin";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -27,7 +27,7 @@ function AdminLogin() {
     try {
       const response = await adminLogin({ email, password });
       setAdminToken(response.token);
-      navigate("/admin", { replace: true });
+      navigate(redirectTo, { replace: true });
     } catch (err) {
       setError(err.message || "Login failed");
     } finally {
@@ -36,50 +36,52 @@ function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-6">
-      <div className="w-full max-w-md rounded-3xl bg-[#0A0A0A] border border-neutral-800 p-8">
-        <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-bold mb-4">
+    <div className="flex min-h-screen items-center justify-center bg-black px-6 text-white">
+      <Seo title="Admin Login" noIndex />
+      <div className="w-full max-w-md rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-8">
+        <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-blue-400">
           NexusBoost Admin
         </p>
-        <h1 className="text-3xl font-black mb-8">Login</h1>
+        <h1 className="mb-2 text-3xl font-black">Login</h1>
+        <p className="mb-8 text-sm leading-relaxed text-neutral-400">
+          Sign in with your admin credentials to manage content, leads, and subscribers.
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
-            <label className="text-xs text-neutral-300 uppercase tracking-widest font-semibold">
+            <label className="text-xs font-semibold uppercase tracking-widest text-neutral-300">
               Email
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
               required
-              className="w-full rounded-xl bg-black border border-neutral-700 px-4 py-3 outline-none focus:border-blue-400"
+              className="w-full rounded-xl border border-neutral-700 bg-black px-4 py-3 outline-none focus:border-blue-400"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs text-neutral-300 uppercase tracking-widest font-semibold">
+            <label className="text-xs font-semibold uppercase tracking-widest text-neutral-300">
               Password
             </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
               required
-              className="w-full rounded-xl bg-black border border-neutral-700 px-4 py-3 outline-none focus:border-blue-400"
+              className="w-full rounded-xl border border-neutral-700 bg-black px-4 py-3 outline-none focus:border-blue-400"
             />
           </div>
 
-          {error ? (
-            <p className="text-red-400 text-sm font-medium">
-              {error}
-            </p>
-          ) : null}
+          {error ? <p className="text-sm font-medium text-red-400">{error}</p> : null}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-blue-600 hover:bg-blue-500 disabled:bg-blue-700 py-3 font-bold uppercase tracking-widest text-sm"
+            className="w-full rounded-xl bg-blue-600 py-3 text-sm font-bold uppercase tracking-widest hover:bg-blue-500 disabled:bg-blue-700"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>

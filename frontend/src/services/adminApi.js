@@ -24,9 +24,21 @@ export async function updateContactStatus(id, status) {
   });
 }
 
+export async function deleteContact(id) {
+  return apiRequest(`/admin/contacts/${id}`, {
+    method: "DELETE",
+  });
+}
+
 export async function fetchAdminNewsletters() {
   const res = await apiRequest("/admin/newsletters");
   return res?.data || [];
+}
+
+export async function deleteSubscriber(id) {
+  return apiRequest(`/admin/newsletters/${id}`, {
+    method: "DELETE",
+  });
 }
 
 export async function createBlog(payload) {
@@ -91,6 +103,28 @@ export async function updateClient(id, payload) {
 
 export async function deleteClient(id) {
   return apiRequest(`/clients/${id}`, {
+    method: "DELETE",
+  });
+}
+
+export async function createTeamMember(payload) {
+  const res = await apiRequest("/teams", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  return res?.data;
+}
+
+export async function updateTeamMember(id, payload) {
+  const res = await apiRequest(`/teams/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+  return res?.data;
+}
+
+export async function deleteTeamMember(id) {
+  return apiRequest(`/teams/${id}`, {
     method: "DELETE",
   });
 }

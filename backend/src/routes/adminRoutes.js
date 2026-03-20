@@ -65,6 +65,17 @@ router.patch(
   })
 );
 
+router.delete(
+  "/contacts/:id",
+  asyncHandler(async (req, res) => {
+    const deleted = await ContactLead.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Contact not found" });
+    }
+    res.json({ message: "Contact deleted" });
+  })
+);
+
 router.get(
   "/newsletters",
   asyncHandler(async (req, res) => {
@@ -77,6 +88,17 @@ router.get(
       })),
       meta: { total: subscribers.length },
     });
+  })
+);
+
+router.delete(
+  "/newsletters/:id",
+  asyncHandler(async (req, res) => {
+    const deleted = await NewsletterSubscriber.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Subscriber not found" });
+    }
+    res.json({ message: "Subscriber deleted" });
   })
 );
 

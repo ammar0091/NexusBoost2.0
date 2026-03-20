@@ -1,16 +1,28 @@
-import { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Rocket, ArrowRight, LayoutGrid, Zap, Users, BookOpen, Briefcase } from 'lucide-react';
-import ThemeToggle from '@/components/common/ThemeToggle';
-import { useTheme } from '@/context/ThemeContext';
+import { useState, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
+import {
+  Menu,
+  X,
+  Rocket,
+  PersonStanding,
+  ArrowRight,
+  LayoutGrid,
+  Home,
+  Users,
+  BookOpen,
+  Briefcase,
+} from "lucide-react";
+
+import ThemeToggle from "@/components/common/ThemeToggle";
+import { useTheme } from "@/context/ThemeContext";
 
 const navLinks = [
-  { name: 'Home', path: '/', icon: <Zap size={16} /> },
-  { name: 'About', path: '/about', icon: <Users size={16} /> },
-  { name: 'Services', path: '/services', icon: <LayoutGrid size={16} /> },
-  { name: 'Portfolio', path: '/portfolio', icon: <Briefcase size={16} /> },
-  { name: 'Blog', path: '/blogs', icon: <BookOpen size={16} /> },
-  { name: 'Clients', path: '/clients', icon: <Rocket size={16} /> },
+  { name: "Home", path: "/", icon: <Home size={18} /> },
+  { name: "About", path: "/about", icon: <Users size={18} /> },
+  { name: "Services", path: "/services", icon: <LayoutGrid size={18} /> },
+  { name: "Portfolio", path: "/portfolio", icon: <Briefcase size={18} /> },
+  { name: "Blog", path: "/blogs", icon: <BookOpen size={18} /> },
+  { name: "Clients", path: "/clients", icon: <PersonStanding size={18} /> },
 ];
 
 const Navbar = () => {
@@ -19,97 +31,129 @@ const Navbar = () => {
   const { isDark } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      <header className="fixed top-3 left-0 w-full z-50 px-3">
-        <div
-          className={`nb-container rounded-2xl border backdrop-blur-xl transition-all duration-300 ${
-            isDark ? 'bg-black/75 border-[var(--nb-border)]' : 'bg-white/80 border-[var(--nb-border)]'
-          } ${scrolled ? 'py-2.5' : 'py-3.5'}`}
-        >
-          <div className="px-4 md:px-5 flex items-center justify-between gap-3">
-            <Link to="/" className="flex items-center gap-2.5">
-              <span className="w-9 h-9 rounded-xl nb-accent-gradient text-white flex items-center justify-center shadow-lg">
-                <Rocket size={18} />
-              </span>
-              <span className="text-lg font-extrabold text-[var(--nb-text)] tracking-tight">
-                NEXUS<span className="text-[var(--nb-accent)]">BOOST</span>
-              </span>
+      {/* HEADER */}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+        ${scrolled
+            ? isDark
+              ? "bg-black/90 backdrop-blur-lg border-b border-(--nb-border)"
+              : "bg-white/90 backdrop-blur-lg border-b border-(--nb-border)"
+            : "bg-transparent"
+          }`}
+      >
+        <div className="w-full px-6 lg:px-12 flex items-center justify-between h-18">
+
+          {/* LOGO */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <span className="w-10 h-10 rounded-xl nb-accent-gradient text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+              <Rocket size={18} />
+            </span>
+
+            <span className="text-xl font-extrabold tracking-tight text-(--nb-text)">
+              NEXUS<span className="text-(--nb-accent)">BOOST</span>
+            </span>
+          </Link>
+
+          {/* DESKTOP NAV */}
+          <nav className="hidden lg:flex items-center gap-2">
+
+            {navLinks.map((link) => (
+              <NavLink key={link.name} to={link.path}>
+                {({ isActive }) => (
+                  <span
+                    className={`relative px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-semibold transition-all
+                    ${isActive
+                        ? "text-(--nb-accent) bg-(--nb-surface-soft)"
+                        : "text-(--nb-text-muted) hover:text-(--nb-text) hover:bg-(--nb-surface-soft)"
+                      }`}
+                  >
+                    {link.icon}
+                    {link.name}
+                  </span>
+                )}
+              </NavLink>
+            ))}
+          </nav>
+
+          {/* RIGHT SIDE */}
+          <div className="flex items-center gap-3">
+
+            {/* CTA */}
+            <Link
+              to="/contact"
+              className="hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold nb-accent-gradient text-white transition-all"
+            >
+              Contact
+              <ArrowRight size={16} />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `px-3.5 py-2 rounded-xl text-[11px] font-extrabold uppercase tracking-widest transition-all ${
-                      isActive
-                        ? 'bg-[var(--nb-text)] text-[var(--nb-surface)]'
-                        : 'text-[var(--nb-text-muted)] hover:text-[var(--nb-text)] hover:bg-[var(--nb-surface-soft)]'
-                    }`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              ))}
-            </nav>
+            <ThemeToggle />
 
-            <div className="flex items-center gap-2">
-              <ThemeToggle />
+            {/* MOBILE BUTTON */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden w-10 h-10 rounded-xl bg-(--nb-text) text-(--nb-surface) flex items-center justify-center"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
 
-              <Link
-                to="/contact"
-                className="hidden lg:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-[11px] font-extrabold uppercase tracking-widest bg-[var(--nb-accent)] text-slate-950 hover:brightness-110 transition-all"
-              >
-                Contact <ArrowRight size={14} />
-              </Link>
-
-              <button
-                type="button"
-                onClick={() => setIsOpen((prev) => !prev)}
-                className="lg:hidden w-10 h-10 rounded-xl bg-[var(--nb-text)] text-[var(--nb-surface)] flex items-center justify-center"
-                aria-label="Toggle menu"
-              >
-                {isOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
           </div>
         </div>
+
+        {/*  BORDER */}
+        <div
+          className={`h-px w-full border-t border-(--nb-border) transition-all duration-300 ${scrolled ? "opacity-100" : "opacity-0"
+            }`}
+        ></div>
       </header>
 
+      {/* MOBILE MENU */}
       <div
-        className={`fixed top-20 left-3 right-3 z-40 lg:hidden transition-all duration-300 ${
-          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300
+        ${isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+          }`}
       >
-        <div className="nb-container rounded-2xl border border-[var(--nb-border)] bg-[var(--nb-surface)] p-3">
-          <div className="grid grid-cols-2 gap-2.5">
+        <div
+          className={`absolute top-0 right-0 w-[85%] h-full
+          ${isDark ? "bg-black" : "bg-white"}
+          shadow-xl p-6 transition-transform duration-300
+          ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
+
+          <div className="flex flex-col gap-4 mt-16">
+
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="rounded-xl border border-[var(--nb-border)] bg-[var(--nb-surface-soft)] p-3.5 flex flex-col items-center justify-center gap-2 text-[var(--nb-text)]"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-(--nb-text) font-medium hover:bg-(--nb-surface-soft)"
               >
-                <span className="text-[var(--nb-accent)]">{link.icon}</span>
-                <span className="text-[11px] font-bold uppercase tracking-wider">{link.name}</span>
+                <span className="text-(--nb-accent)">
+                  {link.icon}
+                </span>
+                {link.name}
               </NavLink>
             ))}
 
             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className="col-span-2 rounded-xl nb-accent-gradient text-white p-4 flex items-center justify-between"
+              className="mt-4 flex items-center justify-center gap-2 nb-accent-gradient text-white rounded-xl py-3 font-semibold"
             >
-              <span className="text-sm font-bold">Start a project</span>
+              Contact
               <ArrowRight size={18} />
             </Link>
+
           </div>
         </div>
       </div>

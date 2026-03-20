@@ -1,3 +1,4 @@
+﻿import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
 const getCategoryName = (category) => {
@@ -21,38 +22,50 @@ const BlogGrid = ({ posts }) => {
   return (
     <section className="nb-section pt-6">
       <div className="nb-container">
+        <div className="mb-8 max-w-3xl">
+          <h2 className="text-3xl font-black leading-[0.95] text-(--nb-text) md:text-4xl">Articles on SEO, content strategy, analytics, and conversion</h2>
+          <p className="mt-4 text-sm leading-relaxed text-(--nb-text-muted) md:text-base">
+            Practical insights for brands that want better rankings, stronger landing pages, smarter reporting, and more efficient digital marketing execution.
+          </p>
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <article key={post.id} className="nb-panel overflow-hidden">
-              <img
-                src={post.coverImage}
-                alt={post.title}
-                className="h-52 w-full object-cover"
-                loading="lazy"
-              />
+            <article key={post.id} className="nb-panel overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+              <Link to={`/blogs/${post.slug || post.id}`} className="block">
+                <img
+                  src={post.coverImage}
+                  alt={post.title}
+                  className="h-52 w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width="1200"
+                  height="800"
+                />
 
-              <div className="p-5">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--nb-accent)]">
-                  {getCategoryName(post.category)}
-                </p>
+                <div className="p-5">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-accent)">
+                    {getCategoryName(post.category)}
+                  </p>
 
-                <h3 className="mt-2 flex items-start justify-between gap-2 text-xl font-black text-[var(--nb-text)]">
-                  {post.title}
-                  <ArrowUpRight size={16} className="text-[var(--nb-text-muted)]" />
-                </h3>
+                  <h3 className="mt-2 flex items-start justify-between gap-2 text-xl font-black text-(--nb-text)">
+                    {post.title}
+                    <ArrowUpRight size={16} className="text-(--nb-text-muted)" />
+                  </h3>
 
-                <p className="mt-3 text-sm leading-relaxed text-[var(--nb-text-muted)]">{post.excerpt}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-(--nb-text-muted)">{post.excerpt}</p>
 
-                <div className="mt-4 flex items-center justify-between text-xs text-[var(--nb-text-muted)]">
-                  <span>{post.readTime} min read</span>
-                  <span>{formatDate(post.publishedAt)}</span>
+                  <div className="mt-4 flex items-center justify-between text-xs text-(--nb-text-muted)">
+                    <span>{post.readTime} min read</span>
+                    <span>{formatDate(post.publishedAt)}</span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </article>
           ))}
 
           {!posts.length ? (
-            <p className="col-span-full rounded-xl border border-[var(--nb-border)] bg-[var(--nb-surface)] px-4 py-5 text-sm text-[var(--nb-text-muted)]">
+            <p className="col-span-full rounded-xl border border-(--nb-border) bg-(--nb-surface) px-4 py-5 text-sm text-(--nb-text-muted)">
               No blogs published yet.
             </p>
           ) : null}

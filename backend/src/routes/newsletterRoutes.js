@@ -1,8 +1,9 @@
-const express = require("express");
+﻿const express = require("express");
 const NewsletterSubscriber = require("../models/NewsletterSubscriber");
 const asyncHandler = require("../utils/asyncHandler");
 
 const router = express.Router();
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 router.post(
   "/",
@@ -13,6 +14,10 @@ router.post(
     }
 
     const normalizedEmail = String(email).toLowerCase().trim();
+    if (!EMAIL_PATTERN.test(normalizedEmail)) {
+      return res.status(400).json({ message: "Please enter a valid email address" });
+    }
+
     const existing = await NewsletterSubscriber.findOne({ email: normalizedEmail });
     if (existing) {
       return res.json({ message: "Already subscribed", data: { id: existing._id } });

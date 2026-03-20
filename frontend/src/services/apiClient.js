@@ -1,4 +1,4 @@
-const NETWORK_ERROR_MESSAGE =
+﻿const NETWORK_ERROR_MESSAGE =
   "Failed to fetch API. Check backend URL, CORS and server status.";
 
 function trimTrailingSlashes(value) {
@@ -70,16 +70,23 @@ async function apiRequest(path, options = {}) {
         !maybeMessage || isHtmlError
           ? `Request failed with status ${response.status}`
           : maybeMessage;
-      throw new Error(errorMessage);
+      const requestError = new Error(errorMessage);
+      requestError.status = response.status;
+      requestError.data = data;
+      throw requestError;
     }
 
     return data;
   } catch (error) {
     if (error.name === "AbortError") {
-      throw new Error("API request timed out. Please try again.");
+      const timeoutError = new Error("API request timed out. Please try again.");
+      timeoutError.status = 408;
+      throw timeoutError;
     }
     if (error instanceof TypeError) {
-      throw new Error(NETWORK_ERROR_MESSAGE);
+      const networkError = new Error(NETWORK_ERROR_MESSAGE);
+      networkError.status = 503;
+      throw networkError;
     }
     throw error;
   } finally {

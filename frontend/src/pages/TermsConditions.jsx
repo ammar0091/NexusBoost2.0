@@ -1,4 +1,5 @@
 import PageHero from '@components/common/PageHero';
+import Seo from '@components/common/Seo';
 
 const sections = [
   {
@@ -26,6 +27,10 @@ const sections = [
 const TermsConditions = () => {
   return (
     <div className="overflow-hidden">
+      <Seo
+        title="Terms and Conditions"
+        description="Review the terms and conditions that govern use of NexusBoost services."
+      />
       <PageHero
         eyebrow="Legal"
         title="Terms and"
@@ -38,11 +43,11 @@ const TermsConditions = () => {
           <div className="nb-panel p-6 md:p-8 space-y-6">
             {sections.map((section) => (
               <div key={section.title}>
-                <h2 className="text-2xl font-black text-[var(--nb-text)]">{section.title}</h2>
-                <p className="mt-2 text-sm md:text-base leading-relaxed text-[var(--nb-text-muted)]">{section.text}</p>
+                <h2 className="text-2xl font-black text-(--nb-text)">{section.title}</h2>
+                <p className="mt-2 text-sm md:text-base leading-relaxed text-(--nb-text-muted)">{section.text}</p>
               </div>
             ))}
-            <p className="text-xs text-[var(--nb-text-muted)]">Last updated: February 10, 2026</p>
+            <p className="text-xs text-(--nb-text-muted)">Last updated: February 10, 2026</p>
           </div>
         </div>
       </section>

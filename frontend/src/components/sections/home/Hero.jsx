@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { ArrowUpRight, BadgeCheck, PlayCircle, Sparkles, TrendingUp } from 'lucide-react';
 
-const partners = ['Astra', 'Nova', 'Glyph', 'Pulse'];
 
 const Hero = () => {
   return (
@@ -13,10 +12,10 @@ const Hero = () => {
           <div className="lg:col-span-7">
             <p className="nb-pill border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent) mb-5">
               <Sparkles size={12} />
-              Growth Design Studio
+             SEO and Digital Marketing Agency
             </p>
 
-            <h1 className="text-4xl sm:text-5xl xl:text-7xl font-black leading-[0.9] text-(--nb-text) max-w-3xl">
+            <h1 className="text-4xl sm:text-4xl xl:text-5xl font-black leading-[0.9] text-(--nb-text) max-w-3xl">
               Modern websites that feel premium and convert fast.
             </h1>
 
@@ -50,38 +49,26 @@ const Hero = () => {
               <div className="nb-soft-panel px-3 py-2 flex items-center gap-2 text-(--nb-text-muted)">
                 <TrendingUp size={15} className="text-(--nb-accent)" />
                 Avg growth uplift 2.7x
-              </div>
+                            </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              {partners.map((name) => (
-                <span
-                  key={name}
-                  className="rounded-full border border-(--nb-border) bg-(--nb-surface) px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
+          
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="nb-panel p-3 sm:p-4 relative overflow-hidden">
+           <div className="lg:col-span-5">
+            <div className="nb-panel relative overflow-hidden p-3 sm:p-4">
               <img
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80"
-                alt="Team designing a modern website"
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80"
+                alt="Digital marketing dashboard showing SEO and campaign performance"
                 className="h-95 w-full rounded-2xl object-cover"
                 loading="lazy"
               />
-              <div className="pointer-events-none absolute inset-3 rounded-2xl bg-linear-to-t from-black/55 to-transparent" />
-
-              <div className="absolute left-6 top-6 nb-sticker border border-white/30 bg-black/50 text-white">
-                Fresh UI Drop
-              </div>
+              <div className="pointer-events-none absolute inset-3 rounded-2xl bg-linear-to-t from-black/60 to-transparent" />
 
               <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/20 bg-black/45 px-4 py-3 text-white backdrop-blur-sm">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-200">Live Dashboard</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-200">Live growth snapshot</p>
                 <p className="mt-1 text-2xl font-black">+148% qualified leads</p>
+                <p className="mt-2 text-sm text-white/80">SEO visibility, landing page conversion, and paid media reporting aligned in one dashboard.</p>
               </div>
             </div>
           </div>

@@ -1,3 +1,4 @@
+﻿/* eslint-disable react-refresh/only-export-components */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "nb_theme";
@@ -30,7 +31,7 @@ function getInitialTheme() {
       return storedTheme;
     }
   } catch {
-    // Ignore localStorage access issues and fall back to system preference.
+    return getSystemPreference();
   }
 
   return getSystemPreference();
@@ -45,7 +46,7 @@ export function ThemeProvider({ children }) {
     try {
       window.localStorage.setItem(STORAGE_KEY, theme);
     } catch {
-      // Ignore localStorage write issues.
+      return;
     }
   }, [theme]);
 
@@ -74,4 +75,3 @@ export function useTheme() {
 
   return context;
 }
-
