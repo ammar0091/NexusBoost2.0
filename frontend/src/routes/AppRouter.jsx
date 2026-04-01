@@ -20,6 +20,14 @@ const CookiePolicy = lazy(() => import('@/pages/CookiePolicy'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 const AdminLogin = lazy(() => import('@/pages/admin/AdminLogin'));
 const AdminPanel = lazy(() => import('@/pages/admin/AdminPanel'));
+const AdminOverview = lazy(() => import('@/pages/admin/AdminOverview'));
+const AdminBlogs = lazy(() => import('@/pages/admin/AdminBlogs'));
+const AdminProjects = lazy(() => import('@/pages/admin/AdminProjects'));
+const AdminTeam = lazy(() => import('@/pages/admin/AdminTeam'));
+const AdminClients = lazy(() => import('@/pages/admin/AdminClients'));
+const AdminContacts = lazy(() => import('@/pages/admin/AdminContacts'));
+const AdminNewsletters = lazy(() => import('@/pages/admin/AdminNewsletters'));
+const AdminLayout = lazy(() => import('@/components/admin/AdminLayout'));
 
 const PageLoader = () => (
   <div className="flex h-screen items-center justify-center bg-(--nb-bg)">
@@ -33,7 +41,16 @@ const AppRouter = () => {
       <Routes>
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminPanel />} />
+            <Route path="overview" element={<AdminOverview />} />
+            <Route path="blogs" element={<AdminBlogs />} />
+            <Route path="projects" element={<AdminProjects />} />
+            <Route path="team" element={<AdminTeam />} />
+            <Route path="clients" element={<AdminClients />} />
+            <Route path="contacts" element={<AdminContacts />} />
+            <Route path="newsletters" element={<AdminNewsletters />} />
+          </Route>
         </Route>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

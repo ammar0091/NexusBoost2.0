@@ -41,6 +41,22 @@ export async function deleteSubscriber(id) {
   });
 }
 
+export async function uploadBlogCoverImage(payload) {
+  const res = await apiRequest("/admin/uploads/blog-cover", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  return res?.data;
+}
+
+export async function uploadBlogSourceFile(payload) {
+  const res = await apiRequest("/admin/uploads/blog-source", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  return res?.data;
+}
+
 export async function createBlog(payload) {
   const res = await apiRequest("/blogs", {
     method: "POST",

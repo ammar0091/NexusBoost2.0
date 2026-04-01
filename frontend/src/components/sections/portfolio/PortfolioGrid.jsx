@@ -14,7 +14,7 @@ const PortfolioGrid = ({ projects }) => {
 
         <div className="grid gap-4 sm:grid-cols-2">
           {projects.map((project, index) => (
-            <article key={project.id || index} className="nb-panel overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+            <article key={project.id || index} className="nb-panel overflow-hidden transition-transform duration-300">
               <Link to={`/portfolio/${project.slug || project.id}`} className="block">
                 <div className="relative h-60">
                   <img

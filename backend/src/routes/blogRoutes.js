@@ -1,4 +1,4 @@
-﻿const express = require("express");
+const express = require("express");
 const Blog = require("../models/Blog");
 const { requireAdminAuth } = require("../middleware/auth");
 const asyncHandler = require("../utils/asyncHandler");
@@ -13,7 +13,31 @@ function slugify(text) {
     .replace(/^-+|-+$/g, "");
 }
 
+function normalizeSourceFile(value) {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+
+  const fileName = String(value.fileName || "").trim();
+  const url = String(value.url || "").trim();
+  if (!fileName || !url) {
+    return null;
+  }
+
+  const mimeType = String(value.mimeType || "").trim();
+  const parsedSize = Number(value.size || 0);
+
+  return {
+    fileName,
+    url,
+    mimeType,
+    size: Number.isFinite(parsedSize) ? parsedSize : 0,
+  };
+}
+
 function serializeBlog(blog) {
+  const sourceFile = normalizeSourceFile(blog.sourceFile);
+
   return {
     id: blog._id,
     slug: blog.slug,
@@ -27,6 +51,7 @@ function serializeBlog(blog) {
     seoDescription: blog.seoDescription,
     publishedAt: blog.publishedAt,
     featured: blog.featured,
+    sourceFile,
     createdAt: blog.createdAt,
     updatedAt: blog.updatedAt,
   };
@@ -85,6 +110,7 @@ router.post(
       return res.status(409).json({ message: "Blog slug already exists" });
     }
 
+    const sourceFile = normalizeSourceFile(req.body.sourceFile);
     const blog = await Blog.create({
       slug: computedSlug,
       title: String(req.body.title).trim(),
@@ -97,6 +123,7 @@ router.post(
       seoDescription: String(req.body.seoDescription || "").trim(),
       publishedAt: req.body.publishedAt ? new Date(req.body.publishedAt) : new Date(),
       featured: Boolean(req.body.featured),
+      sourceFile,
     });
 
     res.status(201).json({ data: serializeBlog(blog) });
@@ -136,6 +163,7 @@ router.put(
     blog.seoDescription = String(req.body.seoDescription || "").trim();
     blog.publishedAt = req.body.publishedAt ? new Date(req.body.publishedAt) : blog.publishedAt;
     blog.featured = Boolean(req.body.featured);
+    blog.sourceFile = normalizeSourceFile(req.body.sourceFile);
 
     await blog.save();
     res.json({ data: serializeBlog(blog) });

@@ -132,7 +132,7 @@ const BlogDetail = () => {
                 <img
                   src={blog.coverImage}
                   alt={blog.title}
-                  className="h-104 w-full rounded-2xl object-cover"
+                  className="h-84 w-full rounded-2xl object-cover"
                   loading="lazy"
                   decoding="async"
                   width="1400"
@@ -153,16 +153,6 @@ const BlogDetail = () => {
           )}
         </div>
       </section>
-
-      <PageCTA
-        eyebrow="Need similar growth"
-        title="Lets turn your content and"
-        highlight="SEO strategy into revenue"
-        description="If you want help with content marketing, blog strategy, or conversion-focused SEO, we can build the roadmap with you."
-        primary="Book Strategy Call"
-        secondary="View Services"
-        secondaryHref="/services"
-      />
     </div>
   );
 };

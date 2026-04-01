@@ -1,4 +1,14 @@
-﻿const mongoose = require("mongoose");
+const mongoose = require("mongoose");
+
+const blogSourceSchema = new mongoose.Schema(
+  {
+    fileName: { type: String, trim: true, default: "" },
+    url: { type: String, trim: true, default: "" },
+    mimeType: { type: String, trim: true, default: "" },
+    size: { type: Number, default: 0 },
+  },
+  { _id: false }
+);
 
 const blogSchema = new mongoose.Schema(
   {
@@ -13,6 +23,7 @@ const blogSchema = new mongoose.Schema(
     seoDescription: { type: String, trim: true, default: "" },
     publishedAt: { type: Date, default: Date.now },
     featured: { type: Boolean, default: false },
+    sourceFile: { type: blogSourceSchema, default: null },
   },
   { timestamps: true }
 );

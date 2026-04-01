@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Seo from '@components/common/Seo';
-import PageCTA from '@components/common/PageCTA';
 import { fetchProjectBySlug } from '@/services/contentApi';
 import { SITE } from '@/config/site';
 
@@ -111,7 +110,7 @@ const ProjectDetail = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="h-104 w-full rounded-2xl object-cover"
+                  className="h-84 w-full rounded-2xl object-cover"
                   loading="lazy"
                   decoding="async"
                   width="1400"
@@ -119,20 +118,7 @@ const ProjectDetail = () => {
                 />
               </div>
 
-              <div className="grid gap-4 md:grid-cols-3">
-                <div className="nb-panel p-5">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-accent)">Focus</p>
-                  <p className="mt-3 text-sm leading-relaxed text-(--nb-text-muted)">Search visibility, content structure, and conversion-ready user journeys.</p>
-                </div>
-                <div className="nb-panel p-5">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-accent)">Approach</p>
-                  <p className="mt-3 text-sm leading-relaxed text-(--nb-text-muted)">Strategy, content, and UX improvements tied to measurable business outcomes.</p>
-                </div>
-                <div className="nb-panel p-5">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-accent)">Outcome</p>
-                  <p className="mt-3 text-sm leading-relaxed text-(--nb-text-muted)">A clearer growth system built to turn digital attention into qualified demand.</p>
-                </div>
-              </div>
+            
 
               <div className="nb-panel p-7 md:p-10">
                 {paragraphs.map((paragraph) => (
@@ -145,16 +131,6 @@ const ProjectDetail = () => {
           )}
         </div>
       </section>
-
-      <PageCTA
-        eyebrow="Want similar results"
-        title="Lets build your next"
-        highlight="growth-focused case study"
-        description="If you want a website, SEO system, or demand generation setup that performs like this, we can map the right execution plan."
-        primary="Start a Project"
-        secondary="Explore Services"
-        secondaryHref="/services"
-      />
     </div>
   );
 };

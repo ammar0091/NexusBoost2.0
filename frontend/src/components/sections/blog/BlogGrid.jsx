@@ -31,7 +31,7 @@ const BlogGrid = ({ posts }) => {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <article key={post.id} className="nb-panel overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+            <article key={post.id} className="nb-panel overflow-hidden transition-transform duration-300">
               <Link to={`/blogs/${post.slug || post.id}`} className="block">
                 <img
                   src={post.coverImage}

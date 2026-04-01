@@ -1,4 +1,5 @@
-﻿const express = require("express");
+const path = require("path");
+const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 
@@ -63,8 +64,9 @@ const formLimiter = createRateLimiter({
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "20mb" }));
 app.use(morgan("dev"));
+app.use("/uploads", express.static(path.join(__dirname, "..", "public", "uploads")));
 
 app.get("/api/health", (req, res) => {
   res.json({
