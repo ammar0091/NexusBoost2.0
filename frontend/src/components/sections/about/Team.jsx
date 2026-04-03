@@ -40,9 +40,7 @@ const Team = () => {
             Our Team
           </p>
 
-          <h2 className="text-3xl font-black leading-[0.95] text-(--nb-text) md:text-5xl">
-            Specialists behind the strategy, content, and campaigns
-          </h2>
+         
 
           <p className="mt-4 leading-relaxed text-(--nb-text-muted)">
             A focused team combining SEO strategy, content planning, paid media execution, design, and web development to build scalable growth systems for modern brands.

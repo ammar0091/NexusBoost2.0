@@ -317,7 +317,7 @@ const AdminBlogs = () => {
           size: uploaded.size,
         };
 
-        const cleanedText = importedText.replace(/\u0000/g, '').replace(/\s+\n/g, '\n').trim();
+        const cleanedText = importedText.split(String.fromCharCode(0)).join('').replace(/\s+\n/g, '\n').trim();
 
         setForm((current) => {
           const nextForm = { ...current, sourceFile: nextSourceFile };
@@ -516,7 +516,7 @@ const AdminBlogs = () => {
                     handleCoverSelection(event.dataTransfer.files?.[0]);
                   }}
                   className={joinClasses(
-                    'rounded-[24px] border border-dashed px-5 py-6 transition',
+                    'rounded-3xl border border-dashed px-5 py-6 transition',
                     isDraggingCover ? 'border-white bg-white/5' : 'border-neutral-800 bg-[#090909] hover:border-neutral-700',
                     uploadingCover ? 'cursor-wait opacity-70' : 'cursor-pointer',
                   )}
@@ -529,7 +529,7 @@ const AdminBlogs = () => {
                       <div>
                         <p className="text-base font-semibold text-white">Drop a cover image here</p>
                         <p className="mt-1 text-sm text-neutral-500">PNG, JPG, WEBP, or GIF up to 5MB. Click the panel to browse files.</p>
-                        {selectedCoverFile ? <p className="mt-3 text-sm text-neutral-300">{selectedCoverFile.name} · {formatFileSize(selectedCoverFile.size)}</p> : null}
+                        {selectedCoverFile ? <p className="mt-3 text-sm text-neutral-300">{selectedCoverFile.name} ï¿½ {formatFileSize(selectedCoverFile.size)}</p> : null}
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -612,7 +612,7 @@ const AdminBlogs = () => {
                     handleSourceSelection(event.dataTransfer.files?.[0]);
                   }}
                   className={joinClasses(
-                    'rounded-[24px] border border-dashed px-5 py-6 transition',
+                    'rounded-3xl border border-dashed px-5 py-6 transition',
                     isDraggingSource ? 'border-amber-300 bg-amber-300/5' : 'border-neutral-800 bg-[#090909] hover:border-neutral-700',
                     importingSource ? 'cursor-wait opacity-70' : 'cursor-pointer',
                   )}
@@ -625,7 +625,7 @@ const AdminBlogs = () => {
                       <div>
                         <p className="text-base font-semibold text-white">Drop a draft file here</p>
                         <p className="mt-1 text-sm text-neutral-500">TXT, MD, HTML, RTF, or PDF. Text files are imported into the editor; PDFs are attached and parsed on a best-effort basis.</p>
-                        {selectedSourceFile ? <p className="mt-3 text-sm text-neutral-300">{selectedSourceFile.name} · {formatFileSize(selectedSourceFile.size)}</p> : null}
+                        {selectedSourceFile ? <p className="mt-3 text-sm text-neutral-300">{selectedSourceFile.name} ï¿½ {formatFileSize(selectedSourceFile.size)}</p> : null}
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -663,7 +663,7 @@ const AdminBlogs = () => {
                       <div>
                         <p className="text-xs font-medium uppercase tracking-[0.14em] text-neutral-500">Attached source</p>
                         <p className="mt-2 text-sm font-medium text-white">{form.sourceFile.fileName}</p>
-                        <p className="mt-1 text-xs text-neutral-500">{form.sourceFile.mimeType || 'document'} · {formatFileSize(form.sourceFile.size)}</p>
+                        <p className="mt-1 text-xs text-neutral-500">{form.sourceFile.mimeType || 'document'} ï¿½ {formatFileSize(form.sourceFile.size)}</p>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         <a href={form.sourceFile.url} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-800 bg-[#0b0b0b] px-4 py-2.5 text-sm text-neutral-200 transition hover:bg-[#121212]">
@@ -682,7 +682,7 @@ const AdminBlogs = () => {
             <AdminSubsection title="Editorial copy" description="Polish the summary and full article body after import or write directly here.">
               <div className="space-y-4">
                 <Textarea label="Excerpt" rows={4} value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} required />
-                <Textarea label="Content" rows={18} className="min-h-[320px]" value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder="Write the full blog content here or import a source file above." />
+                <Textarea label="Content" rows={18} className="min-h-80" value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder="Write the full blog content here or import a source file above." />
               </div>
             </AdminSubsection>
 
@@ -712,7 +712,7 @@ const AdminBlogs = () => {
         ) : items.length ? (
           <AdminList>
             {items.map((item) => (
-              <article key={item.id} className="overflow-hidden rounded-[24px] border border-neutral-900 bg-[#090909]">
+              <article key={item.id} className="overflow-hidden rounded-3xl border border-neutral-900 bg-[#090909]">
                 <div className="flex flex-col lg:flex-row">
                   <div className="h-52 w-full shrink-0 overflow-hidden border-b border-neutral-900 bg-black lg:h-auto lg:w-64 lg:border-b-0 lg:border-r">
                     {item.coverImage ? <img src={item.coverImage} alt={item.title} className="h-full w-full object-cover" loading="lazy" /> : null}
@@ -764,4 +764,5 @@ const AdminBlogs = () => {
 };
 
 export default AdminBlogs;
+
 

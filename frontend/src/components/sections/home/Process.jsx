@@ -1,77 +1,85 @@
-﻿import { ArrowRight, Lightbulb, Rocket, Target, Wrench } from 'lucide-react';
+﻿import { Lightbulb, Rocket, Target, Wrench, ChevronRight } from 'lucide-react';
 
 const steps = [
   {
     title: 'Discover',
-    desc: 'Research your audience, search demand, competitors, and funnel weak points before we recommend channels.',
+    desc: 'Research audience, demand, and weak points before recommending channels.',
     icon: Lightbulb,
   },
   {
     title: 'Plan',
-    desc: 'Translate insights into a growth roadmap covering SEO priorities, landing pages, content, and reporting.',
+    desc: 'Translate insights into a roadmap for SEO, content, and reporting.',
     icon: Target,
   },
   {
     title: 'Build',
-    desc: 'Ship website updates, campaign assets, content systems, and tracking in focused execution cycles.',
+    desc: 'Ship updates, content systems, and tracking in focused cycles.',
     icon: Wrench,
   },
   {
     title: 'Scale',
-    desc: 'Optimize rankings, conversion rates, and acquisition efficiency using real performance data.',
+    desc: 'Optimize rankings and acquisition efficiency using real data.',
     icon: Rocket,
   },
 ];
 
 const Process = () => {
   return (
-    <section className="nb-section">
-      <div className="nb-container">
-        <div className="mb-8 grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <h2 className="text-3xl font-black leading-[0.95] text-(--nb-text) md:text-4xl">How we deliver SEO and digital marketing results</h2>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-(--nb-text-muted) md:text-base">
-              Every engagement follows a clear workflow that keeps strategy, execution, and measurement tightly connected.
-            </p>
-          </div>
-          <div className="nb-panel overflow-hidden p-3 lg:col-span-5">
-            <div className="relative overflow-hidden rounded-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-                alt="Analytics dashboard used to track SEO and digital marketing performance"
-                className="h-52 w-full object-cover"
-                loading="lazy"
-                decoding="async"
-                width="1200"
-                height="800"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/65 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/15 bg-black/45 p-4 text-white backdrop-blur-sm">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">Reporting and optimization</p>
-                <p className="mt-2 text-base font-black">We track rankings, conversion rate, CPL, and revenue-facing metrics from the start.</p>
-              </div>
-            </div>
-          </div>
+    <section className="py-16 sm:py-20 flex justify-center px-4">
+      <div className="nb-container w-full">
+        
+        {/* Compact Centered Header */}
+        <div className="mb-10 text-center flex flex-col items-center">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-(--nb-text)">
+            How we deliver results
+          </h2>
+          <p className="mt-3 text-base text-(--nb-text-muted) max-w-lg">
+            A tight, four-step execution loop designed for compounding growth.
+          </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Unified Pipeline Block (The core compact element) */}
+        <div className="relative w-full rounded-2xl border border-(--nb-border) bg-(--nb-surface-soft) overflow-hidden shadow-sm flex flex-col lg:flex-row divide-y lg:divide-y-0 lg:divide-x divide-(--nb-border)">
+          
+          {/* Subtle Top Glow Line */}
+          <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-(--nb-accent) to-transparent opacity-40" />
+
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <article key={step.title} className="nb-panel relative p-5">
-                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-accent)">Step {index + 1}</span>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="inline-flex rounded-lg border border-(--nb-border) bg-(--nb-surface-soft) p-2 text-(--nb-accent)">
-                    <Icon size={18} />
-                  </span>
-                  {index < steps.length - 1 ? <ArrowRight size={15} className="text-(--nb-text-muted)" /> : null}
+              <div 
+                key={step.title}
+                className="group relative flex-1 p-10 transition-colors duration-300 hover:bg-(--nb-surface)"
+              >
+                {/* Step Indicator & Icon */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-7 w-7 items-center justify-center rounded bg-(--nb-text) text-(--nb-surface) shadow-sm transition-transform group-hover:scale-110">
+                      <Icon size={14} strokeWidth={2.5} />
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-(--nb-text-muted)">
+                      Phase 0{index + 1}
+                    </span>
+                  </div>
+
+                  {/* Connector chevron (Visible on desktop) */}
+                  {index < steps.length - 1 && (
+                    <ChevronRight size={16} className="hidden lg:block text-(--nb-border) absolute -right-2 top-6 bg-(--nb-surface-soft) z-10" />
+                  )}
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-(--nb-text)">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-(--nb-text-muted)">{step.desc}</p>
-              </article>
+                
+                {/* Content */}
+                <h3 className="text-lg font-bold text-(--nb-text) mb-1.5">
+                  {step.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-(--nb-text-muted)">
+                  {step.desc}
+                </p>
+              </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );

@@ -137,8 +137,7 @@ const Contact = () => {
                     name="interest"
                     value={formData.interest}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border
-                    -[var(--nb-accent)]"
+                    className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border-(--nb-accent)"
                   >
                     <option>Search Engine Optimization</option>
                     <option>Paid Advertising (PPC)</option>
@@ -186,8 +185,7 @@ const Input = ({ label, ...props }) => (
     <input
       {...props}
       required
-      className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border
-      -[var(--nb-accent)]"
+      className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border-(--nb-accent)"
     />
   </div>
 );
@@ -199,8 +197,7 @@ const Textarea = ({ label, ...props }) => (
       {...props}
       rows="4"
       required
-      className="w-full resize-none rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border
-      -[var(--nb-accent)]"
+      className="w-full resize-none rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border-(--nb-accent)"
     />
   </div>
 );

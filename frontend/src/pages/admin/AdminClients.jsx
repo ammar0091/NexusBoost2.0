@@ -186,7 +186,7 @@ const AdminClients = () => {
         ) : items.length ? (
           <AdminList>
             {items.map((item) => (
-              <article key={item.id} className="flex flex-col gap-5 rounded-[24px] border border-neutral-900 bg-[#090909] p-5 md:flex-row md:items-center md:justify-between md:p-6">
+              <article key={item.id} className="flex flex-col gap-5 rounded-3xl border border-neutral-900 bg-[#090909] p-5 md:flex-row md:items-center md:justify-between md:p-6">
                 <div className="flex min-w-0 items-center gap-4">
                   {item.image || item.logo ? (
                     <img src={item.image || item.logo} alt={item.name} className="h-20 w-20 rounded-[22px] object-cover" loading="lazy" />
