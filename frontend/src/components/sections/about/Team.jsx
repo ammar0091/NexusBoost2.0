@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from 'react';
-import { Users } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { fetchTeams } from '@/services/contentApi';
 
 const Team = () => {
@@ -26,54 +26,80 @@ const Team = () => {
       }
     })();
 
-    return () => {
-      isMounted = false;
-    };
+    return () => { isMounted = false; };
   }, []);
 
   return (
-    <section className="nb-section">
-      <div className="nb-container">
-        <div className="mx-auto mb-14 max-w-2xl text-center">
-          <p className="nb-pill mb-4 inline-flex border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent)">
-            <Users size={12} />
-            Our Team
-          </p>
+    <section className="relative py-24 bg-(--nb-surface-neo) overflow-hidden">
+   
 
-         
-
-          <p className="mt-4 leading-relaxed text-(--nb-text-muted)">
-            A focused team combining SEO strategy, content planning, paid media execution, design, and web development to build scalable growth systems for modern brands.
+      <div className="nb-container relative z-10">
+        
+        {/* Editorial Header - Lean & Focused */}
+        <div className="grid lg:grid-cols-2 gap-12 items-end mb-20">
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-1 w-1 rounded-full bg-(--nb-accent)" />
+              <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-(--nb-accent)">
+                Our Team
+              </p>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-light tracking-tighter text-(--nb-text) leading-[0.95]">
+              Human intelligence <br />
+              <span className="italic font-serif text-(--nb-text-muted) opacity-80">fueling</span> digital.
+            </h2>
+          </div>
+          
+          <p className="max-w-sm text-sm leading-relaxed text-(--nb-text-muted)/80 tracking-wide font-light">
+            A focused group of specialists combining SEO, data engineering, and creative design to solve real growth problems.
           </p>
         </div>
 
-        {error ? (
-          <p className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">{error}</p>
-        ) : null}
+        {/* Error State */}
+        {error && (
+          <p className="mb-10 text-xs font-bold uppercase tracking-widest text-red-400 border-l border-red-400 pl-4">{error}</p>
+        )}
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Team Grid - Compact & Sharp */}
+        <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member) => (
-            <div key={member.id || member.name} className="nb-panel group overflow-hidden p-3">
-              <div className="overflow-hidden rounded-xl">
+            <article key={member.id || member.name} className="group relative">
+              {/* Image Frame - The Grayscale Logic */}
+              <div className="aspect-3/4 overflow-hidden rounded-sm border border-(--nb-border)/30 bg-(--nb-surface-soft)/50 p-1">
                 <img
                   src={member.image}
                   alt={member.name}
                   loading="lazy"
-                  className="h-72 w-full rounded-xl object-cover transition duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover  transition-all duration-1000 group-hover:scale-105"
                 />
               </div>
 
-              <div className="pt-4 text-center">
-                <h3 className="font-semibold text-(--nb-text)">{member.name}</h3>
-                <p className="text-sm text-(--nb-text-muted)">{member.role}</p>
+              {/* Identity Detail */}
+              <div className="mt-6 space-y-1">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-medium tracking-tight text-(--nb-text)">{member.name}</h3>
+                  <div className="h-6 w-6 flex items-center justify-center rounded-full border border-(--nb-border) opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <ArrowUpRight size={12} className="text-(--nb-accent)" />
+                  </div>
+                </div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-(--nb-text-muted)/60">
+                  {member.role}
+                </p>
               </div>
-            </div>
+            </article>
           ))}
 
-          {loading && <div className="col-span-full text-center text-sm text-(--nb-text-muted)">Loading team...</div>}
+          {/* Loading & Empty States */}
+          {loading && (
+            <div className="col-span-full py-10 border-t border-dashed border-(--nb-border)/30">
+              <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-(--nb-text-muted)/40 animate-pulse">Synchronizing Team...</p>
+            </div>
+          )}
 
-          {!loading && !team.length && (
-            <div className="col-span-full text-center text-sm text-(--nb-text-muted)">Team members will appear here soon.</div>
+          {!loading && !team.length && !error && (
+            <div className="col-span-full py-10 border-t border-dashed border-(--nb-border)/30">
+              <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-(--nb-text-muted)/40">No members found in directory.</p>
+            </div>
           )}
         </div>
       </div>

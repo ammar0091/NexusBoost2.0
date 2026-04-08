@@ -35,8 +35,7 @@ const Portfolio = () => {
       />
       <PageHero
         eyebrow="Case Studies"
-        title="Work that drives"
-        highlight="qualified traffic and real growth"
+        title="Our Work"
         description="Explore a selection of SEO campaigns, conversion-led website redesigns, and digital marketing systems that moved rankings, pipeline, and revenue metrics."
         visual={pageHeroVisuals.portfolio}
       />

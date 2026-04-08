@@ -1,46 +1,43 @@
-﻿import { CheckCircle2, Sparkles } from 'lucide-react';
-
-const pillars = [
-  'Outcome-focused delivery instead of vanity traffic metrics',
-  'SEO, design, content, and development coordinated in one workflow',
-  'Scalable systems built for long-term growth, not one-time launches',
-];
+import { CheckCircle2, Sparkles } from 'lucide-react';
+import { OUR_STORY_PILLARS, OUR_STORY_VISUAL } from '@/constants/aboutData';
 
 const OurStory = () => (
-  <section className="nb-section">
-    <div className="nb-container grid items-center gap-8 lg:grid-cols-12">
-      <div className="lg:col-span-6">
-        <div className="nb-panel p-3">
-          <img
-            src="https://images.unsplash.com/photo-1600880292089-90e1ffe0fdbd?auto=format&fit=crop&w=1200&q=80"
-            alt="NexusBoost founders reviewing a digital marketing strategy board"
-            className="h-105 w-full rounded-2xl object-cover"
-            loading="lazy"
-          />
+  <section className="nb-section py-20">
+    <div className="nb-container ">
+      <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="relative group">
+          <div className="overflow-hidden rounded-xl bg-(--nb-surface) shadow-sm transition-all duration-500 group-hover:shadow-md">
+            <img
+              src={OUR_STORY_VISUAL.src}
+              alt={OUR_STORY_VISUAL.alt}
+              className="h-80 w-full object-cover grayscale-[0.5] transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+            />
+          </div>
+          <div className="absolute -inset-3 -z-10 rounded-2xl border border-(--nb-border)/50 transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1" />
         </div>
-      </div>
 
-      <div className="lg:col-span-6">
-        <p className="nb-pill mb-4 border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent)">
-          <Sparkles size={12} />
-          Our Story
-        </p>
+        <div className="flex flex-col space-y-6">
+          <div className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-(--nb-accent) uppercase">
+            <Sparkles size={12} strokeWidth={3} />
+            Our Story
+          </div>
 
-        <h2 className="max-w-xl text-3xl font-black leading-[0.95] text-(--nb-text) md:text-4xl">
-          Built from frustration, shaped for measurable digital growth.
-        </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-(--nb-text) sm:text-4xl">
+            Built for <span className="italic font-serif opacity-80">measurable</span> impact.
+          </h2>
 
-        <p className="mt-5 leading-relaxed text-(--nb-text-muted)">
-          We started NexusBoost after watching too many businesses pay for disconnected reports, vague marketing plans, and websites that looked good but did not convert. Our model is simple: understand the market, ship high-quality work quickly, and keep improving what moves revenue.
-        </p>
+          <p className="max-w-md text-sm leading-relaxed text-(--nb-text-muted)">
+            We replaced fragmented marketing with a unified model. No vanity metrics-just high-quality work shipped fast to move the revenue needle.
+          </p>
 
-        <div className="mt-6 space-y-3">
-          {pillars.map((item) => (
-            <div key={item} className="nb-soft-panel flex items-start gap-3 px-4 py-3">
-              <CheckCircle2 size={16} className="mt-0.5 text-emerald-400" />
-              <p className="text-sm text-(--nb-text-muted)">{item}</p>
-            </div>
-          ))}
+          <div className="grid gap-3 pt-2">
+            {OUR_STORY_PILLARS.map((item) => (
+              <div key={item} className="flex items-center gap-3 transition-opacity hover:opacity-80">
+                <CheckCircle2 size={14} className="text-emerald-500/70" />
+                <span className="text-sm font-medium tracking-wide text-(--nb-text)">{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -1,77 +1,86 @@
 ﻿import { Link } from 'react-router-dom';
-import { ArrowUpRight, BadgeCheck, PlayCircle, Sparkles, TrendingUp } from 'lucide-react';
-
+import { ArrowUpRight, Globe, Zap, Coffee } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden pt-32 pb-14 lg:pt-40 lg:pb-20">
-      <div className="absolute inset-0 pointer-events-none nb-grid-lines opacity-40" />
+    <section className="relative  flex items-center pt-20 overflow-hidden bg-(--nb-surface)">
+      {/* Structural Lines */}
+      <div className="absolute left-1/2 top-0 h-full w-px bg-(--nb-border)/30 hidden lg:block" />
+      <div className="absolute top-1/2 left-0 w-full h-px bg-(--nb-border)/30 hidden lg:block" />
 
-      <div className="nb-container relative z-10">
-        <div className="grid items-center gap-9 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <p className="nb-pill border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent) mb-5">
-              <Sparkles size={12} />
-             SEO and Digital Marketing Agency
-            </p>
+      <div className="nb-container relative">
+        <div className="grid items-stretch lg:grid-cols-2">
+          
+          {/* Left: Human-Centric Copy */}
+          <div className="flex flex-col justify-center py-20 lg:pr-20">
+            <div className="flex items-center gap-4 mb-12">
+              <span className="h-px w-12 bg-(--nb-accent)" />
+              <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-(--nb-accent)">
+                NexusBoost 
+              </p>
+            </div>
 
-            <h1 className="text-4xl sm:text-4xl xl:text-5xl font-black leading-[0.9] text-(--nb-text) max-w-3xl">
-              Modern websites that feel premium and convert fast.
+            <h1 className="text-6xl md:text-8xl font-light tracking-tighter text-(--nb-text) leading-[0.9]">
+              Hard work <br /> 
+              <span className="font-serif italic text-(--nb-text-muted) opacity-80">made</span> visible.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-(--nb-text-muted)">
-              NexusBoost builds sharp digital identities, fast websites, and acquisition systems for ambitious brands.
+            <p className="mt-12 max-w-sm text-sm leading-relaxed text-(--nb-text-muted) tracking-wide">
+              You’ve built a great business. We just make sure the rest of the world sees it that way too. No complex jargon, just a website that actually works while you sleep.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-12 flex flex-wrap gap-8">
               <Link
                 to="/contact"
-                className="nb-shine inline-flex items-center gap-2 rounded-xl bg-(--nb-accent) px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-slate-950"
+                className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-widest text-(--nb-text)"
               >
-                Start Project
-                <ArrowUpRight size={16} />
-              </Link>
-
-              <Link
-                to="/portfolio"
-                className="inline-flex items-center gap-2 rounded-xl border border-(--nb-border) bg-(--nb-surface) px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-(--nb-text) hover:border-(--nb-accent)"
-              >
-                Explore Work
-                <PlayCircle size={16} />
+                Let’s grab a coffee
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-(--nb-border) transition-transform group-hover:scale-110 group-hover:border-(--nb-accent)">
+                  <Coffee size={16} className="text-(--nb-accent)" />
+                </div>
               </Link>
             </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-sm">
-              <div className="nb-soft-panel px-3 py-2 flex items-center gap-2 text-(--nb-text-muted)">
-                <BadgeCheck size={15} className="text-emerald-400" />
-                100+ launches delivered
-              </div>
-              <div className="nb-soft-panel px-3 py-2 flex items-center gap-2 text-(--nb-text-muted)">
-                <TrendingUp size={15} className="text-(--nb-accent)" />
-                Avg growth uplift 2.7x
-                            </div>
-            </div>
-
-          
           </div>
 
-           <div className="lg:col-span-5">
-            <div className="nb-panel relative overflow-hidden p-3 sm:p-4">
-              <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80"
-                alt="Digital marketing dashboard showing SEO and campaign performance"
-                className="h-95 w-full rounded-2xl object-cover"
-                loading="lazy"
-              />
-              <div className="pointer-events-none absolute inset-3 rounded-2xl bg-linear-to-t from-black/60 to-transparent" />
+          {/* Right Side: Realistic Proof */}
+          <div className="relative flex flex-col justify-center py-20 lg:pl-20">
+            <div className="relative group">
+              <div className="aspect-square w-full  overflow-hidden rounded-sm  transition-all duration-700 ">
+                <img
+                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1000&q=80"
+                  alt="Minimalist Tech"
+                  className="h-full w-full object-cover transition-opacity"
+                />
+              </div>
 
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/20 bg-black/45 px-4 py-3 text-white backdrop-blur-sm">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-200">Live growth snapshot</p>
-                <p className="mt-1 text-2xl font-black">+148% qualified leads</p>
-                <p className="mt-2 text-sm text-white/80">SEO visibility, landing page conversion, and paid media reporting aligned in one dashboard.</p>
+              {/* Data that humans care about */}
+              <div className="absolute -bottom-6 -left-6 bg-(--nb-surface) border border-(--nb-border) p-6 rounded-sm shadow-2xl">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-6">
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <div>
+                      <p className="text-[9px] font-bold text-(--nb-text-muted) uppercase tracking-widest opacity-60">Status</p>
+                      <p className="text-sm font-bold text-(--nb-text)">Everything running smooth</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-6">
+                    <Zap size={14} className="text-(--nb-accent)" />
+                    <div>
+                      <p className="text-[9px] font-bold text-(--nb-text-muted) uppercase tracking-widest opacity-60">Result</p>
+                      <p className="text-sm font-bold text-(--nb-text)">Double the clicks, zero stress</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <div className="absolute top-60 right-0 py-20 hidden lg:block">
+              <p className="rotate-90 origin-bottom-right text-[10px] font-bold tracking-[0.5em] uppercase text-(--nb-text-muted)/30">
+                Focused on your peace of mind
+              </p>
+            </div>
           </div>
+
         </div>
       </div>
     </section>

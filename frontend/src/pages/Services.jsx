@@ -17,8 +17,7 @@ const Services = () => {
       />
       <PageHero
         eyebrow="Digital Marketing Services"
-        title="Growth services"
-        highlight="built for search, conversion, and scale"
+        title="Our services"
         description="From SEO and paid advertising to content production, analytics, and website design, each service is built to improve visibility, lead flow, and measurable revenue outcomes."
         cta="See offerings"
         visual={pageHeroVisuals.services}

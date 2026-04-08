@@ -34,8 +34,7 @@ const Blogs = () => {
       />
       <PageHero
         eyebrow="Growth Insights"
-        title="Insights for"
-        highlight="modern SEO and digital marketing teams"
+        title="Insights "
         description="Practical lessons on search engine optimization, content strategy, analytics, and conversion-focused website growth based on real execution work."
         visual={pageHeroVisuals.blogs}
       />

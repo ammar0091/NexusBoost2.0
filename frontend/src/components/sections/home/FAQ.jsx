@@ -1,24 +1,6 @@
 ﻿import { useState } from 'react';
 import { HelpCircle, Minus, Plus } from 'lucide-react';
-
-const faqs = [
-  {
-    q: 'How fast can you launch a new marketing website?',
-    a: 'Most website launches take 3 to 6 weeks depending on content readiness, integrations, and the number of landing pages involved.',
-  },
-  {
-    q: 'Can you improve SEO without rebuilding the whole site?',
-    a: 'Yes. We often improve technical SEO, content structure, internal linking, and conversion flow on existing websites before a full redesign is needed.',
-  },
-  {
-    q: 'Do you support paid ads and organic growth together?',
-    a: 'Yes. We regularly align SEO, PPC, landing pages, and analytics so your traffic acquisition strategy works as one system.',
-  },
-  {
-    q: 'Do you provide post-launch reporting?',
-    a: 'Absolutely. We offer ongoing support for rankings, campaign performance, website conversion, content growth, and dashboard reporting.',
-  },
-];
+import { HOME_FAQS } from '@/constants/homeData';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
@@ -31,15 +13,13 @@ const FAQ = () => {
             <HelpCircle size={12} /> FAQs
           </div>
 
-      
-
           <p className="max-w-md border-b border-(--nb-border) pb-5 text-base text-(--nb-text-muted)">
             Everything you need to know about how we plan, build, optimize, and scale SEO-ready digital experiences.
           </p>
         </div>
 
         <div className="divide-y divide-(--nb-border) lg:col-span-7">
-          {faqs.map((faq, index) => {
+          {HOME_FAQS.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div

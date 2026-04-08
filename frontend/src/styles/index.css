@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
   --nb-bg: #f6fbff;
   --nb-bg-alt: #eef5ff;
   --nb-surface: #ffffff;
+  --nb-surface-neo: #e4eeeebd;
   --nb-surface-soft: #f3f8ff;
   --nb-text: #0f172a;
   --nb-text-muted: #5b6883;
@@ -14,7 +15,7 @@
   --nb-accent-2: #f43f5e;
   --nb-accent-3: #f59e0b;
   --nb-accent-4: #8b5cf6;
- 
+
   --nb-shadow: 0 24px 60px -34px rgba(15, 23, 42, 0.3);
 }
 
@@ -22,6 +23,7 @@
   --nb-bg: #000000;
   --nb-bg-alt: #050505;
   --nb-surface: #0a0a0a;
+   --nb-surface-neo: #0a0a0ad6;
   --nb-surface-soft: #111111;
   --nb-text: #f5f7ff;
   --nb-text-muted: #9ba3b7;
@@ -56,11 +58,7 @@ body {
   margin: 0;
   font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   color: var(--nb-text);
-  background:
-    radial-gradient(56rem 26rem at 8% -8%, var(--nb-glow-a), transparent 72%),
-    radial-gradient(42rem 30rem at 92% -6%, var(--nb-glow-b), transparent 70%),
-    radial-gradient(38rem 24rem at 65% 15%, var(--nb-glow-c), transparent 75%),
-    linear-gradient(180deg, var(--nb-bg), var(--nb-bg-alt));
+  background: linear-gradient(180deg, var(--nb-bg), var(--nb-bg-alt));
   transition: background-color 220ms ease, color 220ms ease;
 }
 
@@ -164,3 +162,5 @@ img {
 .nb-shine:hover::after {
   transform: rotate(22deg) translateX(280%);
 }
+
+

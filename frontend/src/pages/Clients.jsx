@@ -35,7 +35,6 @@ const Clients = () => {
       <PageHero
         eyebrow="Client Partnerships"
         title="Brands we partner with"
-        highlight="to grow search visibility and conversion"
         description="From startups to established companies, we help teams improve organic traffic, campaign performance, website conversion, and reporting clarity."
         visual={pageHeroVisuals.clients}
       />

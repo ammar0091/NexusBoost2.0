@@ -1,47 +1,16 @@
 ﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Rocket, Twitter, Linkedin, Instagram, Github, Mail, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
+import { Rocket, Mail, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
 import ScrollToTopButton from '../common/ScrollToTopButton';
 import { subscribeNewsletter } from '@/services/contentApi';
 import { useTheme } from '@/context/ThemeContext';
-
-const STATUS = {
-  IDLE: 'idle',
-  LOADING: 'loading',
-  SUCCESS: 'success',
-  ERROR: 'error',
-};
-
-const FOOTER_LINKS = {
-  company: [
-    { name: 'About Us', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-  ],
-  resources: [
-    { name: 'Blog', path: '/blogs' },
-    { name: 'Clients', path: '/clients' },
-    { name: 'Support', path: '/support' },
-  ],
-  legal: [
-    { name: 'Privacy Policy', path: '/privacy' },
-    { name: 'Terms', path: '/terms' },
-    { name: 'Cookies', path: '/cookies' },
-  ],
-};
-
-const SOCIAL_LINKS = [
-  { icon: Twitter, url: 'https://twitter.com' },
-  { icon: Linkedin, url: 'https://linkedin.com' },
-  { icon: Instagram, url: 'https://instagram.com' },
-  { icon: Github, url: 'https://github.com' },
-];
+import { FOOTER_LINKS, FOOTER_STATUS, SOCIAL_LINKS } from '@/constants/navigationData';
 
 const Footer = () => {
   const { isDark } = useTheme();
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState(STATUS.IDLE);
+  const [status, setStatus] = useState(FOOTER_STATUS.IDLE);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubscribe = async (event) => {
@@ -49,14 +18,14 @@ const Footer = () => {
     if (!email) return;
 
     try {
-      setStatus(STATUS.LOADING);
+      setStatus(FOOTER_STATUS.LOADING);
       setErrorMessage('');
       await subscribeNewsletter(email);
-      setStatus(STATUS.SUCCESS);
+      setStatus(FOOTER_STATUS.SUCCESS);
       setEmail('');
-      setTimeout(() => setStatus(STATUS.IDLE), 2500);
+      setTimeout(() => setStatus(FOOTER_STATUS.IDLE), 2500);
     } catch (error) {
-      setStatus(STATUS.ERROR);
+      setStatus(FOOTER_STATUS.ERROR);
       setErrorMessage(error.message || 'Subscription failed');
     }
   };
@@ -91,18 +60,18 @@ const Footer = () => {
 
                 <button
                   type="submit"
-                  disabled={status !== STATUS.IDLE}
+                  disabled={status !== FOOTER_STATUS.IDLE}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-(--nb-accent) px-5 py-3 text-[11px] font-black uppercase tracking-widest text-slate-950 hover:brightness-110 disabled:opacity-70"
                 >
-                  {status === STATUS.IDLE && <Send size={14} />}
-                  {status === STATUS.LOADING && (
+                  {status === FOOTER_STATUS.IDLE && <Send size={14} />}
+                  {status === FOOTER_STATUS.LOADING && (
                     <span className="w-4 h-4 rounded-full border-2 border-slate-900/30 border-t-slate-900 animate-spin" />
                   )}
-                  {status === STATUS.SUCCESS && <CheckCircle2 size={14} />}
-                  <span>{status === STATUS.SUCCESS ? 'Added' : 'Subscribe'}</span>
+                  {status === FOOTER_STATUS.SUCCESS && <CheckCircle2 size={14} />}
+                  <span>{status === FOOTER_STATUS.SUCCESS ? 'Added' : 'Subscribe'}</span>
                 </button>
               </form>
-              {status === STATUS.ERROR ? <p className="mt-2 text-sm text-red-400">{errorMessage}</p> : null}
+              {status === FOOTER_STATUS.ERROR ? <p className="mt-2 text-sm text-red-400">{errorMessage}</p> : null}
             </div>
           </div>
         </div>

@@ -31,7 +31,11 @@ NODE_ENV=development
 Notes:
 - In production, set a strong `JWT_SECRET`.
 - In production, set explicit `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
-- Login, contact, and newsletter routes now include basic rate limiting.
+- Login, contact, and newsletter routes include basic rate limiting.
+- Health endpoints available:
+  - `GET /api/health`
+  - `GET /api/health/live`
+  - `GET /api/health/ready`
 
 ## Frontend setup
 
@@ -57,6 +61,40 @@ VITE_ENABLE_CONTENT_FALLBACK=false
 Notes:
 - Keep `VITE_API_BASE_URL` empty for same-domain `/api` usage.
 - Use `VITE_ENABLE_CONTENT_FALLBACK=true` only for demo/dev content mode.
+
+## Quality checks
+
+Backend:
+
+```bash
+cd backend
+npm run test
+npm run check
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm run lint
+npm run build
+npm run check
+```
+
+## Docker deployment
+
+A dockerized setup is available using root `docker-compose.yml`.
+
+```bash
+docker compose up --build
+```
+
+Services:
+- Frontend: `http://localhost:8080`
+- Backend API: `http://localhost:5000`
+- MongoDB: `mongodb://localhost:27017`
+
+Before production deployment, update secrets in `docker-compose.yml` or inject env values from your platform secret manager.
 
 ## Admin panel
 

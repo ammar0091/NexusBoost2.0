@@ -1,57 +1,64 @@
 ﻿import { Link } from 'react-router-dom';
-import { ArrowRight, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const About = () => {
   return (
-    <section className="nb-section">
-      <div className="nb-container grid items-center gap-8 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <div className="nb-panel p-3">
-            <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
-              alt="NexusBoost team collaborating on SEO and website strategy"
-              className="h-97.5 w-full rounded-2xl object-cover"
-              loading="lazy"
-              decoding="async"
-              width="1200"
-              height="900"
-              sizes="(min-width: 1024px) 420px, 100vw"
-            />
+    <section className="relative py-20 bg-(--nb-surface)">
+      <div className="nb-container  relative">
+        
+        <div className="flex flex-col md:flex-row items-center gap-0">
+          
+          {/* Left: The Visual Anchor */}
+          <div className="relative z-10 w-full md:w-1/2 group">
+            <div className="overflow-hidden rounded-sm border border-(--nb-border)/50 p-1 bg-(--nb-surface-soft)">
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                alt="NexusBoost Collective"
+                className="aspect-5/5 w-full object-cover  transition-all duration-1000  group-hover:scale-105"
+              />
+            </div>
           </div>
+
+          {/* Right: The Floating Content Block */}
+          <div className="relative z-20 w-full md:w-2/3 md:-ml-20 mt-8 md:mt-24 p-8 md:p-12 bg-(--nb-surface) border border-(--nb-border)/40 shadow-2xl backdrop-blur-md">
+            
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-(--nb-accent)">
+                About NexusBoost
+              </span>
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-light tracking-tighter text-(--nb-text) leading-tight">
+              Honest work <br />
+              <span className="italic font-serif opacity-70">built</span> to last.
+            </h2>
+
+            <p className="mt-6 text-md leading-relaxed text-(--nb-text-muted) font-light tracking-wide italic">
+              "We grew tired of agencies that sell dreams but deliver reports. We're here to build websites that actually solve business problems."
+            </p>
+
+            <div className="mt-8 flex items-center justify-between border-t border-(--nb-border)/30 pt-6">
+               <div className="flex flex-col gap-1">
+                  <span className="text-sm font-bold text-(--nb-text)">Read Full story</span>
+                 
+               </div>
+
+               <Link
+                  to="/about"
+                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-(--nb-border) transition-all duration-500 hover:bg-(--nb-accent) hover:border-(--nb-accent) hover:text-slate-950"
+                >
+                  <ArrowUpRight size={18} />
+                </Link>
+            </div>
+          </div>
+
         </div>
 
-        <div className="lg:col-span-7">
-          <p className="nb-pill mb-5 border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent)">
-            <Sparkles size={12} />
-            About NexusBoost
+        {/* Decorative Vertical Text (Compact detail) */}
+        <div className="absolute -right-4 top-1/2 -translate-y-1/2 hidden lg:block">
+          <p className="rotate-90 origin-bottom-right text-[9px] font-bold tracking-[0.6em] uppercase text-(--nb-text-muted)/30">
+            NexusBoost Studio
           </p>
-
-          <h2 className="max-w-2xl text-3xl font-black leading-[0.95] text-(--nb-text) md:text-4xl">
-            We turn brand vision into SEO-ready, conversion-focused digital systems.
-          </h2>
-
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-(--nb-text-muted) md:text-lg">
-            Strategy, content, design, and engineering sit inside one integrated delivery team, so your website and digital marketing stack stays fast, aligned, and measurable from day one.
-          </p>
-
-          <div className="mt-7 grid gap-3 sm:grid-cols-2">
-            <div className="nb-soft-panel flex items-center gap-3 px-4 py-3">
-              <ShieldCheck size={18} className="text-emerald-400" />
-              <span className="text-sm text-(--nb-text-muted)">Search-friendly structure and brand-safe messaging</span>
-            </div>
-            <div className="nb-soft-panel flex items-center gap-3 px-4 py-3">
-              <Zap size={18} className="text-(--nb-accent)" />
-              <span className="text-sm text-(--nb-text-muted)">Fast launch cycles with analytics and KPI clarity</span>
-            </div>
-          </div>
-
-          <Link
-            to="/about"
-            className="mt-7 inline-flex items-center gap-2 rounded-xl border border-(--nb-border) bg-(--nb-surface) px-5 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-(--nb-text) hover:border-(--nb-accent)"
-          >
-            Read Our Story
-            <ArrowRight size={14} />
-          </Link>
         </div>
       </div>
     </section>

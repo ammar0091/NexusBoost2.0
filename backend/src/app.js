@@ -1,4 +1,4 @@
-const path = require("path");
+﻿const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -12,7 +12,9 @@ const contactRoutes = require("./routes/contactRoutes");
 const newsletterRoutes = require("./routes/newsletterRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const { createRateLimiter } = require("./middleware/rateLimit");
+const { requestContext } = require("./middleware/requestContext");
 const { notFoundHandler, errorHandler } = require("./middleware/errorHandler");
+const { getDbHealth, isDbReady } = require("./config/db");
 
 const app = express();
 
@@ -47,7 +49,7 @@ const corsOptions = {
     return callback(corsError);
   },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-request-id"],
 };
 
 const authLimiter = createRateLimiter({
@@ -62,16 +64,43 @@ const formLimiter = createRateLimiter({
   message: "Too many submissions. Please wait before trying again.",
 });
 
+morgan.token("rid", (req) => req.requestId || "-");
+
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
+app.use(requestContext);
 app.use(express.json({ limit: "20mb" }));
-app.use(morgan("dev"));
+app.use(morgan(":date[iso] :rid :method :url :status :response-time ms"));
 app.use("/uploads", express.static(path.join(__dirname, "..", "public", "uploads")));
 
 app.get("/api/health", (req, res) => {
   res.json({
+    status: "ok",
     message: "NexusBoost API is running",
     date: new Date().toISOString(),
+    uptimeSeconds: Math.floor(process.uptime()),
+    db: getDbHealth(),
+    requestId: req.requestId,
+  });
+});
+
+app.get("/api/health/live", (req, res) => {
+  res.json({
+    status: "alive",
+    date: new Date().toISOString(),
+    requestId: req.requestId,
+  });
+});
+
+app.get("/api/health/ready", (req, res) => {
+  const db = getDbHealth();
+  const ready = isDbReady();
+
+  res.status(ready ? 200 : 503).json({
+    status: ready ? "ready" : "not_ready",
+    date: new Date().toISOString(),
+    db,
+    requestId: req.requestId,
   });
 });
 

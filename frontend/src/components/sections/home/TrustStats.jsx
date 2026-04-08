@@ -1,38 +1,11 @@
-﻿import { BarChart3, BriefcaseBusiness, HeartHandshake, SearchCheck, Trophy } from 'lucide-react';
-
-const stats = [
-  {
-    value: '120+',
-    label: 'SEO and website projects delivered',
-    icon: BriefcaseBusiness,
-    tone: 'text-[var(--nb-accent)]',
-  },
-  {
-    value: '95%',
-    label: 'Client retention across ongoing growth work',
-    icon: HeartHandshake,
-    tone: 'text-emerald-400',
-  },
-  {
-    value: '2.7x',
-    label: 'Average qualified lead uplift',
-    icon: BarChart3,
-    tone: 'text-amber-400',
-  },
-  {
-    value: '40+',
-    label: 'Search and brand campaigns scaled',
-    icon: SearchCheck,
-    tone: 'text-cyan-400',
-  },
-];
+import { HOME_TRUST_STATS } from '@/constants/homeData';
 
 const TrustStats = () => {
   return (
     <section className="nb-section pt-4">
       <div className="nb-container">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((item) => {
+          {HOME_TRUST_STATS.map((item) => {
             const Icon = item.icon;
             return (
               <article key={item.label} className="nb-panel p-10">

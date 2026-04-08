@@ -7,8 +7,7 @@ const MainLayout = () => {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-
-      <ScrollToTop /> {/* ← add this here */}
+      <ScrollToTop />
 
       <main className="grow">
         <Outlet />

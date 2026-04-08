@@ -1,175 +1,202 @@
-﻿import { useState } from 'react';
-import {
-  ArrowRight,
-  CheckCircle2,
-  Mail,
-  MapPin,
-  MessageSquare,
-  Phone,
-  Send,
-} from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { submitContact } from '@/services/contentApi';
+import {
+  CONTACT_CHANNELS,
+  CONTACT_FORM_DEFAULTS,
+  CONTACT_INTEREST_OPTIONS,
+} from '@/constants/contactData';
 
-const ContactItem = ({ icon, label, value, href }) => {
-  const Wrapper = href ? 'a' : 'div';
-
-  return (
-    <Wrapper href={href} className=" px-4 py-3 flex items-center gap-3">
-      <span className="rounded-lg border border-(--nb-border) bg-(--nb-surface) p-2 text-(--nb-accent)">
-        {icon}
-      </span>
-      <div>
-        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">{label}</p>
-        <p className="text-sm font-semibold text-(--nb-text)">{value}</p>
-      </div>
-    </Wrapper>
-  );
-};
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Contact = () => {
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    interest: 'Search Engine Optimization',
-    message: '',
-  });
+  const [formData, setFormData] = useState(() => ({ ...CONTACT_FORM_DEFAULTS }));
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setStatus('loading');
     setErrorMessage('');
 
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      interest: formData.interest.trim(),
+      message: formData.message.trim(),
+    };
+
+    if (payload.name.length < 2) {
+      setStatus('error');
+      setErrorMessage('Please enter your full name.');
+      return;
+    }
+
+    if (!EMAIL_PATTERN.test(payload.email)) {
+      setStatus('error');
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    if (payload.message.length < 10) {
+      setStatus('error');
+      setErrorMessage('Please add a little more detail about the project.');
+      return;
+    }
+
     try {
-      await submitContact(formData);
+      await submitContact(payload);
       setStatus('success');
     } catch (error) {
       setStatus('error');
-      setErrorMessage(error.message || 'Failed to submit form.');
+      setErrorMessage(error.message || 'Something went wrong. Try again.');
     }
   };
 
   const resetForm = () => {
     setStatus('idle');
     setErrorMessage('');
-    setFormData({
-      name: '',
-      email: '',
-      interest: 'Search Engine Optimization',
-      message: '',
-    });
+    setFormData({ ...CONTACT_FORM_DEFAULTS });
   };
 
   return (
-    <section className=" pt-37 pb-20">
-      <div className="nb-container grid gap-8 lg:grid-cols-12">
-        <div className="lg:col-span-4 space-y-5">
-          <div>
-            <p className="nb-pill border border-(--nb-border) bg-(--nb-surface) text-(--nb-accent) mb-4">
-              <MessageSquare size={12} />
-              Contact
+    <section className="relative min-h-screen bg-(--nb-surface) pt-32 pb-10">
+      <div className="nb-container relative z-10">
+        <div className="grid items-start gap-16 lg:grid-cols-2">
+          <div className="lg:pr-10">
+            <div className="mb-10 flex items-center gap-3">
+              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-(--nb-accent)" />
+              <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-(--nb-accent)">
+                Inquiry / Open for Projects
+              </p>
+            </div>
+
+            <h1 className="text-5xl font-light leading-[0.9] tracking-tighter text-(--nb-text) md:text-5xl">
+              Let's talk <br />
+              <span className="font-serif italic text-(--nb-text-muted) opacity-80">business.</span>
+            </h1>
+
+            <p className="mt-10 max-w-sm text-sm font-light leading-relaxed tracking-wide text-(--nb-text-muted) opacity-80">
+              We're a dedicated team that cares about your growth as much as you do. Reach out however you prefer.
             </p>
-            <h1 className="text-3xl md:text-4xl font-black text-(--nb-text) leading-[0.95]">Have a project in mind?</h1>
-            <p className="mt-4 text-(--nb-text-muted) leading-relaxed">
-              Share your goals and timeline. We usually reply within two business hours.
-            </p>
+
+            <div className="mt-16 space-y-8">
+              {CONTACT_CHANNELS.map((channel) => {
+                const Icon = channel.icon;
+                const Wrapper = channel.href ? 'a' : 'div';
+                const wrapperProps = channel.href ? { href: channel.href } : {};
+
+                return (
+                  <div key={channel.label} className="group">
+                    <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.3em] text-(--nb-text-muted)">
+                      {channel.label}
+                    </p>
+                    <Wrapper
+                      {...wrapperProps}
+                      className={`flex items-center gap-4 transition-colors ${channel.href ? 'group-hover:text-(--nb-accent)' : ''}`}
+                    >
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-full border border-(--nb-border) ${
+                          channel.href ? 'group-hover:border-(--nb-accent)' : ''
+                        }`}
+                      >
+                        <Icon size={14} />
+                      </div>
+                      <span className={`text-md font-medium tracking-tight ${channel.href ? '' : 'text-(--nb-text)'}`}>
+                        {channel.value}
+                      </span>
+                    </Wrapper>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="space-y-3">
-            <ContactItem
-              icon={<Mail size={16} />}
-              label="Email"
-              value="hello@nexusboost.com"
-              href="mailto:hello@nexusboost.com"
-            />
-            <ContactItem icon={<Phone size={16} />} label="Call" value="+91 98765 43210" href="tel:+919876543210" />
-            <ContactItem icon={<MapPin size={16} />} label="Office" value="Cyber City, Delhi, IN" />
-          </div>
-        </div>
-
-        <div className="lg:col-span-8">
-          <div className="nb-panel p-6 md:p-8">
+          <div className="relative">
             {status === 'success' ? (
-              <div className="py-10 text-center">
-                <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
-                  <CheckCircle2 size={26} />
-                </span>
-                <h2 className="mt-5 text-3xl font-black text-(--nb-text)">Message sent</h2>
-                <p className="mt-2 text-(--nb-text-muted)">Our team will get back to you shortly.</p>
+              <div className="min-h-100 flex animate-fade-in flex-col justify-center">
+                <CheckCircle2 size={50} className="mb-6 font-light text-emerald-500" strokeWidth={1} />
+                <h2 className="text-3xl font-light tracking-tight text-(--nb-text)">Inquiry Transmitted.</h2>
+                <p className="mt-4 max-w-xs text-sm text-(--nb-text-muted)">
+                  We've received your message. We'll reach out within 2 hours.
+                </p>
                 <button
-                  type="button"
                   onClick={resetForm}
-                  className="mt-7 inline-flex items-center gap-2 rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-(--nb-text)"
+                  className="group mt-10 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-(--nb-accent)"
                 >
-                  Send another
-                  <ArrowRight size={14} />
+                  <span>Send another</span>
+                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid gap-5 md:grid-cols-2">
-                  <Input
-                    label="Your name"
+              <form onSubmit={handleSubmit} className="space-y-12">
+                <div className="space-y-10">
+                  <FloatingInput
+                    label="I am"
                     name="name"
+                    placeholder="Your name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="John Doe"
                   />
-                  <Input
-                    label="Email address"
-                    name="email"
+                  <FloatingInput
+                    label="Reach me at"
                     type="email"
+                    name="email"
+                    placeholder="Email address"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="john@example.com"
+                  />
+
+                  <div className="space-y-4">
+                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-(--nb-text-muted)">
+                      Interested in
+                    </label>
+                    <div className="flex flex-wrap gap-2 py-2">
+                      {CONTACT_INTEREST_OPTIONS.map((item) => (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, interest: item })}
+                          className={`rounded-full border px-5 py-2 text-[9px] font-bold uppercase tracking-widest transition-all duration-300 ${
+                            formData.interest === item
+                              ? 'border-(--nb-text) bg-(--nb-text) text-(--nb-surface)'
+                              : 'border-(--nb-border) text-(--nb-text-muted) hover:border-(--nb-text)'
+                          }`}
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <FloatingInput
+                    label="The Project"
+                    name="message"
+                    placeholder="What are we building?"
+                    isTextarea
+                    value={formData.message}
+                    onChange={handleChange}
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">Interest</label>
-                  <select
-                    name="interest"
-                    value={formData.interest}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border-(--nb-accent)"
+                <div className="pt-6">
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="group flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.3em] text-(--nb-text) disabled:opacity-50"
                   >
-                    <option>Search Engine Optimization</option>
-                    <option>Paid Advertising (PPC)</option>
-                    <option>Social Media Marketing</option>
-                    <option>Web Development</option>
-                  </select>
+                    {status === 'loading' ? 'Transmitting...' : 'Transmit Inquiry'}
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-(--nb-border) transition-all duration-500 group-hover:scale-110 group-hover:border-(--nb-accent) group-hover:bg-(--nb-accent)/5">
+                      <ArrowUpRight size={20} className="text-(--nb-accent)" />
+                    </div>
+                  </button>
+                  {status === 'error' ? <p className="mt-4 text-xs font-medium text-red-400">{errorMessage}</p> : null}
                 </div>
-
-                <Textarea
-                  label="Tell us about your project"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Briefly describe your goals..."
-                />
-
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-(--nb-accent) px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-slate-950 disabled:opacity-70"
-                >
-                  {status === 'loading' ? (
-                    <span className="h-4 w-4 rounded-full border-2 border-slate-900/30 border-t-slate-900 animate-spin" />
-                  ) : (
-                    <>
-                      Send message
-                      <Send size={15} />
-                    </>
-                  )}
-                </button>
-
-                {status === 'error' ? <p className="text-sm text-red-300">{errorMessage}</p> : null}
               </form>
             )}
           </div>
@@ -179,26 +206,29 @@ const Contact = () => {
   );
 };
 
-const Input = ({ label, ...props }) => (
-  <div className="space-y-2">
-    <label className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">{label}</label>
-    <input
-      {...props}
-      required
-      className="w-full rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border-(--nb-accent)"
-    />
-  </div>
-);
-
-const Textarea = ({ label, ...props }) => (
-  <div className="space-y-2">
-    <label className="text-[10px] font-black uppercase tracking-[0.18em] text-(--nb-text-muted)">{label}</label>
-    <textarea
-      {...props}
-      rows="4"
-      required
-      className="w-full resize-none rounded-xl border border-(--nb-border) bg-(--nb-surface-soft) px-4 py-3 text-sm text-(--nb-text) outline-none focus:border-(--nb-accent)"
-    />
+const FloatingInput = ({ label, isTextarea, value, onChange, name, placeholder, type = 'text' }) => (
+  <div className="relative border-b border-(--nb-border)/60 pb-2 transition-all duration-500 focus-within:border-(--nb-accent)">
+    <label className="mb-1 block text-[9px] font-bold uppercase tracking-[0.3em] text-(--nb-text-muted)/70">{label}</label>
+    {isTextarea ? (
+      <textarea
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="h-24 w-full resize-none bg-transparent py-2 text-base text-(--nb-text) outline-none placeholder:text-(--nb-text-muted)/35"
+        required
+      />
+    ) : (
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="w-full bg-transparent py-2 text-base text-(--nb-text) outline-none placeholder:text-(--nb-text-muted)/35"
+        required
+      />
+    )}
   </div>
 );
 

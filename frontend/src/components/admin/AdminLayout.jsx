@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+﻿import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
   ArrowUpRight,
   Briefcase,
@@ -15,19 +15,10 @@ import { useState } from 'react';
 import { Toaster } from 'sonner';
 import Seo from '@/components/common/Seo';
 import { clearAdminToken } from '@/utils/adminAuth';
-
-const navItems = [
-  { path: '/admin/overview', label: 'Overview', icon: LayoutDashboard },
-  { path: '/admin/blogs', label: 'Blogs', icon: FileText },
-  { path: '/admin/projects', label: 'Projects', icon: Briefcase },
-  { path: '/admin/team', label: 'Team', icon: Users },
-  { path: '/admin/clients', label: 'Clients', icon: ArrowUpRight },
-  { path: '/admin/contacts', label: 'Contacts', icon: Mail },
-  { path: '/admin/newsletters', label: 'Newsletters', icon: Newspaper },
-];
+import { ADMIN_NAV_ITEMS } from '@/constants/navigationData';
 
 const getPageLabel = (pathname) => {
-  const current = navItems.find((item) => pathname.startsWith(item.path));
+  const current = ADMIN_NAV_ITEMS.find((item) => pathname.startsWith(item.path));
   return current?.label || 'Admin';
 };
 
@@ -56,7 +47,7 @@ const AdminLayout = () => {
         </div>
 
         <nav className="flex-1 space-y-1 p-4">
-          {navItems.map((item) => {
+          {ADMIN_NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             return (
               <NavLink
@@ -108,7 +99,7 @@ const AdminLayout = () => {
 
           {mobileOpen ? (
             <div className="mt-4 grid gap-2 rounded-3xl border border-neutral-900 bg-[#070707] p-3 lg:hidden">
-              {navItems.map((item) => {
+              {ADMIN_NAV_ITEMS.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname.startsWith(item.path);
                 return (

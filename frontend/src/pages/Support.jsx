@@ -1,43 +1,7 @@
-﻿import { Mail, MessageCircle, Phone } from 'lucide-react';
 import PageHero from '@components/common/PageHero';
 import Seo from '@components/common/Seo';
 import { pageHeroVisuals } from '@/content/marketingContent';
-
-const supportCards = [
-  {
-    icon: Mail,
-    title: 'Email support',
-    value: 'support@nexusboost.com',
-    href: 'mailto:support@nexusboost.com',
-  },
-  {
-    icon: Phone,
-    title: 'Call support',
-    value: '+91 98765 43210',
-    href: 'tel:+919876543210',
-  },
-  {
-    icon: MessageCircle,
-    title: 'Strategy chat',
-    value: 'Get help with website, SEO, or campaign questions',
-    href: '/contact',
-  },
-];
-
-const faqs = [
-  {
-    q: 'How quickly will I get a response?',
-    a: 'Most support and campaign questions are answered within one business day, and urgent delivery issues are prioritized faster.',
-  },
-  {
-    q: 'Can you help after launch with SEO and performance?',
-    a: 'Yes. We support clients with post-launch SEO updates, tracking fixes, landing page improvements, and campaign optimization.',
-  },
-  {
-    q: 'Do you offer custom retainers?',
-    a: 'Yes, we can tailor support around website maintenance, content production, reporting, SEO, or paid media management.',
-  },
-];
+import { SUPPORT_CARDS, SUPPORT_FAQS } from '@/constants/supportData';
 
 const Support = () => {
   return (
@@ -60,7 +24,7 @@ const Support = () => {
       <section className="nb-section pt-6">
         <div className="nb-container">
           <div className="grid gap-4 md:grid-cols-3">
-            {supportCards.map((card) => {
+            {SUPPORT_CARDS.map((card) => {
               const Icon = card.icon;
               return (
                 <a key={card.title} href={card.href} className="nb-panel block p-5 hover:border-[var(--nb-accent)]">
@@ -80,7 +44,7 @@ const Support = () => {
               Common questions about support coverage, response time, SEO retainers, and digital marketing optimization after launch.
             </p>
             <div className="mt-4 space-y-3">
-              {faqs.map((item) => (
+              {SUPPORT_FAQS.map((item) => (
                 <details key={item.q} className="nb-soft-panel px-4 py-3">
                   <summary className="cursor-pointer font-semibold text-[var(--nb-text)]">{item.q}</summary>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--nb-text-muted)]">{item.a}</p>
