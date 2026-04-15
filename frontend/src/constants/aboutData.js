@@ -7,7 +7,7 @@ export const OUR_STORY_PILLARS = [
 ];
 
 export const OUR_STORY_VISUAL = {
-  src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf',
+  src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4ba',
   alt: 'Strategy session',
 };
 

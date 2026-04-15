@@ -6,7 +6,7 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="nb-section">
+    <section className="nb-section ">
       <div className="nb-container grid gap-16 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-5">
           <div className="inline-flex items-center gap-2 rounded-full border border-(--nb-border) px-3 py-1 text-[10px] font-black tracking-widest text-(--nb-accent)">

@@ -139,8 +139,11 @@ img {
 }
 
 .nb-grid-lines {
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.4;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--nb-border) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--nb-border) 28%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.45;
 }
 
 .nb-shine {

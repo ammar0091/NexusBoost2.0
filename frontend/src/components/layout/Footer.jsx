@@ -1,13 +1,16 @@
 ﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Rocket, Mail, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
 import ScrollToTopButton from '../common/ScrollToTopButton';
 import { subscribeNewsletter } from '@/services/contentApi';
 import { useTheme } from '@/context/ThemeContext';
 import { FOOTER_LINKS, FOOTER_STATUS, SOCIAL_LINKS } from '@/constants/navigationData';
+import brandLogoLight from '@/assets/brand/nexusboost-logo-light.svg';
+import brandLogoDark from '@/assets/brand/nexusboost-logo-dark.svg';
 
 const Footer = () => {
   const { isDark } = useTheme();
+  const brandLogo = isDark ? brandLogoDark : brandLogoLight;
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState(FOOTER_STATUS.IDLE);
@@ -35,11 +38,8 @@ const Footer = () => {
       <div className="nb-container">
         <div className="grid lg:grid-cols-12 gap-8 mb-12">
           <div className="lg:col-span-5">
-            <Link to="/" className="inline-flex items-center gap-3 mb-5">
-              <span className="w-11 h-11 rounded-xl nb-accent-gradient flex items-center justify-center text-white">
-                <Rocket size={20} />
-              </span>
-              <span className="text-2xl font-black text-(--nb-text)">NexusBoost.</span>
+            <Link to="/" className="inline-flex items-center mb-5">
+              <img src={brandLogo} alt="NexusBoost logo" className="h-12 w-auto object-contain" />
             </Link>
             <p className="nb-text-muted max-w-md">
               Modern digital design and growth execution for ambitious brands.

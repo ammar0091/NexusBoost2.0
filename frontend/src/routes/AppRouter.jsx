@@ -18,6 +18,8 @@ const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'));
 const TermsConditions = lazy(() => import('@/pages/TermsConditions'));
 const CookiePolicy = lazy(() => import('@/pages/CookiePolicy'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
+
+// Admin
 const AdminLogin = lazy(() => import('@/pages/admin/AdminLogin'));
 const AdminPanel = lazy(() => import('@/pages/admin/AdminPanel'));
 const AdminOverview = lazy(() => import('@/pages/admin/AdminOverview'));

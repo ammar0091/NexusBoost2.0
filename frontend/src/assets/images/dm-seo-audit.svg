@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="seoRing" x1="120" y1="96" x2="392" y2="416" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8FD0FF"/>
+      <stop offset="1" stop-color="#4F9AD6"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="240" cy="236" r="118" stroke="url(#seoRing)" stroke-width="20"/>
+  <circle cx="240" cy="236" r="62" stroke="#2E6FA4" stroke-width="10"/>
+
+  <path d="M239 196V236L272 256" stroke="#F5B84B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="240" cy="236" r="12" fill="#F5B84B"/>
+
+  <path d="M308 318L372 382" stroke="#8FD0FF" stroke-width="18" stroke-linecap="round"/>
+  <rect x="360" y="370" width="82" height="28" rx="14" transform="rotate(45 360 370)" fill="#4F9AD6"/>
+
+  <path d="M159 142L177 124" stroke="#FF8FAA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M320 142L338 124" stroke="#FF8FAA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M118 236H92" stroke="#FF8FAA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M388 236H362" stroke="#FF8FAA" stroke-width="8" stroke-linecap="round"/>
+</svg>

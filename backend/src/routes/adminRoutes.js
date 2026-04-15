@@ -156,6 +156,17 @@ router.post(
 router.get(
   "/stats",
   asyncHandler(async (req, res) => {
+    if (process.env.DB_DEGRADED_MODE === "true") {
+      return res.json({
+        data: {
+          contactCount: 0,
+          unresolvedCount: 0,
+          newsletterCount: 0,
+        },
+        degraded: true,
+      });
+    }
+
     const [contactCount, newsletterCount, unresolvedCount] = await Promise.all([
       ContactLead.countDocuments(),
       NewsletterSubscriber.countDocuments(),
@@ -175,6 +186,14 @@ router.get(
 router.get(
   "/contacts",
   asyncHandler(async (req, res) => {
+    if (process.env.DB_DEGRADED_MODE === "true") {
+      return res.json({
+        data: [],
+        meta: { total: 0 },
+        degraded: true,
+      });
+    }
+
     const contacts = await ContactLead.find().sort({ createdAt: -1 }).lean();
     res.json({
       data: contacts.map((item) => ({
@@ -194,6 +213,13 @@ router.get(
 router.patch(
   "/contacts/:id/status",
   asyncHandler(async (req, res) => {
+    if (process.env.DB_DEGRADED_MODE === "true") {
+      return res.status(503).json({
+        message: "Database is not configured yet. Set MONGO_URI in Vercel environment.",
+        degraded: true,
+      });
+    }
+
     const { status } = req.body;
     if (!["new", "resolved"].includes(status)) {
       return res.status(400).json({ message: "status must be new or resolved" });
@@ -213,6 +239,13 @@ router.patch(
 router.delete(
   "/contacts/:id",
   asyncHandler(async (req, res) => {
+    if (process.env.DB_DEGRADED_MODE === "true") {
+      return res.status(503).json({
+        message: "Database is not configured yet. Set MONGO_URI in Vercel environment.",
+        degraded: true,
+      });
+    }
+
     const deleted = await ContactLead.findByIdAndDelete(req.params.id);
     if (!deleted) {
       return res.status(404).json({ message: "Contact not found" });
@@ -224,6 +257,14 @@ router.delete(
 router.get(
   "/newsletters",
   asyncHandler(async (req, res) => {
+    if (process.env.DB_DEGRADED_MODE === "true") {
+      return res.json({
+        data: [],
+        meta: { total: 0 },
+        degraded: true,
+      });
+    }
+
     const subscribers = await NewsletterSubscriber.find().sort({ createdAt: -1 }).lean();
     res.json({
       data: subscribers.map((item) => ({
@@ -239,6 +280,13 @@ router.get(
 router.delete(
   "/newsletters/:id",
   asyncHandler(async (req, res) => {
+    if (process.env.DB_DEGRADED_MODE === "true") {
+      return res.status(503).json({
+        message: "Database is not configured yet. Set MONGO_URI in Vercel environment.",
+        degraded: true,
+      });
+    }
+
     const deleted = await NewsletterSubscriber.findByIdAndDelete(req.params.id);
     if (!deleted) {
       return res.status(404).json({ message: "Subscriber not found" });

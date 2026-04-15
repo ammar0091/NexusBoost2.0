@@ -1,4 +1,8 @@
-﻿const mongoose = require("mongoose");
+const mongoose = require("mongoose");
+
+mongoose.set("bufferCommands", false);
+
+let connectionPromise = null;
 
 const dbHealth = {
   status: "disconnected",
@@ -48,23 +52,39 @@ function isDbReady() {
 }
 
 async function connectDB(mongoUri) {
+  if (mongoose.connection.readyState === 1) {
+    refreshDbHealth();
+    return mongoose.connection;
+  }
+
+  if (connectionPromise) {
+    return connectionPromise;
+  }
+
   dbHealth.status = "connecting";
   dbHealth.lastError = null;
   refreshDbHealth();
 
-  try {
-    await mongoose.connect(mongoUri, {
+  connectionPromise = mongoose
+    .connect(mongoUri, {
       serverSelectionTimeoutMS: 10000,
+      maxPoolSize: Number(process.env.MONGO_MAX_POOL_SIZE || 10),
+    })
+    .then((connection) => {
+      refreshDbHealth();
+      console.log("MongoDB connected");
+      return connection;
+    })
+    .catch((error) => {
+      dbHealth.status = "error";
+      dbHealth.lastError = error?.message || "MongoDB connection failed";
+      refreshDbHealth();
+      console.error("MongoDB connection failed:", dbHealth.lastError);
+      connectionPromise = null;
+      throw error;
     });
-    refreshDbHealth();
-    console.log("MongoDB connected");
-  } catch (error) {
-    dbHealth.status = "error";
-    dbHealth.lastError = error?.message || "MongoDB connection failed";
-    refreshDbHealth();
-    console.error("MongoDB connection failed:", dbHealth.lastError);
-    throw error;
-  }
+
+  return connectionPromise;
 }
 
 module.exports = { connectDB, getDbHealth, isDbReady };

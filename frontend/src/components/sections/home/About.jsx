@@ -20,7 +20,7 @@ const About = () => {
           </div>
 
           {/* Right: The Floating Content Block */}
-          <div className="relative z-20 w-full md:w-2/3 md:-ml-20 mt-8 md:mt-24 p-8 md:p-12 bg-(--nb-surface) border border-(--nb-border)/40 shadow-2xl backdrop-blur-md">
+          <div className="relative z-20 w-full md:w-2/3 md:-ml-20   p-8 md:p-12 bg-(--nb-surface-neo) border border-(--nb-border)/40 shadow-2xl backdrop-blur-md">
             
             <div className="flex items-center gap-3 mb-6">
               <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-(--nb-accent)">

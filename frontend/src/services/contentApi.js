@@ -6,7 +6,8 @@ import {
   fallbackTeam,
 } from "@/content/marketingContent";
 
-const CONTENT_FALLBACK_ENABLED = import.meta.env.VITE_ENABLE_CONTENT_FALLBACK === "true";
+const CONTENT_FALLBACK_ENABLED =
+  import.meta.env.DEV && import.meta.env.VITE_ENABLE_CONTENT_FALLBACK === "true";
 
 async function fetchCollection(path, fallbackData, options = {}) {
   const enableFallback = options.enableFallback ?? CONTENT_FALLBACK_ENABLED;

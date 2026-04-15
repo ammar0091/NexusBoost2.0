@@ -1,0 +1,29 @@
+<svg width="472" height="128" viewBox="0 0 472 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nb-core-dark" x1="20" y1="20" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06B6D4" />
+      <stop offset="1" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="nb-accent-dark" x1="36" y1="88" x2="92" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE" />
+      <stop offset="1" stop-color="#FBBF24" />
+    </linearGradient>
+    <linearGradient id="nb-word-dark" x1="148" y1="34" x2="430" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E2E8F0" />
+      <stop offset="1" stop-color="#F8FAFC" />
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="108" height="108" rx="28" fill="url(#nb-core-dark)" />
+  <path d="M34 90V38L94 90V38" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M34 90L94 38" stroke="url(#nb-accent-dark)" stroke-width="8" stroke-linecap="round" />
+  <circle cx="64" cy="64" r="50" stroke="white" stroke-opacity="0.24" stroke-width="2" />
+  <circle cx="96" cy="34" r="7" fill="#FBBF24" />
+
+  <text x="148" y="78" fill="url(#nb-word-dark)" font-size="50" font-family="Poppins, Montserrat, Segoe UI, sans-serif" font-weight="800" letter-spacing="0.6">
+    Nexus
+  </text>
+  <text x="296" y="78" fill="#38BDF8" font-size="50" font-family="Poppins, Montserrat, Segoe UI, sans-serif" font-weight="800" letter-spacing="0.4">
+    Boost
+  </text>
+</svg>

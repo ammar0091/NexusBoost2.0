@@ -15,7 +15,7 @@ const PageHero = ({ eyebrow, title, highlight, description, cta, visual }) => {
               {eyebrow}
             </span>
 
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-(--nb-text) leading-[1.1]">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-(--nb-text-neo) leading-[1.1]">
               {title}
               {highlight && (
                 <span className="block italic font-serif text-(--nb-text-muted) opacity-80 mt-1">

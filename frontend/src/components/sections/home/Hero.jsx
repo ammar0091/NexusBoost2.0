@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight, Globe, Zap, Coffee } from 'lucide-react';
 
 const Hero = () => {
@@ -20,7 +20,7 @@ const Hero = () => {
               </p>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-light tracking-tighter text-(--nb-text) leading-[0.9]">
+            <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-(--nb-text) leading-[0.9]">
               Hard work <br /> 
               <span className="font-serif italic text-(--nb-text-muted) opacity-80">made</span> visible.
             </h1>
