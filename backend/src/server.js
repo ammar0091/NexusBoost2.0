@@ -1,4 +1,4 @@
-﻿const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 dotenv.config();
 
 const mongoose = require("mongoose");
@@ -7,7 +7,7 @@ const { connectDB } = require("./config/db");
 const { ensureDefaultAdmin } = require("./utils/seedAdmin");
 
 const port = Number(process.env.PORT || 5000);
-const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/nexusboost";
+const mongoUri = String(process.env.MONGO_URI || "").trim();
 const isProduction = process.env.NODE_ENV === "production";
 
 let httpServer = null;
@@ -20,6 +20,10 @@ if (!process.env.JWT_SECRET) {
 
   process.env.JWT_SECRET = "dev_only_change_me";
   console.warn("JWT_SECRET not set, using insecure dev fallback");
+}
+
+if (!mongoUri) {
+  throw new Error("MONGO_URI is required. Add your MongoDB Atlas connection string to backend/.env");
 }
 
 async function startServer() {

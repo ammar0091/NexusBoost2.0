@@ -65,7 +65,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-(--nb-surface) pt-32 pb-10">
+    <section className="relative min-h-screen bg-(--nb-surface) pt-40 pb-10">
       <div className="nb-container relative z-10">
         <div className="grid items-start gap-16 lg:grid-cols-2">
           <div className="lg:pr-10">

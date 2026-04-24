@@ -1,4 +1,4 @@
-﻿# NexusBoost
+# NexusBoost
 
 Full-stack setup:
 - `frontend/` React + Vite marketing site
@@ -9,8 +9,9 @@ Full-stack setup:
 ### Backend
 
 1. In `backend`, create `.env` from `.env.example`.
-2. Start MongoDB locally or point `MONGO_URI` to Atlas.
-3. Run:
+2. Replace `MONGO_URI` with your MongoDB Atlas connection string.
+3. In MongoDB Atlas, allow your current IP in Network Access and create a database user with read/write access.
+4. Run:
 
 ```bash
 cd backend
@@ -57,7 +58,7 @@ Deploy `frontend` and `backend` as two separate Vercel projects.
 
 ```env
 NODE_ENV=production
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=your_mongodb_atlas_connection_string
 JWT_SECRET=your_strong_secret
 ADMIN_EMAIL=admin@yourdomain.com
 ADMIN_PASSWORD=your_strong_admin_password

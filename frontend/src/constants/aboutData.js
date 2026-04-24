@@ -1,15 +1,27 @@
-﻿import { Activity, Layers, Scaling } from 'lucide-react';
+import { Activity, Layers, Scaling } from 'lucide-react';
 
-export const OUR_STORY_PILLARS = [
-  'Outcome-focused delivery',
-  'Integrated strategy & workflow',
-  'Scalable, long-term systems',
-];
-
-export const OUR_STORY_VISUAL = {
-  src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4ba',
-  alt: 'Strategy session',
+export const OUR_STORY_CONTENT = {
+  eyebrow: 'OUR STORY',
+  titlePrefix: 'Welcome to',
+  titleBrand: 'NexusBoost',
+  highlight:
+    'We combine search strategy, performance marketing, and conversion-focused design to build revenue-ready digital systems.',
+  paragraphs: [
+    'NexusBoost was built for brands that need more than vanity metrics. We partner with founders, marketing teams, and operators to create practical growth plans grounded in intent data, channel alignment, and clear business outcomes.',
+    'From SEO architecture and high-converting websites to paid campaigns and analytics, our team works as one integrated unit. Every sprint is connected to ranking movement, lead quality, conversion lift, and long-term compounding growth.',
+  ],
 };
+
+export const OUR_STORY_IMAGES = [
+  {
+    src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80 ',
+    alt: 'NexusBoost strategists reviewing campaign and SEO performance reports',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80',
+    alt: 'Digital marketing team celebrating a successful sprint in a collaborative workspace',
+  },
+];
 
 export const ABOUT_DIFFERENTIATOR_POINTS = [
   {
