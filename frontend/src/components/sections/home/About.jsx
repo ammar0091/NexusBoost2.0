@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
 const About = () => {
@@ -12,9 +12,11 @@ const About = () => {
           <div className="relative z-10 w-full md:w-1/2 group">
             <div className="overflow-hidden rounded-sm border border-(--nb-border)/50 p-1 bg-(--nb-surface-soft)">
               <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                src="/assets/remote/team-collaboration-office.jpg"
                 alt="NexusBoost Collective"
                 className="aspect-5/5 w-full object-cover  transition-all duration-1000  group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

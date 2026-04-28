@@ -24,7 +24,7 @@ export const services = [
     bullets: ['Technical SEO audits', 'Keyword and topic mapping', 'On-page and internal linking improvements'],
     icon: Search,
     tone: 'text-cyan-400',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/seo-audit-report.jpg',
   },
   {
     slug: 'performance-marketing',
@@ -36,7 +36,7 @@ export const services = [
     bullets: ['Google and Meta campaign strategy', 'Creative and landing page alignment', 'Budget efficiency and CAC improvement'],
     icon: TrendingUp,
     tone: 'text-emerald-400',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/performance-analytics-dashboard.jpg',
   },
   {
     slug: 'social-media-strategy',
@@ -48,7 +48,7 @@ export const services = [
     bullets: ['Channel planning and positioning', 'Content systems and campaign themes', 'Creative direction for growth-focused teams'],
     icon: Megaphone,
     tone: 'text-rose-400',
-    image: 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/social-media-campaign-planning.jpg',
   },
   {
     slug: 'branding-visual-design',
@@ -60,7 +60,7 @@ export const services = [
     bullets: ['Brand identity refinement', 'Visual direction and consistency', 'Messaging support across channels'],
     icon: Palette,
     tone: 'text-violet-400',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/brand-strategy-planning.jpg',
   },
   {
     slug: 'web-development',
@@ -72,7 +72,7 @@ export const services = [
     bullets: ['Responsive frontend builds', 'Search-friendly technical foundations', 'Conversion-focused page structure'],
     icon: Code2,
     tone: 'text-blue-400',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/web-design-workstation.jpg',
   },
   {
     slug: 'conversion-optimization',
@@ -84,7 +84,7 @@ export const services = [
     bullets: ['Landing page audits', 'CTA and messaging refinement', 'Trust-building UX improvements'],
     icon: SlidersHorizontal,
     tone: 'text-amber-400',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/growth-strategy-session.jpg',
   },
   {
     slug: 'ppc-advertising',
@@ -96,7 +96,7 @@ export const services = [
     bullets: ['Campaign structure and targeting', 'Query and audience refinement', 'Performance reporting and optimization'],
     icon: BarChart3,
     tone: 'text-lime-400',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/marketing-dashboard-overview.jpg',
   },
   {
     slug: 'content-marketing',
@@ -108,7 +108,7 @@ export const services = [
     bullets: ['Topic cluster planning', 'Search-led editorial strategy', 'Authority content for organic growth'],
     icon: Waypoints,
     tone: 'text-pink-400',
-    image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/content-strategy-workshop.jpg',
   },
   {
     slug: 'email-marketing',
@@ -120,7 +120,7 @@ export const services = [
     bullets: ['Lifecycle and nurture flows', 'Campaign email strategy', 'Retention and reactivation sequences'],
     icon: Mail,
     tone: 'text-indigo-400',
-    image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/email-campaign-team.jpg',
   },
   {
     slug: 'analytics-reporting',
@@ -132,7 +132,7 @@ export const services = [
     bullets: ['GA4 and event tracking reviews', 'Dashboard and attribution clean-up', 'Decision-ready reporting frameworks'],
     icon: ArrowUpRight,
     tone: 'text-sky-400',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/performance-analytics-dashboard.jpg',
   },
   {
     slug: 'video-marketing',
@@ -144,7 +144,7 @@ export const services = [
     bullets: ['Short-form and campaign concepts', 'Brand storytelling support', 'Distribution-aware planning'],
     icon: Film,
     tone: 'text-orange-400',
-    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/video-marketing-production.jpg',
   },
   {
     slug: 'ux-ui-design',
@@ -156,7 +156,7 @@ export const services = [
     bullets: ['Interface and funnel UX reviews', 'Visual hierarchy improvements', 'Design systems for consistency'],
     icon: UserRound,
     tone: 'text-fuchsia-400',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/remote/website-ux-wireframe-review.jpg',
   },
 ];
 

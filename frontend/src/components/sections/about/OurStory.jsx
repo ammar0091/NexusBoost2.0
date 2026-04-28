@@ -1,5 +1,5 @@
 import { OUR_STORY_CONTENT, OUR_STORY_IMAGES } from '@/constants/aboutData';
-import { Target, ArrowUpRight } from 'lucide-react';
+import { Target } from 'lucide-react';
 
 const OurStory = () => {
   const [primary, secondary] = OUR_STORY_IMAGES;
@@ -28,6 +28,8 @@ const OurStory = () => {
                   src={primary.src}
                   alt={primary.alt}
                   className="w-full aspect-5/5 object-cover transition-transform duration-[1.5s] cubic-bezier(0.2, 1, 0.3, 1) group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
                 {/* Subtle Gradient Overlay */}
                 <div className="absolute inset-0 bg-linear-to-t from-(--nb-surface)/20 to-transparent" />
@@ -39,6 +41,8 @@ const OurStory = () => {
                   src={secondary.src}
                   alt={secondary.alt}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 

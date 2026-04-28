@@ -53,8 +53,8 @@ const Home = () => {
         schema={schema}
       />
       <Hero />
-      <TrustStats />
       <About />
+      <TrustStats />
       <ServicesPreview />
       <WhyChooseUs />
       <Process />

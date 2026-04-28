@@ -14,11 +14,11 @@ export const OUR_STORY_CONTENT = {
 
 export const OUR_STORY_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80 ',
+    src: '/assets/remote/agency-client-workshop.jpg',
     alt: 'NexusBoost strategists reviewing campaign and SEO performance reports',
   },
   {
-    src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80',
+    src: '/assets/remote/team-success-presentation.jpg',
     alt: 'Digital marketing team celebrating a successful sprint in a collaborative workspace',
   },
 ];
@@ -42,6 +42,6 @@ export const ABOUT_DIFFERENTIATOR_POINTS = [
 ];
 
 export const ABOUT_DIFFERENTIATOR_VISUAL = {
-  src: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80',
+  src: '/assets/remote/content-strategy-workshop.jpg',
   alt: 'Team mapping a search and content strategy on a collaborative whiteboard',
 };

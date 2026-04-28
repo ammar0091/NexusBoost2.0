@@ -131,7 +131,13 @@ const BlogDetail = () => {
           {/* CENTER: Typography-focused Content */}
           <div className="max-w-180 mx-auto w-full">
             <figure className="mb-16 overflow-hidden rounded-[3rem] border border-(--nb-border) shadow-2xl">
-              <img src={blog.coverImage} alt="" className="w-full aspect-video object-cover transition-transform duration-1000 hover:scale-105" />
+              <img
+                src={blog.coverImage}
+                alt=""
+                className="w-full aspect-video object-cover transition-transform duration-1000 hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
 
             <div className="prose prose-slate prose-lg max-w-none">

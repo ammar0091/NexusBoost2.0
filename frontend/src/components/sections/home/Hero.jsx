@@ -6,9 +6,9 @@ const Hero = () => {
   const [activeImg, setActiveImg] = useState(0);
 
   const images = [
-    'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1504868584819-f8e905263543?auto=format&fit=crop&w=2000&q=80',
+    '/assets/remote/home-hero-slide-analytics.jpg',
+    '/assets/remote/home-hero-slide-teamwork.jpg',
+    '/assets/remote/home-hero-slide-growth.jpg',
   ];
 
   useEffect(() => {
@@ -27,15 +27,18 @@ const Hero = () => {
             key={i}
             src={img}
             alt="Marketing Context"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchPriority={i === 0 ? 'high' : 'auto'}
+            decoding="async"
             className={`absolute inset-0 h-full w-full object-cover transition-all duration-1500 ease-in-out
               brightness-95 contrast-110 saturate-110 dark:brightness-70 dark:contrast-130 dark:saturate-90
-              ${i === activeImg ? 'opacity-70 dark:opacity-52 scale-110' : 'opacity-0 scale-100'}`}
+              ${i === activeImg ? 'opacity-70 dark:opacity-100 scale-110' : 'opacity-0 scale-100'}`}
           />
         ))}
 
         {/* Keep content readable while preserving image visibility in light mode */}
         <div className="absolute inset-0 bg-white/24 dark:bg-black/18" />
-        <div className="absolute inset-0 bg-gradient-to-b from-(--nb-surface) via-transparent to-(--nb-surface) opacity-56 dark:opacity-78" />
+        <div className="absolute inset-0 bg-linear-to-b from-(--nb-surface) via-transparent to-(--nb-surface) opacity-56 dark:opacity-78" />
       </div>
 
       <div className="nb-container relative z-10 w-full pt-20">
